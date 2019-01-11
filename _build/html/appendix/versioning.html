@@ -1,0 +1,216 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Project Versioning &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="C++ Graphics Setup" href="cpp-graphics/01-graphics-setup.html" />
+    <link rel="prev" title="Documenting Your Project With reStructuredText" href="documentation/index.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cpp-graphics/01-graphics-setup.html" title="C++ Graphics Setup"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="documentation/index.html" title="Documenting Your Project With reStructuredText"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Appendix</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="project-versioning">
+<span id="project-versions"></span><h1>Project Versioning<a class="headerlink" href="#project-versioning" title="Permalink to this headline">¶</a></h1>
+<p>Read time: 8 minutes (2043 words)</p>
+<p>Many projects track the version of their project using a simple scheme that
+looks like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>version=2.1.7
+</pre></div>
+</div>
+<div class="section" id="conventional-versioning">
+<h2>Conventional Versioning<a class="headerlink" href="#conventional-versioning" title="Permalink to this headline">¶</a></h2>
+<p>There is a rationale for this numbering scheme. Here are the rules:</p>
+<div class="section" id="major-number">
+<h3>Major Number<a class="headerlink" href="#major-number" title="Permalink to this headline">¶</a></h3>
+<p>The first number is the version number. Versions are major releases of a
+project. There is no requirement that the user interface to the project be
+maintained when major versions are released. There is usually a significant
+changes in the way the project works with each major version.</p>
+<p>Projects start off with major version number zero, until the project reaches a
+point where is is ready for real uses to play with it (or pay for it!)</p>
+</div>
+<div class="section" id="minor-number">
+<h3>Minor Number<a class="headerlink" href="#minor-number" title="Permalink to this headline">¶</a></h3>
+<p>Any time a project adds a new feature to the code, adding to the capability of
+the project, a minor release number is incremented. Here, the user interface is
+preserved, but a set of new features is added to the system.</p>
+<p>Minor releases can happen more often over the life of a project. The added
+functionality of the new version should not remove, just add ti them.</p>
+</div>
+<div class="section" id="patch-number">
+<h3>Patch Number<a class="headerlink" href="#patch-number" title="Permalink to this headline">¶</a></h3>
+<p>While a release is in use, it is common to issue patches to it. These patches
+do not add new features, or make changes to the interface. What they do is
+correct bugs detected in the version.</p>
+<p>Patches are a way of life, it seems, in recent projects. Some projects patch
+almost continuously. The patch number gives you a sense of how active, or how
+buggy a piece of software is. You get to decide if big numbers here are a good
+thing or not.</p>
+</div>
+</div>
+<div class="section" id="our-versioning-system">
+<h2>Our Versioning System<a class="headerlink" href="#our-versioning-system" title="Permalink to this headline">¶</a></h2>
+<p>Just for fun, we are going to ditch the patch number and change that to a build
+number. I often wonder how many times I build my code, so we will set up a
+version system that tracks this number.</p>
+<p>We will set up our <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> with targets that help us manage the build
+number. For simplicity, we will store the current version number in a hidden
+file in the project directory. This file will be constructed, and modified,
+inby commands in the project <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.</p>
+</div>
+<div class="section" id="step-1-creating-the-version-file">
+<h2>Step 1: Creating the Version File<a class="headerlink" href="#step-1-creating-the-version-file" title="Permalink to this headline">¶</a></h2>
+<p>This step is easy. We will set up a simple <code class="docutils literal notranslate"><span class="pre">make</span></code> target that displays the
+current version. If the file does not exist when this target is run, it will be
+created with an initial version of <code class="docutils literal notranslate"><span class="pre">0.0.0</span></code>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Project Versioning</a><ul>
+<li><a class="reference internal" href="#conventional-versioning">Conventional Versioning</a><ul>
+<li><a class="reference internal" href="#major-number">Major Number</a></li>
+<li><a class="reference internal" href="#minor-number">Minor Number</a></li>
+<li><a class="reference internal" href="#patch-number">Patch Number</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#our-versioning-system">Our Versioning System</a></li>
+<li><a class="reference internal" href="#step-1-creating-the-version-file">Step 1: Creating the Version File</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="documentation/index.html"
+                          title="Previous page">&larr; Documenting Your Project With reStructuredText</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="cpp-graphics/01-graphics-setup.html"
+                          title="Next page">&rarr; C++ Graphics Setup</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/appendix/versioning.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cpp-graphics/01-graphics-setup.html" title="C++ Graphics Setup"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="documentation/index.html" title="Documenting Your Project With reStructuredText"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Appendix</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

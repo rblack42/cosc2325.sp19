@@ -1,0 +1,18 @@
+# Vim
+*~
+*.swp
+
+# Mac
+.DS_Store
+
+#Python
+__pycache__
+*.py[cod]
+rst/_build
+
+# C/C++
+*.o
+*.a
+demo
+testapp
+

@@ -1,0 +1,309 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Configuring Vim in Ubuntu &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Installing Git on your PC" href="03-installing-git.html" />
+    <link rel="prev" title="Programmer’s Editor" href="01-installing-gvim.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="03-installing-git.html" title="Installing Git on your PC"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="01-installing-gvim.html" title="Programmer’s Editor"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Appendix</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="configuring-vim-in-ubuntu">
+<h1>Configuring Vim in Ubuntu<a class="headerlink" href="#configuring-vim-in-ubuntu" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://www.vim.org/">Vim</a>, like most programmer’s editors is highly configurable. Every programmer
+has an idea of the “best” way to set things up, but one programmer’s settings
+will annoy another programmer somewhere.</p>
+<p>You need to learn how to tune up the editor so YOU are happy with it.</p>
+<p>Fortunately, this is pretty easy, but there are a ton of options you can play
+with.</p>
+<p>In fact do a search for the name of the configuration file (<code class="docutils literal notranslate"><span class="pre">.vimrc</span></code>) in
+<a class="reference external" href="https://github.com/">GitHub</a>, and stand back.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Much of this discussion is aimed at Linux/Mac users. FOr PC uses, watch the
+notes closely. The exact commands are a bit different.</p>
+</div>
+<div class="section" id="personal-settings">
+<h2>Personal Settings<a class="headerlink" href="#personal-settings" title="Permalink to this headline">¶</a></h2>
+<p>All settings in Linux/Mac are stored in a hidden file in your home directory. That
+file is this:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">/users/&lt;accountname&gt;/.vimrc</span></code></li>
+</ul>
+</div></blockquote>
+<p>This is just a text file with commands to <a class="reference external" href="http://www.vim.org/">Vim</a> to set certain options to the
+values specified. This file can have comments, which are anything after a
+double-quote character to the end of the line. The comments are not needed, but
+I am including them in this note to explain what each option does.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">On a PC, the file is named <code class="docutils literal notranslate"><span class="pre">_vimrc</span></code> and lives in the folder where you
+install gvim.</p>
+</div>
+</div>
+<div class="section" id="create-edit-vimrc">
+<h2>Create/edit .vimrc<a class="headerlink" href="#create-edit-vimrc" title="Permalink to this headline">¶</a></h2>
+<p>If this <code class="docutils literal notranslate"><span class="pre">.vimrc</span></code> file does not exist, you can create it with <a class="reference external" href="http://www.vim.org/">Vim</a>
+naturally!). The same command will edit an existing configuration file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vim ~/.vimrc
+</pre></div>
+</div>
+<p>That the “~” character is just an alias for <code class="docutils literal notranslate"><span class="pre">/home/&lt;accountname&gt;</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Windows is just realizing that having an easy way to specify where your
+home directory is actually is a good idea. For Windows you create your file
+by navigating to the right folder, then typing this <code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">_vimrc</span></code>:</p>
+</div>
+<p>Here are the absolute minimum settings I use:</p>
+<div class="highlight-vim notranslate"><div class="highlight"><pre><span></span><span class="c">&quot; Chage tab stops to every 4 chars</span>
+<span class="k">set</span> <span class="nb">tabstop</span><span class="p">=</span><span class="m">4</span>
+
+<span class="c">&quot; this setting makes indents match the line above</span>
+<span class="k">set</span> <span class="nb">autoindent</span>
+
+<span class="c">&quot; make &lt;Tab&gt; and &lt;BS&gt; work together</span>
+<span class="k">set</span> <span class="nb">softtabstop</span><span class="p">=</span><span class="m">4</span>
+
+<span class="c">&quot; highlite code as recommended based on the language</span>
+<span class="nb">syntax</span> <span class="k">on</span>
+
+<span class="c">&quot; this setting must match the tabstop values if using auto indenting</span>
+<span class="k">set</span> <span class="nb">shiftwidth</span><span class="p">=</span><span class="m">4</span>
+
+<span class="c">&quot; Replace tabs with spaces</span>
+<span class="k">set</span> <span class="nb">expandtab</span>
+
+<span class="c">&quot; Do not create backups</span>
+<span class="k">set</span> <span class="nb">nobackup</span>
+</pre></div>
+</div>
+<p>The last line eliminates the backup files <a class="reference external" href="http://www.vim.org/">Vim</a> creates. Those files all end
+with a “~” character after the name. I use <a class="reference external" href="https://git-scm.com/">Git</a>, so I do not need backups.</p>
+<p>Here ia a <a class="reference external" href="http://vim.wikia.com/wiki/Indenting_source_code">link</a> to a web page with more information on teaching <a class="reference external" href="http://www.vim.org/">Vim</a> how to indent the way you like.</p>
+<div class="section" id="other-settings">
+<h3>Other Settings<a class="headerlink" href="#other-settings" title="Permalink to this headline">¶</a></h3>
+<p>These are useful for a beginner:</p>
+<div class="highlight-vim notranslate"><div class="highlight"><pre><span></span><span class="c">&quot; Show line numbers</span>
+<span class="k">set</span> <span class="k">number</span>
+
+<span class="c">&quot; Make searches case insensitive</span>
+<span class="k">set</span> <span class="nb">ic</span>
+</pre></div>
+</div>
+<p>There are short forms for all options. That last setting was actually
+“ignorecase”. “ic” is shorter!</p>
+</div>
+<div class="section" id="spell-checking">
+<h3>Spell Checking<a class="headerlink" href="#spell-checking" title="Permalink to this headline">¶</a></h3>
+<p>If you type a lot of text, like you might for documentation (or lecture notes),
+you can turn on spell checking by entering this while in command mode in <a class="reference external" href="http://www.vim.org/">Vim</a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>:set spell
+</pre></div>
+</div>
+<p>I do not add this to the <code class="docutils literal notranslate"><span class="pre">.vimrc</span></code> file, since there are tons of spelling
+errors in typical code.</p>
+<p>But there is a neat trick you can do in your documentation files.</p>
+<p>In my lecture notes, usually at the bottom, you will see this line:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>.. vim:ft=rst spell:
+</pre></div>
+</div>
+<p>That line is telling Vim that when it reads this file, after processing
+anything in the <code class="docutils literal notranslate"><span class="pre">.vimrc</span></code> file, it should add two more options. The <code class="docutils literal notranslate"><span class="pre">ft</span></code> is
+short for <code class="docutils literal notranslate"><span class="pre">filetype</span></code>, which causes <a class="reference external" href="http://www.vim.org/">Vim</a> to highlight the file as though it
+was written in reStructuredText (those files usually end in <code class="docutils literal notranslate"><span class="pre">.rst</span></code>). It will do that
+even if this file does not end in <code class="docutils literal notranslate"><span class="pre">.rst</span></code>. Some Python programmers like to use
+<code class="docutils literal notranslate"><span class="pre">.txt</span></code> on their reStructuredText files. <a class="reference external" href="http://www.vim.org/">Vim</a> will handle both.</p>
+<p>If I am editing a lecture note file, or documentation file, using reStructuredText, I do
+want spell checking on, so the one line will make sure it is happening.</p>
+<p>Any misspelled word will be shown with a red squiggly line underscoring it. If
+you right-click on something <a class="reference external" href="http://www.vim.org/">Vim</a> thinks is misspelled, it will offer to
+correct it, or you can tell it to add this word to its dictionary. I have to do
+that, since <a class="reference external" href="http://www.vim.org/">Vim</a> insists that my name is misspelled! (Silly Vim!)</p>
+</div>
+</div>
+<div class="section" id="more-vim-tricks">
+<h2>More Vim Tricks<a class="headerlink" href="#more-vim-tricks" title="Permalink to this headline">¶</a></h2>
+<p>You can search for some text in your file easil. Mke sure you are in <code class="docutils literal notranslate"><span class="pre">command</span>
+<span class="pre">mode</span></code>, then type a forward slash, followed by the text you are looking for.
+When you hit enter, it will put you on the first line below the current cursor
+position that contains that text. It will wrap around, and search from the
+start of the file, if needed.</p>
+<p>Typing just that slash and enter again will find the next occurrence of that text.</p>
+<p>Explaining everything you can do to tune this editor would take an entire
+semester. You can set up custom key combinations that issue a whole string of
+text, and some programmers use that trick to create starter code for projects. You
+can also run common commands on your system’s command line, and see the output
+(error messages, anyone?) back in the editor. In fact, you could turn <a class="reference external" href="http://www.vim.org/">Vim</a> into
+an IDE if you like. I prefer not to do that!</p>
+<p>Do some research, and more reading, and tune this critter up to suit you.
+Believe it or not, you can even customize this editor, adding entire new
+commands, written in Python! You can set up key combinations that will fire off
+those custon commands easily. Of course, you need to learn a lot more about how
+<a class="reference external" href="http://www.vim.org/">Vim</a> manages an edited file, but there are examples around that can get you
+started on this.</p>
+</div>
+<div class="section" id="learn-your-tools">
+<h2>Learn Your Tools<a class="headerlink" href="#learn-your-tools" title="Permalink to this headline">¶</a></h2>
+<p>As a software developer, you will spend a lot of time using your editor. Once
+we learn how powerful a good editor is (and <a class="reference external" href="http://www.vim.org/">Vim</a> is certainly not the only
+editor around), you job is to learn the basics of how to use your chosen tool,
+then you learn how to tune it so you get your work done quickly.</p>
+<p>I have used this <a class="reference external" href="http://www.vim.org/">Vim</a> editor, or its predecessor, the Vi editor, since around
+1976! It keeps getting better all the time. And, I keep finding new tricks, I
+did not know about! Those tricks that make me like it even more. I have tried
+to kick the <a class="reference external" href="http://www.vim.org/">Vim</a> habit, just to see if I really can get more productive using
+something else. So far, <a class="reference external" href="http://www.vim.org/">Vim</a> has always won! YMMV!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Configuring Vim in Ubuntu</a><ul>
+<li><a class="reference internal" href="#personal-settings">Personal Settings</a></li>
+<li><a class="reference internal" href="#create-edit-vimrc">Create/edit .vimrc</a><ul>
+<li><a class="reference internal" href="#other-settings">Other Settings</a></li>
+<li><a class="reference internal" href="#spell-checking">Spell Checking</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#more-vim-tricks">More Vim Tricks</a></li>
+<li><a class="reference internal" href="#learn-your-tools">Learn Your Tools</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="01-installing-gvim.html"
+                          title="Previous page">&larr; Programmer’s Editor</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="03-installing-git.html"
+                          title="Next page">&rarr; Installing Git on your PC</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/appendix/tools/02-customizing-vim.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="03-installing-git.html" title="Installing Git on your PC"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="01-installing-gvim.html" title="Programmer’s Editor"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Appendix</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

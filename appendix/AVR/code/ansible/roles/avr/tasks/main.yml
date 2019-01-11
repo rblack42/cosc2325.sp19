@@ -1,0 +1,10 @@
+---
+- name: Install AVR build tools
+  apt:
+    name:
+      - binutils-avr
+      - gcc-avr
+      - avr-libc
+      - avrdude
+        state: latest
+

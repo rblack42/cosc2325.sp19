@@ -1,0 +1,498 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Documenting Your Project With reStructuredText &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Project Versioning" href="../versioning.html" />
+    <link rel="prev" title="Installing VirtualBox" href="../tools/10-instaling-virtualbox.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../versioning.html" title="Project Versioning"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../tools/10-instaling-virtualbox.html" title="Installing VirtualBox"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Appendix</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="documenting-your-project-with-rst">
+<h1>Documenting Your Project With reStructuredText<a class="headerlink" href="#documenting-your-project-with-rst" title="Permalink to this headline">¶</a></h1>
+<p>Read time: 29 minutes (7285 words)</p>
+<p>You absolutely should be writing documentation at the same time you write code.
+No, I do not mean add comments to your code! I mean write a separate document
+that <em>explains</em> your code to some poor soul who will inherit your creation and
+have to “maintain” it. You need to establish a habit of working on your
+documentation, and treat that as something as important as the code itself!</p>
+<div class="section" id="good-documentation">
+<h2>Good Documentation<a class="headerlink" href="#good-documentation" title="Permalink to this headline">¶</a></h2>
+<p>What makes for good documentation?</p>
+<p>For one thing, it is designed to convey information to the reader. But who is
+that reader? Perhaps it is you a week from now, when you have forgotten why you
+did what you did. Most certainly, it is another developer who inherits your
+code a year from now, when you are not around to help out. Maybe you are
+working on another project, maybe you have left the company. Who knows?</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a>, one of the most respected computer scientists this country has
+produced, thought this was so important, he proposed a new way of programming
+he called <a class="reference external" href="https://en.wikipedia.org/wiki/Literate_programming">Literate Programming</a>.</p>
+<p>In his system, you wrote the source code for a book, describing the code you
+were developing. That code was processed using another great tool developed by
+<a class="reference external" href="https://en.wikipedia.org/wiki/Donald_Knuth">Knuth</a>, the <a class="reference external" href="https://www.tug.org/begin.html">TeX</a> typesetting system, and generated something a published could
+use to print a real book (or, today, a nice PDF). Where is the code you need to
+compile? It is buried in the documentation source, and extracted by a tool
+designed to generate the code file the compiler could process. <a class="reference external" href="https://en.wikipedia.org/wiki/Donald_Knuth">Knuth</a> was
+concerned that documentation and code might wander in different directions, so
+he made is hard for humans to read the generated code. The compiler could care
+less, so <a class="reference external" href="https://en.wikipedia.org/wiki/Donald_Knuth">Knuth</a> hoped that developers would stay focused on writing the
+“literate” documentation instead.</p>
+<p>Knuth’s system never really took off, but it became part of the programming
+landscape, and still has many proponents (including me)!</p>
+</div>
+<div class="section" id="writing-documentation">
+<h2>Writing Documentation<a class="headerlink" href="#writing-documentation" title="Permalink to this headline">¶</a></h2>
+<p>To get you started in writing this documentation, I am going to have you use a
+very popular system for processing your documentation into something easy to
+read.  Shoot, you are reading the product of that system right now. I have been
+using this tool for my lecture notes ever since it hit the planet in 2008!</p>
+<p>The tool we will use is <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a>, a Python tool that has a huge following now.
+Although it was designed to support documenting the Python project, itself,
+developers are using it for all kinds of projects, not just Python projects.</p>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>In order to use <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a>, you need to have Python installed, and a support tool
+used to install Python libraries. That support tool is named <code class="docutils literal notranslate"><span class="pre">pip</span></code>. This
+program will install Python libraries published by developers all over the
+world by running a simple command on your command-line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install packagename
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pip</span></code> will download the named package and install it in your Python
+installation so it is ready to use. If that package needs anything else, <code class="docutils literal notranslate"><span class="pre">pip</span></code>
+will install that as well. In the end, you should be ready to use the new tool.</p>
+<p>Let’s get ready to go:</p>
+<div class="section" id="windows-setup">
+<h4>Windows Setup<a class="headerlink" href="#windows-setup" title="Permalink to this headline">¶</a></h4>
+<p>If you installed Python3 using the standard Python installer, you should have
+the needed tools. <code class="docutils literal notranslate"><span class="pre">Pip</span></code> is not installed in the same folder as Python
+itself. That means we need to edit the system PATH variable, and add one more
+folder.</p>
+<p>On my PC, I installed Python 3.7 under <code class="docutils literal notranslate"><span class="pre">C:\tools\Python37</span></code>. <code class="docutils literal notranslate"><span class="pre">Pip</span></code> is
+located under <code class="docutils literal notranslate"><span class="pre">C\tools\Python37\Scripts</span></code>. When I added that to the system
+PATH (see the notes in the appendix on how to do that). <code class="docutils literal notranslate"><span class="pre">pip</span></code> was ready to
+run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip --version
+pip <span class="m">10</span>.0.1 from c:<span class="se">\t</span>ools<span class="se">\P</span>ython37<span class="se">\l</span>ib<span class="se">\s</span>ite-packages<span class="se">\p</span>ip <span class="o">(</span>python <span class="m">37</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>That tells me I am ready to go.</p>
+</div>
+<div class="section" id="mac">
+<h4>Mac<a class="headerlink" href="#mac" title="Permalink to this headline">¶</a></h4>
+<p>On Mac systems, you should be using <a class="reference external" href="https://brew.sh/">HomeBrew</a> to load things. Here is how I set
+up my Mac for Python development:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ brew install python
+$ python --version
+$ pip3 --version
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">On Mac systems, if you run <code class="docutils literal notranslate"><span class="pre">pip</span></code>, you are using Python 2.7. We need to
+run <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">to</span> <span class="pre">get</span> <span class="pre">the</span> <span class="pre">correct</span> <span class="pre">versions</span> <span class="pre">of</span> <span class="pre">our</span> <span class="pre">libraries.</span> <span class="pre">My</span> <span class="pre">examples</span> <span class="pre">will</span>
+<span class="pre">show</span>&#160; <span class="pre">``pip3</span></code> as the command.</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h4>Linux<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>I use Ubuntu Linus. Run these commands to get things set up:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install python3
+$ sudo apt-get install python3-pip
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="documentation-setup">
+<h3>Documentation Setup<a class="headerlink" href="#documentation-setup" title="Permalink to this headline">¶</a></h3>
+<p>The first thing you need to do is set up a folder for your documentation. The
+usual home for this is a <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder at the root of your project folder.
+However, we will be publishing our documentation on <a class="reference external" href="https://github.com/">GitHub</a>, so we want to
+reserve <code class="docutils literal notranslate"><span class="pre">docs</span></code> for actual web pages. On my projects, I set up a folder named
+<code class="docutils literal notranslate"><span class="pre">rst</span></code> where I place all of my documentation files. <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> will process those
+files and build the web pages i need in the <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder.  :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> &lt;project root&gt;
+$ mkdir docs
+$ mkdir rst
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-sphinx">
+<h3>Installing Sphinx<a class="headerlink" href="#installing-sphinx" title="Permalink to this headline">¶</a></h3>
+<p>With these folders in place, it is time to install <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip3 install sphinx
+$ pip3 install sphinx-rtd-theme
+</pre></div>
+</div>
+<p>That last line installs a theme I like to use on my documentation. We will
+configure our project to use this theme in this note.</p>
+</div>
+<div class="section" id="initializing-the-documentation">
+<h3>Initializing the Documentation<a class="headerlink" href="#initializing-the-documentation" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> comes with a tool for setting up a documenting project. We will use
+that tool for the next step:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> rst
+$ sphinx-quickstart
+</pre></div>
+</div>
+<p>That command will set up the <a class="reference external" href="http://sphinx-doc.org/">SPhinx</a> project. You will be asked a bunch of
+questions, most of which you can just leave as the default answer (except for
+your name and the project name).</p>
+<p>Be sure to say “yes” when it asks if you want a <code class="docutils literal notranslate"><span class="pre">nojekyll</span></code> file. We will need
+that if we want to see our web pages on <a class="reference external" href="https://github.com/">GitHub</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>On PC systems, create a file named <code class="docutils literal notranslate"><span class="pre">build.bat</span></code> in the <code class="docutils literal notranslate"><span class="pre">rst</span></code> folder. Place this line in that file:</p>
+<div class="last highlight-text notranslate"><div class="highlight"><pre><span></span>sphinx-build -b html -d _build/doctrees . ../docs
+</pre></div>
+</div>
+</div>
+<p>Save this file when done.</p>
+</div>
+<div class="section" id="running-sphinx">
+<h3>Running Sphinx<a class="headerlink" href="#running-sphinx" title="Permalink to this headline">¶</a></h3>
+<p>To test your setup, or to build your documentation, open a command line in your
+<code class="docutils literal notranslate"><span class="pre">rst</span></code> folder, and do this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ build
+</pre></div>
+</div>
+<p>When this command completes, you fill find web pages in the <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder we
+set up earlier. Using Windows Explorer, navigate to that folder and
+double-click on the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file. You should see your web pages in
+your browser.</p>
+</div>
+</div>
+<div class="section" id="adding-a-theme">
+<h2>Adding a Theme<a class="headerlink" href="#adding-a-theme" title="Permalink to this headline">¶</a></h2>
+<p>The default theme is a bit ugly for my tastes. In the <code class="docutils literal notranslate"><span class="pre">rst</span></code> folder, there is
+a file named <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>. This file has a lot of stuff in it we really do not
+need. I usually strip away most of the “fluff” and  use something simple, like
+this:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">sphinx_rtd_theme</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
+
+<span class="c1"># -- Project information -----------------------------------------------------</span>
+
+<span class="n">project</span> <span class="o">=</span> <span class="s1">&#39;SphinxDemo&#39;</span>
+<span class="n">copyright</span> <span class="o">=</span> <span class="s1">&#39;2018, Roie R. Black&#39;</span>
+<span class="n">author</span> <span class="o">=</span> <span class="s1">&#39;Roie R. Black&#39;</span>
+
+<span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;3.0.1&#39;</span>
+<span class="n">release</span> <span class="o">=</span> <span class="s1">&#39;3.0.1&#39;</span>
+<span class="n">language</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">today_fmt</span> <span class="o">=</span> <span class="s1">&#39;%B </span><span class="si">%d</span><span class="s1">, %Y&#39;</span>
+
+<span class="c1"># -- General configuration ---------------------------------------------------</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span> 
+    <span class="s1">&#39;sphinx.ext.githubpages&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">templates_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_templates&#39;</span><span class="p">]</span>
+<span class="n">source_suffix</span> <span class="o">=</span> <span class="s1">&#39;.rst&#39;</span>
+<span class="n">master_doc</span> <span class="o">=</span> <span class="s1">&#39;index&#39;</span>
+<span class="n">exclude_patterns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_build&#39;</span><span class="p">,</span> <span class="s1">&#39;Thumbs.db&#39;</span><span class="p">,</span> <span class="s1">&#39;.DS_Store&#39;</span><span class="p">]</span>
+<span class="n">pygments_style</span> <span class="o">=</span> <span class="s1">&#39;sphinx&#39;</span>
+
+<span class="c1"># -- Options for HTML output -------------------------------------------------</span>
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;sphinx_rtd_theme&#39;</span>
+<span class="n">html_theme_options</span> <span class="o">=</span> <span class="p">{</span> <span class="p">}</span>
+<span class="n">html_theme_path</span> <span class="o">=</span> <span class="p">[</span><span class="n">sphinx_rtd_theme</span><span class="o">.</span><span class="n">get_html_theme_path</span><span class="p">()]</span>
+<span class="n">html_static_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_static&#39;</span><span class="p">]</span>
+<span class="n">html_use_smartypants</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">html_show_sourcelink</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">html_show_sphinx</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">html_show_copyright</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">html_last_updated_fmt</span> <span class="o">=</span> <span class="s1">&#39;%b </span><span class="si">%d</span><span class="s1">, %Y&#39;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>Look this over, and change the lines that obviously are about you and your
+project. Leave everything else alone.</p>
+<p>Build your docs again, and open up <code class="docutils literal notranslate"><span class="pre">index.html</span></code>. You should see something a
+bit nicer.</p>
+<p>If you get to this point, you are ready to document. There is still a bit of
+work to do, though</p>
+</div>
+<div class="section" id="publishing-on-github">
+<h2>Publishing on GitHub<a class="headerlink" href="#publishing-on-github" title="Permalink to this headline">¶</a></h2>
+<p>Of course, your project is on <a class="reference external" href="https://github.com/">GitHub</a> and you are using <a class="reference external" href="https://git-scm.com/">Git</a> to manage things.
+Here is what you need to do next:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Reference:</th><td class="field-body"><a class="reference external" href="https://pages.github.com/">https://pages.github.com/</a></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="repository-setup">
+<h3>Repository Setup<a class="headerlink" href="#repository-setup" title="Permalink to this headline">¶</a></h3>
+<p>Before you can get web pages published on <a class="reference external" href="https://github.com/">GitHub</a> make sure you have built your
+documentation at lease once, and pushed your work (and web pages) to <a class="reference external" href="https://github.com/">GitHub</a>.
+If the <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder does not exist, the following steps will not work.</p>
+<p>Once you are ready, press on:</p>
+<blockquote>
+<div><blockquote>
+<div><ol class="arabic simple">
+<li>Open your project repository in <a class="reference external" href="https://github.com/">GitHub</a>.</li>
+<li>Select <code class="docutils literal notranslate"><span class="pre">settings</span></code></li>
+<li>Scroll down until you see the GitHub Pages area.</li>
+</ol>
+</div></blockquote>
+<ol class="arabic" start="4">
+<li><dl class="first docutils">
+<dt>Enable GitHub Pages for this project, then select</dt>
+<dd><blockquote class="first">
+<div><p><code class="docutils literal notranslate"><span class="pre">Master</span> <span class="pre">Branch/docs</span> <span class="pre">folder</span></code> as the source for your site.</p>
+</div></blockquote>
+<ol class="last arabic simple" start="5">
+<li>Place any HTML file in that folder. (we did that by running <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a>)</li>
+<li>Navigate to <a class="reference external" href="https://ghuser.github.io/project-name">https://ghuser.github.io/project-name</a> to see your site</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Your website for class projects will appear at a URL that looks something like thi:</p>
+<ul class="last simple">
+<li><a class="reference external" href="https://ACC.COSC1337-004.github.io/i35sim-teamname">https://ACC.COSC1337-004.github.io/i35sim-teamname</a></li>
+</ul>
+</div>
+<p>This website is available for free for any repository you set up on <a class="reference external" href="https://github.com/">GitHub</a>. I
+highly recommend learning how to do this, then building nice documentation for
+every project you create.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Public project, of course. School work should be kept private!</p>
+</div>
+</div>
+</div>
+<div class="section" id="learning-restructuredtext">
+<h2>Learning reStructuredText<a class="headerlink" href="#learning-restructuredtext" title="Permalink to this headline">¶</a></h2>
+<p>The next thing you need to do is to explore <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> and get a feel for how you
+set up your documentation.</p>
+<p>All of my lecture notes are written in <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> markup, so you can use the :show
+source” link to see what I wrote Much of what you see is a bit advanced,
+because I have extended <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> with some additional “plugins” that let is do
+cool things. For you, just starting up&lt; use one of the online tutorials on
+<a class="reference external" href="http://sphinx-doc.org/">SPhinx</a> to get started.</p>
+<p>Here are a couple of useful links:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://www.sphinx-doc.org/en/1.6/markup/inline.html">Sphinx Reference</a></li>
+<li><a class="reference external" href="https://media.readthedocs.org/pdf/brandons-sphinx-tutorial/latest/brandons-sphinx-tutorial.pdf">Sphinx Tutorial</a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Documenting Your Project With reStructuredText</a><ul>
+<li><a class="reference internal" href="#good-documentation">Good Documentation</a></li>
+<li><a class="reference internal" href="#writing-documentation">Writing Documentation</a><ul>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
+<li><a class="reference internal" href="#windows-setup">Windows Setup</a></li>
+<li><a class="reference internal" href="#mac">Mac</a></li>
+<li><a class="reference internal" href="#id3">Linux</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#documentation-setup">Documentation Setup</a></li>
+<li><a class="reference internal" href="#installing-sphinx">Installing Sphinx</a></li>
+<li><a class="reference internal" href="#initializing-the-documentation">Initializing the Documentation</a></li>
+<li><a class="reference internal" href="#running-sphinx">Running Sphinx</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adding-a-theme">Adding a Theme</a></li>
+<li><a class="reference internal" href="#publishing-on-github">Publishing on GitHub</a><ul>
+<li><a class="reference internal" href="#repository-setup">Repository Setup</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#learning-restructuredtext">Learning reStructuredText</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="../tools/10-instaling-virtualbox.html"
+                          title="Previous page">&larr; Installing VirtualBox</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="../versioning.html"
+                          title="Next page">&rarr; Project Versioning</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/appendix/documentation/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../versioning.html" title="Project Versioning"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../tools/10-instaling-virtualbox.html" title="Installing VirtualBox"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Appendix</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

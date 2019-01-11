@@ -1,0 +1,9 @@
+---
+- name: update vm
+  hosts: local-vm
+  connection: local
+  become: true
+
+  roles:
+    - apt
+    - avr

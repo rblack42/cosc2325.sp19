@@ -1,0 +1,325 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Advanced Makefile &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Installing VirtualBox" href="10-instaling-virtualbox.html" />
+    <link rel="prev" title="Make - the programmer’s best friend" href="08-make-intro.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="10-instaling-virtualbox.html" title="Installing VirtualBox"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="08-make-intro.html" title="Make - the programmer’s best friend"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Appendix</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="advanced-makefile">
+<h1>Advanced Makefile<a class="headerlink" href="#advanced-makefile" title="Permalink to this headline">¶</a></h1>
+<p>I use <a class="reference external" href="https://www.gnu.org/software/make/manual/">Make</a> to build many programs from the command line. There are more
+advanced tools around, but I feel that beginning programming students need to
+be exposed to <a class="reference external" href="https://www.gnu.org/software/make/manual/">Make</a> so they can see how powerful such build tools are, and be
+able to use them in their programming projects. <a class="reference external" href="https://www.gnu.org/software/make/manual/">Make</a> has been around so long,
+and it is part of so many projects, they just have to learn a bit about it.</p>
+<p>I usually start students off in exploring <a class="reference external" href="https://www.gnu.org/software/make/manual/">Make</a> with very simple patterns, but
+eventually they need to see the real power of such a tool.</p>
+<p>So, in developing a Graphics library for students to use in my programming
+class, I decided to add a few more powerful features of <a class="reference external" href="https://www.gnu.org/software/make/manual/">Make</a> to the project
+<code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.</p>
+<p>In this note, I will develop a Makefile suitable to use in a <a class="reference internal" href="../../glossary.html#term-test-driven-development"><span class="xref std std-term">test driven
+development</span></a> based C++ project. As part of this development, we will design a
+project directory structure suitable for building a library, intended to be
+used in other C++ projects. The <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> will build, test, and install that
+library code on all major development systems: Windows, Linux, and Mac.</p>
+<div class="section" id="finding-source-files">
+<h2>Finding Source Files<a class="headerlink" href="#finding-source-files" title="Permalink to this headline">¶</a></h2>
+<p>Simple student <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> setups begin with a list of the course files in a
+project. These files are usually collected into a common project directory,
+along side of other directories for testing, building and documentation. Here
+is a starting point for a good project directory layout:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>project_directory\
+    |
+    +- src\ - holds main project code
+    |
+    +- include\ library header files
+    |
+    +- lib\ holds library code files
+    |
+    +- bin\ - holds all files generated by building the project
+    |
+    +- bin\prod - holds all files generated for production
+    |
+    +- bin\debug - holds all files generated for testing
+    |
+    +- test\ - holds project test code
+    |
+    +- docs\ documentation for the project ( sphinx based for me!)
+</pre></div>
+</div>
+<p>The first part of the project <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> lists the two programs this file
+will build. One is the main application, and the second is a test program that
+runs a set of tests we will use to make sure the code works properly. More on
+that later</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Makefile - for CALassembler</span>
+
+<span class="n">APP_TARGET</span>  <span class="o">=</span>   <span class="n">demo</span>
+<span class="n">TEST_TARGET</span> <span class="o">=</span>   <span class="n">run_tests</span>
+</pre></div>
+</div>
+<p>Next, we name the major directories we use in this project. Creating names
+makes it easy to modify this file for another project later:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># directories ---------------------------------------------</span>
+<span class="n">SRC_DIR</span>     <span class="o">=</span> <span class="n">src</span>
+<span class="n">LIB_DIR</span>     <span class="o">=</span> <span class="n">lib</span>
+<span class="n">TEST_DIR</span>    <span class="o">=</span> <span class="n">tests</span>
+<span class="n">INC_DIR</span>     <span class="o">=</span> <span class="n">include</span>
+</pre></div>
+</div>
+<p>In the next section, we set up a few names that will hold options we use on
+various commands later. Botice that “+=” operator. You can add things to a name
+in a later step using this trick.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># system dependencies
+CFLAGS = -I $(INC_DIR)
+CFLAGS += -MMD
+</pre></div>
+</div>
+<p>This next section tries to deal with building the application on different
+operating systems. This code will check the operating system and set a few
+names differently depending on what system we are running on. The big
+difference here is that programs on WIndows need to be named <code class="docutils literal notranslate"><span class="pre">something.exe`,</span>
+<span class="pre">but</span> <span class="pre">on</span> <span class="pre">Mac/Linus,</span> <span class="pre">they</span> <span class="pre">are</span> <span class="pre">just</span> <span class="pre">named</span> <span class="pre">``something</span></code>. We set up a name called
+<code class="docutils literal notranslate"><span class="pre">EXT</span></code> and set it to <code class="docutils literal notranslate"><span class="pre">.exe</span></code> on windows, and nothing on other systems. You
+will see this at work later.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ifeq ($(OS), Windows_NT)
+    EXT = .exe
+    RM = del
+    CFLAGS += -std=c++11
+    CXX = C:\usr\local\mingw32\bin\g++.exe
+    PREFIX =
+else
+    EXT =
+    PREFIX = ./
+    RM = rm -f
+    CXX = g++
+    UNAME_S = $(shell uname -s)
+    ifeq ($(UNAME_S), Darwin)
+        CFLAGS +=
+    endif
+    ifeq ($(UNAME_S), Linux)
+        CFLAGS +=
+    endif
+endif
+</pre></div>
+</div>
+<p>Now, we can have <a class="reference external" href="https://www.gnu.org/software/make/manual/">Make</a> search the project directories for any source files that
+will need to be processed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># filw lists ----------------------------------------------
+SRC_FILES   = $(wildcard $(SRC_DIR)/*.cpp)
+LIB_FILES   = $(wildcard $(LIB_DIR)/*.cpp)
+TEST_FILES  = $(wildcard $(TEST_DIR)/*.cpp)
+SRC_OBJS    = $(SRC_FILES:.cpp=.o)
+LIB_OBJS    = $(LIB_FILES:.cpp=.o)
+TEST_OBJS   = $(TEST_FILES:.cpp=.o)
+ALL_OBJS    = $(SRC_OBJS) $(LIB_OBJS) $(TEST_OBJS)
+DEPENDS = $(ALL_OBJS:.o=.d)
+</pre></div>
+</div>
+<p>In this section we have set up something that makes projects esier to manage.
+The <code class="docutils literal notranslate"><span class="pre">g++</span></code> compiler can be told to read all the source files and figure out
+what each one depends on. It does this by looking at the <code class="docutils literal notranslate"><span class="pre">include</span></code> lines. The
+output of this step is a file called <code class="docutils literal notranslate"><span class="pre">something.d</span></code> (for depends). We will use
+these files to make sure Make can build your code in the most efficient manner.</p>
+<p>The last part of the Makefile sets up the rules needed to build all the project
+components. These rules are similar to thse we went over earlier, and should be
+easy enough to figure out. Exactly what options are used for each build tool is
+somehting we can worry about later for this example.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Build targets -------------------------------------------
+
+.PHONY:
+all:    $(APP_TARGET)$(EXT) $(TEST_TARGET)$(EXT)
+
+$(APP_TARGET)$(EXT):    $(SRC_OBJS) $(LIB_OBJS)
+	$(CXX) -o $@ $(LFLAGS) $^
+
+$(TEST_TARGET)$(EXT):   $(TEST_OBJS) $(LIB_OBJS)
+	$(CXX) -o $@ $(LFLAGS) $^
+
+.PHONY:
+clean:
+	$(RM) $(APP_TARGET)$(EXT) $(TEST_TARGET)$(EXT)
+	$(RM) $(ALL_OBJS) $(DEPENDS)
+
+.PHONY:
+run:    $(APP_TARGET)$(EXT)
+	$(PREFIX)$(APP_TARGET) -d test.cal
+
+.PHONY:
+test:   $(TEST_TARGET)$(EXT)
+	$(PREFIX)$(TEST_TARGET)
+
+.PHONY:
+docs:
+	cd documentation &amp;&amp; make html
+
+.PHONY:
+view:
+	open -a Firefox documentation/_build/index.html
+
+.PHONY:
+spelling:
+	cd documentation &amp;&amp; make spelling
+
+# implicit rules ------------------------------------------
+
+%.o:    %.cpp
+	$(CXX) -c $(CFLAGS) $&lt; -o $@
+
+-include $(DEPENDS)
+</pre></div>
+</div>
+</div>
+<div class="section" id="learning-more">
+<h2>Learning More<a class="headerlink" href="#learning-more" title="Permalink to this headline">¶</a></h2>
+<p>This gives you a sense of what Make can do. You can learn a lot by scanning
+projects on <a class="reference external" href="https://github.com/">Github</a>  and looking to see how they use Makefiles to build their
+programs.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Advanced Makefile</a><ul>
+<li><a class="reference internal" href="#finding-source-files">Finding Source Files</a></li>
+<li><a class="reference internal" href="#learning-more">Learning More</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="08-make-intro.html"
+                          title="Previous page">&larr; Make - the programmer’s best friend</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="10-instaling-virtualbox.html"
+                          title="Next page">&rarr; Installing VirtualBox</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/appendix/tools/09-advanced-makefiles.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="10-instaling-virtualbox.html" title="Installing VirtualBox"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="08-make-intro.html" title="Make - the programmer’s best friend"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Appendix</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
