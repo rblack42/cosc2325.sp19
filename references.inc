@@ -13,8 +13,8 @@
 
 ..  _`Donald Knuth`:	https://en.wikipedia.org/wiki/Donald_Knuth
 ..  _Knuth:         https://en.wikipedia.org/wiki/Donald_Knuth
-..	_reStructuredText: //http://docutils.sourceforge.net/rst.html
-..	_`Literate Programming: https://en.wikipedia.org/wiki/Literate_programming
+..  _reStructuredText: //http://docutils.sourceforge.net/rst.html
+..  _`Literate Programming`: https://en.wikipedia.org/wiki/Literate_programming
 
 ..  _AgnerFog:      http://www.agner.org/optimize/
 ..  _Ansible:       https://www.ansible.com/

@@ -1,0 +1,115 @@
+
+buzz.elf:     file format elf32-avr
+
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e0 e0       	ldi	r30, 0x00	; 0
+  7c:	f1 e0       	ldi	r31, 0x01	; 1
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a2 30       	cpi	r26, 0x02	; 2
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	a2 e0       	ldi	r26, 0x02	; 2
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	a3 30       	cpi	r26, 0x03	; 3
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 68 00 	call	0xd0	; 0xd0 <main>
+  9e:	0c 94 7e 00 	jmp	0xfc	; 0xfc <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <toggleLED>:
+  a6:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <state>
+  aa:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <state+0x1>
+  ae:	01 97       	sbiw	r24, 0x01	; 1
+  b0:	31 f4       	brne	.+12     	; 0xbe <toggleLED+0x18>
+  b2:	15 b8       	out	0x05, r1	; 5
+  b4:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <state+0x1>
+  b8:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <state>
+  bc:	08 95       	ret
+  be:	80 e2       	ldi	r24, 0x20	; 32
+  c0:	85 b9       	out	0x05, r24	; 5
+  c2:	81 e0       	ldi	r24, 0x01	; 1
+  c4:	90 e0       	ldi	r25, 0x00	; 0
+  c6:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <state+0x1>
+  ca:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <state>
+  ce:	08 95       	ret
+
+000000d0 <main>:
+  d0:	80 e2       	ldi	r24, 0x20	; 32
+  d2:	84 b9       	out	0x04, r24	; 4
+  d4:	10 92 6e 00 	sts	0x006E, r1	; 0x80006e <__TEXT_REGION_LENGTH__+0x7e006e>
+  d8:	85 e0       	ldi	r24, 0x05	; 5
+  da:	85 bd       	out	0x25, r24	; 37
+  dc:	c1 e0       	ldi	r28, 0x01	; 1
+  de:	a8 9b       	sbis	0x15, 0	; 21
+  e0:	fe cf       	rjmp	.-4      	; 0xde <main+0xe>
+  e2:	c5 bb       	out	0x15, r28	; 21
+  e4:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <__data_end>
+  e8:	8f 5f       	subi	r24, 0xFF	; 255
+  ea:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <__data_end>
+  ee:	8c 33       	cpi	r24, 0x3C	; 60
+  f0:	b1 f7       	brne	.-20     	; 0xde <main+0xe>
+  f2:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <__data_end>
+  f6:	0e 94 53 00 	call	0xa6	; 0xa6 <toggleLED>
+  fa:	f1 cf       	rjmp	.-30     	; 0xde <main+0xe>
+
+000000fc <_exit>:
+  fc:	f8 94       	cli
+
+000000fe <__stop_program>:
+  fe:	ff cf       	rjmp	.-2      	; 0xfe <__stop_program>

@@ -8,7 +8,7 @@
 #Python
 __pycache__
 *.py[cod]
-rst/_build
+_build/
 
 # C/C++
 *.o

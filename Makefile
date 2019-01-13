@@ -1,11 +1,11 @@
-BLDDIR	:= _build/html/
+BLDDIR	:= docs/
 RELDIR	:= ../../_build/courses/cosc2325/
 
 
 .PHONY: all
 all:
 	mkdir -p _build/html/_images/circuits
-	sphinx-build -b html -d _build/doctrees . _build/html
+	sphinx-build -b html -d _build/doctrees . docs
 
 
 .PHONY: release

@@ -1,0 +1,308 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>HW1: Calculate the Square Root of a number &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Quiz 1: Syllabus Review" href="../../quizzes/q1-syllabus.html" />
+    <link rel="prev" title="Lab1: Starting with Scratch" href="../../labs/lab1-scratch-setup/index.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../quizzes/q1-syllabus.html" title="Quiz 1: Syllabus Review"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../../labs/lab1-scratch-setup/index.html" title="Lab1: Starting with Scratch"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Assignments</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="hw1-calculate-the-square-root-of-a-number">
+<span id="hw1-square-root"></span><h1>HW1: Calculate the Square Root of a number<a class="headerlink" href="#hw1-calculate-the-square-root-of-a-number" title="Permalink to this headline">¶</a></h1>
+<p>This assignment is designed to start you using your brain to think logically
+(and clearly).  There is no “right answer” to this one, each of you might come
+up with something different (or nothing at all if it stumps you, hopefully that
+will not happen. Send me email if you get stuck!) You will submit a simple text
+file with your solution to Blackboard. Use something like Microsoft Notepad
+until you get a good programmer’s editor set up, but do not use Microsoft Word
+for anything in this course.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">You will soon discover that you really do need to read assignments
+carefully, especially in this course. Do not go off and start working on a
+solution until you are sure you understand the problem. Many (most)
+students get so focused on the example shown here, that they miss the fact
+that this is a general problem, not just the one shown in the example!</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You will need to upload lab work using BlackBoard. To do this, open up the
+“Lab assignments” page.  You will see this lab assignment there. When you
+are ready to submit your work, click on the Lab title. You will be taken to
+a page where you can upload one or more files. I would make sure all files
+you need to submit are in the same folder, and use “Control-Click” to
+select all files at once. When you are happy with the selection, click on
+submit.</p>
+<p>If you forget to load everything at once, I have to delete your submission
+and let you try again Email me if this happens.</p>
+<p class="last">You will have one file to upload this week: <cite>SquareRoot.txt</cite></p>
+</div>
+<div class="section" id="what-does-this-mean">
+<h2>What does this mean?<a class="headerlink" href="#what-does-this-mean" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>x = sqrt(5)
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This assignment is not just to calculate the square root of 5, this is an
+example, the number you need to process could be any positive number (why
+not negative?)</p>
+</div>
+<p>If you own a calculator, you can probably figure this out. The <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> thing
+is called a <code class="docutils literal notranslate"><span class="pre">function</span></code>. A <code class="docutils literal notranslate"><span class="pre">function</span></code> is a magical gadget that can do some
+work for you. We do not need to know how this magic happens most of the time,
+that is what the calculator is for. But what if you needed to design the
+calculator. How will you get the magic to happen?</p>
+<p>You should have run into these function things in your math classes. How you
+get out the actual value for <code class="docutils literal notranslate"><span class="pre">x</span></code> without using a calculator was probably left
+as a puzzle for you to figure out. Let’s try to do that here!</p>
+<div class="section" id="back-to-your-math-class">
+<h3>Back to your math class<a class="headerlink" href="#back-to-your-math-class" title="Permalink to this headline">¶</a></h3>
+<p>You probably saw something like this in your math text:</p>
+<img alt="../../../_images/sqrteqn.png" class="align-center" src="../../../_images/sqrteqn.png" />
+<p>This is an <code class="docutils literal notranslate"><span class="pre">equation</span></code>. The two things on either side of the <code class="docutils literal notranslate"><span class="pre">=</span></code> symbol are
+supposed to be <code class="docutils literal notranslate"><span class="pre">equal</span></code>. (That is why we call it an <code class="docutils literal notranslate"><span class="pre">equal</span> <span class="pre">symbol</span></code> - DUH!)
+You were probably also told that if you figured out the right value for the
+<code class="docutils literal notranslate"><span class="pre">x</span></code> thing, this equation would be true as well:</p>
+<img alt="../../../_images/sqrteqn3.png" class="align-center" src="../../../_images/sqrteqn3.png" />
+<p>Now, most computers cannot generate that funny little <code class="docutils literal notranslate"><span class="pre">2</span></code> in that equation,
+so we will show it this way instead:</p>
+<img alt="../../../_images/sqrteqn2.png" class="align-center" src="../../../_images/sqrteqn2.png" />
+<p>Now we have another problem. Many math books show things this way, but how do
+we really know that <code class="docutils literal notranslate"><span class="pre">xx</span></code> means <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">times</span> <span class="pre">x</span></code>? (I know, you saw it written
+this way a lot, and the symbols were always one character long.) We will solve
+this problem by using a new symbol for multiplication (no, we will not use
+<code class="docutils literal notranslate"><span class="pre">x</span></code> that would really get confusing. Instead, we will use a star: <code class="docutils literal notranslate"><span class="pre">*</span></code>.  So
+that last equation would look like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>x * x = 5
+</pre></div>
+</div>
+<p>That <code class="docutils literal notranslate"><span class="pre">*</span></code> symbol means <code class="docutils literal notranslate"><span class="pre">multiply</span></code>. Got it all figured out now?</p>
+<p>The question we want to address in this lab is simple.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>How do we go about figuring out the right value for &quot;x&quot;?
+</pre></div>
+</div>
+</div>
+<div class="section" id="your-problem">
+<h3>Your problem<a class="headerlink" href="#your-problem" title="Permalink to this headline">¶</a></h3>
+<p>Suppose you have a basic four-function pocket calculator that can only do
+addition, subtraction, multiplication, and division. How would you approach
+figuring out the answer? Think about this, and try to come up with a scheme
+that will give you the answer. Do not just use simple trial and error, think
+about how you might get an accurate answer. You might start off with a one
+digit guess, like 2 or 3, then add a digit after the decimal point to refine
+your guess.  Your calculator will help you check your guesses.</p>
+<p>It might (should) occur to you that you need some way of telling if your
+guesses are getting better, or worse. Also, you need a way to decide when you
+are done, your answer is “good enough”. That might be when you have five
+decimal places to the right of the “dot”. You get to decide for now.</p>
+<p>No fair just turning to Google to find the scheme. You need to start thinking
+problems through by yourself. So do your own thinking about this, remembering
+that we are trying to teach a computer how to do the work. The goal is to
+produce a list of the steps needed to figure out the right value for “x”
+using just the multiply key on the calculator</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you do not happen to own a calculator, there is one on your computer. Go
+to <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">-&gt;</span> <span class="pre">All</span> <span class="pre">Programs</span> <span class="pre">--&gt;</span> <span class="pre">Accessories</span> <span class="pre">--&gt;</span> <span class="pre">Calculator</span></code>. (There will
+be a square-root key on that calculator. You may use it only to see what
+the right answer is, not to figure out the answer.</p>
+</div>
+</div>
+<div class="section" id="checking-your-work">
+<h3>Checking your work<a class="headerlink" href="#checking-your-work" title="Permalink to this headline">¶</a></h3>
+<p>You should write down the process you come up with clearly enough that another
+person could use your process to figure out the answer. You should practice
+doing this by following your own steps exactly. This is hard to do when you
+wrote them down, since you “know” what you meant.  Remember that someone else
+will not have that knowledge and will do something you never expected.  (Silly
+people). They will do what you say to do, not what you meant for them to do.
+(Some times they will even do things you did not say to do! Arrrgh!) When
+teaching a dumb computer to do your work, trust me, it will never do what you
+mean, only what you say!</p>
+<p>To make sure your scheme works on general problems, try it out on some number
+other than 5, say 35 for example!</p>
+</div>
+<div class="section" id="what-to-turn-in">
+<h3>What to turn in<a class="headerlink" href="#what-to-turn-in" title="Permalink to this headline">¶</a></h3>
+<p>Once you think you have a solution, write it up using short numbered sentences
+that explain what you need to do.  Nothing fancy is required, do the best you
+can. We are learning new stuff here, so try to be clear.</p>
+<p>Save your work in a file named “SquareRoot.txt”. If you named it something
+else, you can rename it before turning it in.</p>
+<p>At the end of your notes, pick some number and work through your instructions
+carefully and see what you produce. Hopefully, your values will be getting
+better and better. If not, do not worry about it for now, but you might think
+about why this is not working they way you wanted it to!</p>
+</div>
+</div>
+<div class="section" id="what-to-submit">
+<h2>What to Submit<a class="headerlink" href="#what-to-submit" title="Permalink to this headline">¶</a></h2>
+<p>Upload the one file: “SquareRoot.txt” to Blackboard.</p>
+</div>
+<div class="section" id="when-is-this-due">
+<h2>When is This Due?<a class="headerlink" href="#when-is-this-due" title="Permalink to this headline">¶</a></h2>
+<p>Assignments are due on Sunday of the week assigned for full credit.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Unless explicitly told otherwise, all work you submit for this course must
+be produced using a simple text editor. All files submitted for grading
+must be produced using the editor you use to create program code. I will go
+over one such tool, <cite>gVim</cite>, but you are free to use any editor you are
+comfortable as long as it produces simple ASCII text files. See me if you
+have questions about any tool you want to use.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../../index.html" title="index">
+          <img class="logo" src="../../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">HW1: Calculate the Square Root of a number</a><ul>
+<li><a class="reference internal" href="#what-does-this-mean">What does this mean?</a><ul>
+<li><a class="reference internal" href="#back-to-your-math-class">Back to your math class</a></li>
+<li><a class="reference internal" href="#your-problem">Your problem</a></li>
+<li><a class="reference internal" href="#checking-your-work">Checking your work</a></li>
+<li><a class="reference internal" href="#what-to-turn-in">What to turn in</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#what-to-submit">What to Submit</a></li>
+<li><a class="reference internal" href="#when-is-this-due">When is This Due?</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="../../labs/lab1-scratch-setup/index.html"
+                          title="Previous page">&larr; Lab1: Starting with Scratch</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="../../quizzes/q1-syllabus.html"
+                          title="Next page">&rarr; Quiz 1: Syllabus Review</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/assignments/homework/hw1-square-root/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../quizzes/q1-syllabus.html" title="Quiz 1: Syllabus Review"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../../labs/lab1-scratch-setup/index.html" title="Lab1: Starting with Scratch"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Assignments</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
