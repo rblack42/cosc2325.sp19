@@ -1,0 +1,42 @@
+{
+  "topics": [
+    {
+      "words": "",
+      "reading": "",
+      "lecture": "03-Basic-Concepts/01-digital-components"
+    },
+    {
+      "words": "",
+      "reading": "",
+      "lecture": "03-Basic-Concepts/02-wires-and-pins"
+    },
+    {
+      "words": "",
+      "reading": "",
+      "lecture": "03-Basic-Concepts/03-electricity"
+    },
+    {
+      "words": "",
+      "reading": "",
+      "lecture": "03-Basic-Concepts/04-lets-dance"
+    },
+    {
+      "words": "",
+      "reading": "",
+      "lecture": "02-Development-Techniques/01-shell-basics"
+    },
+    {
+      "words": "",
+      "reading": "",
+      "lecture": "02-Development-Techniques/02-github-classroom"
+    },
+    {
+      "words": "",
+      "reading": "",
+      "lecture": "02-Development-Techniques/03-project-folders"
+    }
+  ],
+  "hw": "hw2-hello-project",
+  "lab": "lab1-dancing"
+}
+

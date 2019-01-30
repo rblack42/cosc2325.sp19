@@ -1,0 +1,465 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Building C++ Program &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="building-c-program">
+<h1>Building  C++ Program<a class="headerlink" href="#building-c-program" title="Permalink to this headline">¶</a></h1>
+<p>Read time: 41 minutes (10487 words)</p>
+<p>Now, some of you, who might have programmed in a language like C++ before,
+might think these is nothing in this lecture that will be of interest to you.
+You will just head off to some <a class="reference internal" href="../../glossary.html#term-ide"><span class="xref std std-term">IDE</span></a> and type away.</p>
+<p>You are very wrong. We will work through a complete project, starting with
+nothing but a few basic tools, and end up with a program that demonstrates all
+of the basic skills you need to master to call yourself a programmer. Some of
+what you work through in this lecture will definitely be new, so pay attention!</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We will use a number of tools for this exercise. I will not explain
+everything you need to know about those tools in this lecture. Instead, I
+will show you only those features you absolutely need to know to build this
+project.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you are new to C++, do not worry. We will go over all of this in much
+more detail as we learn that language.</p>
+</div>
+<div class="section" id="the-problem">
+<h2>The Problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h2>
+<p>We are going to create a program that adds up a bunch of numbers stored in a
+file. Just to make it interesting, I only want to add up every other number
+from the file!</p>
+<p>We will work through this problem as though it is an important project. Maybe
+even one you get to set up during a job interview!</p>
+</div>
+<div class="section" id="step-1-open-up-a-command-prompt-window">
+<h2>Step 1: Open up a Command Prompt Window<a class="headerlink" href="#step-1-open-up-a-command-prompt-window" title="Permalink to this headline">¶</a></h2>
+<p>How you manage to get a term:<cite>command line`</cite> window depends on your system:</p>
+<p>On a PC, you do this by launching a program called <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code>. You can find it
+on a Windows 10 machine by typing in “cmd” in the search box at the lower left
+of your screen. You can also find it by scrolling through the list of
+applications on your system, under <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">System</span> <span class="pre">-&gt;</span> <span class="pre">Command</span> <span class="pre">Prompt</span></code>. Once
+you launch this program, right-click on the new icon on the “Task Bar” which is
+probably at the bottom of your screen. Select “Pin to taskbar” and this icon
+will remain on the screen. You can simply click on it to launch the program
+again.</p>
+<p>On a Mac, you launch the “Terminal.app” application, which is hiding in the
+“Applications/Utilities” folder. When you right-click on the icon on a Mac,
+look under <code class="docutils literal notranslate"><span class="pre">Options-&gt;Keep</span> <span class="pre">in</span> <span class="pre">Dock</span></code></p>
+<p>On Linux, launch the “Terminal” program. On Ubuntu, right-click on the desktop,
+and select “Open Terminal”. Once again, you can right-click on the icon on the
+left side of the screen and select <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">to</span> <span class="pre">Favorites</span></code></p>
+<div class="section" id="customize-the-window">
+<h3>Customize the Window<a class="headerlink" href="#customize-the-window" title="Permalink to this headline">¶</a></h3>
+<p>I do not know what you like to look at, but I find the black background on
+these windows painful. On some systems, the font is too small to read
+comfortably. You can set things up to suite your tastes by doing the following:</p>
+<div class="section" id="pc-command-prompt">
+<h4>PC Command Prompt<a class="headerlink" href="#pc-command-prompt" title="Permalink to this headline">¶</a></h4>
+<p>Right-click on the title bar at the top of the window. Select <code class="docutils literal notranslate"><span class="pre">Properties</span></code>.
+The tabs at the top of the window that appears let you tune things so the
+window looks the way you prefer. I usually tweak the font size and the colors
+so I end up with a light background, and dark letters. Since I often project my
+desktop windows in class, I tend to overdo this sometimes. You get to decide! You will
+be staring at this window a lot in this class.</p>
+</div>
+<div class="section" id="mac-terminal-window">
+<h4>Mac Terminal Window<a class="headerlink" href="#mac-terminal-window" title="Permalink to this headline">¶</a></h4>
+<p>On the Mac, select <code class="docutils literal notranslate"><span class="pre">Terminal-&gt;Preferences</span></code>. There are many settings you can
+play with here, but I usually just set up the font under the <code class="docutils literal notranslate"><span class="pre">Text</span></code> tab.
+Again, you should look around and tune this window to suit your style.</p>
+</div>
+<div class="section" id="linux-terminal">
+<h4>Linux Terminal<a class="headerlink" href="#linux-terminal" title="Permalink to this headline">¶</a></h4>
+<p>On Ubuntu Linus, select <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Preferences</span></code> to get to the place where you set
+things up. I usually tweak the font, and use a pre-defined color scheme.
+Uncheck the <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">colorsfrom</span> <span class="pre">system</span> <span class="pre">theme</span></code> and select one of the themes to see
+how it looks. I use <code class="docutils literal notranslate"><span class="pre">Solrized</span> <span class="pre">light</span></code> on my Mac systems.</p>
+</div>
+</div>
+<div class="section" id="where-am-i">
+<h3>Where am I?<a class="headerlink" href="#where-am-i" title="Permalink to this headline">¶</a></h3>
+<p>Hopefully, you understand how the file system on your machine is set up. On a
+PC, there is a file system on every drive on your machine, and each drive is
+identified with a single letter. The <code class="docutils literal notranslate"><span class="pre">C</span></code> drive is normally where you will
+work.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you use a lab machine, you will be working on your <code class="docutils literal notranslate"><span class="pre">H</span></code> drive. We will
+discuss that in class.</p>
+</div>
+<p>On Linux/Mac machines there is no drive letter to deal with.</p>
+<p>All systems use a single letter, called a <span class="xref std std-term">path seperator</span> to show you
+where something is located on your system. The separator on Linux/Mac is a
+forward slash, on a PC it is a backward slash. After we get going in this
+project, I will be using Linux/Mac notation.</p>
+<div class="section" id="file-system-paths">
+<h4>File System Paths<a class="headerlink" href="#file-system-paths" title="Permalink to this headline">¶</a></h4>
+<p>Your file system is made up of directories and files.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Microsoft insists that we call a directory a <a class="reference internal" href="../../glossary.html#term-folder"><span class="xref std std-term">folder</span></a>. Their thinking
+is simple, most people are familiar with the filing system found in an
+office, so why not use that termnology. I flop between the two terms a lot.</p>
+</div>
+<p>The <span class="xref std std-term">root directory`</span> is the top most directory on your system. It is named
+with just that <span class="xref std std-term">path seperator</span> character. Inside that directory you will
+find other directories and files, each with a unique name. Inside each of those
+sub-directories, you will find yet more folders, and possible more simple files of some
+sort. The <a class="reference internal" href="../../glossary.html#term-path"><span class="xref std std-term">path</span></a> to any directory or file on your system is made up of a
+series of directory names, possible ending in a file name, with the term:<cite>path
+seperator</cite> character between each part.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Linux and Mac systems are case-sensitive. You must use proper case for each
+name for it to be recognized. The PC could care less. Do yourself a favor,
+and pay attention ot case no matter what system you use!</p>
+</div>
+<p>Once you have the window looking the way you like, it is time to look at this command line`` and see what it tells us.</p>
+</div>
+<div class="section" id="home-directories">
+<h4>Home Directories<a class="headerlink" href="#home-directories" title="Permalink to this headline">¶</a></h4>
+<p>By default, you are ready to work in your <a class="reference internal" href="../../glossary.html#term-home-directory"><span class="xref std std-term">home directory</span></a>. That place is named with your user account name. Supposedly, you are supposed to store all personal files insife of this directory. However, you probably own the machine you are using, so you can put things in other places. We will pat attention to where we put things as we start working!</p>
+<p>Here are the standard locations for the <a class="reference internal" href="../../glossary.html#term-home-directory"><span class="xref std std-term">Home Directory</span></a>:</p>
+<blockquote>
+<div><ul class="simple">
+<li>PC: <code class="docutils literal notranslate"><span class="pre">C:\Users\account_name</span></code></li>
+<li>Mac: <code class="docutils literal notranslate"><span class="pre">/Users/account_name</span></code></li>
+<li>Linux: <code class="docutils literal notranslate"><span class="pre">/home/accountname</span></code></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="looking-around">
+<h3>Looking Around<a class="headerlink" href="#looking-around" title="Permalink to this headline">¶</a></h3>
+<p>Let’s fire up a simple command and see what is currently in our <a class="reference internal" href="../../glossary.html#term-home-directory"><span class="xref std std-term">Home Directory</span></a>:</p>
+<div class="section" id="pc-systems">
+<h4>PC Systems<a class="headerlink" href="#pc-systems" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\U</span>sers<span class="se">\r</span>black&gt; dir
+ COlume in Drive C is OS
+ Volumw Serial NUmber is B497-D1BE
+
+  Directory of C:<span class="se">\U</span>sers<span class="se">\r</span>black
+
+  <span class="m">12</span>/07/2018  <span class="m">11</span>:01 AM    &lt;DIR&gt;        .
+  <span class="m">12</span>/07/2018  <span class="m">11</span>:01 AM    &lt;DIR&gt;        ..
+  <span class="m">11</span>/18/2018  <span class="m">07</span>:19 AM    &lt;DIR&gt;        Contacts
+  <span class="m">11</span>/18/2018  <span class="m">07</span>:19 AM    &lt;DIR&gt;        Documents
+  <span class="m">11</span>/18/2018  <span class="m">07</span>:19 AM    &lt;DIR&gt;        Downloads
+  <span class="m">11</span>/18/2018  <span class="m">07</span>:19 AM    &lt;DIR&gt;        Pictures
+</pre></div>
+</div>
+<p>I left off a bunch of other entries.</p>
+<p>Notice that we see the time and date when this particular entry was created. We
+also see a marker (“&lt;DIR&gt;”) indicating that this entry is a directory. Then we
+see the name of that entry.</p>
+<p>Notice also the first two lines in this listing. The “dot” and “dot-dot” names
+are special on all systems. “dot” is an alias for the current directory (the
+one you are working in). “dot-dot” is an alias for the directory above this
+one.  These aliases help in forming the path to a file or folder you want to
+work with in commands.</p>
+</div>
+<div class="section" id="linux-mac-systems">
+<h4>Linux/Mac Systems<a class="headerlink" href="#linux-mac-systems" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rblack@MacTex ~ -&gt;
+  <span class="m">03</span>:46 PM Fri Jan <span class="m">18</span>$ ls
+Applications     Dropbox      Public
+Desktop          Downloads    Pictures
+VirtualBox VMs   acc
+</pre></div>
+</div>
+<p>Again, I left off some entries from my system.</p>
+<p>I have customized my “prompt” so I can see useful information, and give me more
+room to enter commands. The actual prompt is on two lines. The first shows
+where I am at the moment (this is called the <a class="reference internal" href="../../glossary.html#term-current-working-directory"><span class="xref std std-term">current working
+directory</span></a>). The second line shows the current time and date, which is useful
+when I capture this display for my notes, for example. The last character on
+the second line is the actual prompt character on these systems, the dollar
+character.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">From here on out, I will shorten the entire thing to just that single dollas
+character. I will only show PC examples where things are different.</p>
+</div>
+</div>
+<div class="section" id="hidden-entries">
+<h4>Hidden Entries<a class="headerlink" href="#hidden-entries" title="Permalink to this headline">¶</a></h4>
+<p>Where are those two entries with the funny names? Linux/Mac systems hide
+entries with names that start with a dot. They are there, but we need a
+different command to see them:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls -a
+</pre></div>
+</div>
+<p>On a PC, you need to do this to see all the hidden entries:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\U</span>sers<span class="se">\r</span>blach dir /a
+</pre></div>
+</div>
+</div>
+<div class="section" id="detailed-directory-listings">
+<h4>Detailed Directory Listings<a class="headerlink" href="#detailed-directory-listings" title="Permalink to this headline">¶</a></h4>
+<p>Finally, there is a longer form of the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command on Mac/Linux. The result
+looks more like that seen on the PC and has more useful information. Here is a
+partial result from my system:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls -al
+total <span class="m">512</span>
+drwxr-xr-x+  <span class="m">72</span> rblack  staff    <span class="m">2304</span> Jan <span class="m">18</span> <span class="m">14</span>:28 .
+drwxr-xr-x    <span class="m">7</span> root    admin     <span class="m">224</span> Jan  <span class="m">9</span> <span class="m">20</span>:44 ..
+-rw-r--r--    <span class="m">1</span> rblack  staff     <span class="m">857</span> Dec <span class="m">12</span> <span class="m">05</span>:11 .bash_aliases
+-rw-------    <span class="m">1</span> rblack  staff    <span class="m">7036</span> Jan <span class="m">18</span> <span class="m">13</span>:09 .bash_history
+-rw-r--r--    <span class="m">1</span> rblack  staff     <span class="m">164</span> Nov <span class="m">10</span> <span class="m">07</span>:17 .bash_id
+-rw-r--r--    <span class="m">1</span> rblack  staff     <span class="m">696</span> Aug  <span class="m">8</span> <span class="m">16</span>:20 .bash_profile
+-rw-r--r--    <span class="m">1</span> rblack  staff     <span class="m">115</span> Oct <span class="m">23</span> <span class="m">18</span>:24 .bashrc
+drwx------    <span class="m">8</span> rblack  staff     <span class="m">256</span> Dec <span class="m">11</span> <span class="m">08</span>:49 .ssh
+-rw-r--r--    <span class="m">1</span> rblack  staff     <span class="m">308</span> Dec  <span class="m">8</span> <span class="m">06</span>:49 .vimrc
+drwx------@   <span class="m">3</span> rblack  staff      <span class="m">96</span> Jan  <span class="m">3</span> <span class="m">16</span>:35 Applications
+drwxr-xr-x@   <span class="m">4</span> rblack  staff     <span class="m">128</span> May <span class="m">21</span>  <span class="m">2018</span> Books
+drwx------+   <span class="m">7</span> rblack  staff     <span class="m">224</span> Jan <span class="m">12</span> <span class="m">15</span>:29 Desktop
+drwx------+  <span class="m">17</span> rblack  staff     <span class="m">544</span> Jan <span class="m">17</span> <span class="m">08</span>:53 Documents
+</pre></div>
+</div>
+<p>That pile of characters at the start of each line tells you a lot of important information.</p>
+<p>If the first character is a “d, the entry is a directory name. If it is a dash,
+it is a normal file.</p>
+<p>The next 9 characters are permission indicators. These characters are in three
+groups: “owner”, “group”, and “other”. The “owner” of the entry, the one who
+created it. The “group” is a special list of other users of this system with
+permission to access this entry. Many folks create groups when they set up a
+team for a project. (We will not get into that here.) The owner and group names
+are shown after this set of permission bits.  The “other” permissions define
+the permissions for any other user of this system.  The three characters define
+“read”, “Write”, and “execute” permissions.</p>
+<p>The last items on each line identify the size of the entry in bytes, the date
+and time when it was created, and the name of the entry.</p>
+<p>Phew!</p>
+</div>
+</div>
+<div class="section" id="creating-a-directory">
+<h3>Creating a directory<a class="headerlink" href="#creating-a-directory" title="Permalink to this headline">¶</a></h3>
+<p>We need a place to store all work for this class. Yes, you can put things
+anywhere you like, even on that “desktop”, but you really need to start
+managing your system intelligently. Let’s create a folder for this class and
+store everything we do for the class in that directory!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir cosc2325
+</pre></div>
+</div>
+<p>We also need to set up a folder for each project we create for this class. Each
+project needs a decent name, so let’s call this first project <code class="docutils literal notranslate"><span class="pre">OddSummer</span></code>.
+(Sounds catchy enough!)</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">You absolutely must create separate folders for each project. You should
+never trash a project to build another one. You will be very happy you can
+still get to an old project and see how things were done later in your work.
+In this class, each project you want to have graded must be in an
+appropriate directory, with a name I specify on the assignment.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> cosc2325
+$ mkdir OddSummer
+$ <span class="nb">cd</span> OddSummer
+</pre></div>
+</div>
+</div>
+<div class="section" id="changing-directories">
+<h3>Changing Directories<a class="headerlink" href="#changing-directories" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">cd</span></code> command changes your <span class="xref std std-term">current working directory`</span> to the new
+directory you name after this command. On a PC, if you run <code class="docutils literal notranslate"><span class="pre">cd</span></code> by itself,
+you will see the full <a class="reference internal" href="../../glossary.html#term-path"><span class="xref std std-term">path</span></a> to the <a class="reference internal" href="../../glossary.html#term-current-working-directory"><span class="xref std std-term">current working directory</span></a>. On
+Linux/Mac, typing “cd” as a command will return you to your <a class="reference internal" href="../../glossary.html#term-home-directory"><span class="xref std std-term">home
+directory</span></a>.</p>
+<p>If you provide a new directory name (or a path) to the new directory you want to
+work in, the system will move you to that directory. Your prompt will change to
+show you where your are.</p>
+<p>This is where the “dot” and “dot-dot” aliases are helpful.</p>
+<p>On my system, I have directories for each class I teach. If I am in the
+<code class="docutils literal notranslate"><span class="pre">cosc2325</span></code> directory, and want to move to the <code class="docutils literal notranslate"><span class="pre">cosc1337</span></code> directory, which
+sits beside the current one, I would use this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ../cosc1337
+</pre></div>
+</div>
+<p>The “dot-dot” says go up one level, then down into <code class="docutils literal notranslate"><span class="pre">cosc1337</span></code>. Neat!</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can always use the full path to a new directory, starting with the
+:term:path seperator` character (not the drive letter though! On a PC, if
+you want to move to another drive, just type in the drive letter followed by
+a colon.</p>
+</div>
+</div>
+<div class="section" id="ready-to-code">
+<h3>Ready to Code?<a class="headerlink" href="#ready-to-code" title="Permalink to this headline">¶</a></h3>
+<p>Not quite.</p>
+<p>Let’s see if all the needed development tools are ready for use.</p>
+<p>Try this (after you go through the tool setup process we discussed in class!)
+You should see output similar to that shown below. (Your output will surely be
+longer)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ g++ --version
+Apple LLVM version <span class="m">10</span>.0.0 <span class="o">(</span>clang-1000.11.45.5<span class="o">)</span>
+</pre></div>
+</div>
+<p>If you get a response like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ g--
+-bash: g--: <span class="nb">command</span> not found
+</pre></div>
+</div>
+<p>This means you either have not installed this tool (there is no such “g–”
+tool), or the program is installed, but the program file cannot be found in the
+<span class="xref std std-term">system PATH`</span>. Go back to the tool installation notes and make sure you
+followed them correctly.</p>
+<p>Continuing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make --version
+GNU Make <span class="m">3</span>.81
+
+$ git --version
+git version <span class="m">2</span>.17.2 <span class="o">(</span>Apple Git-113<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Building  C++ Program</a><ul>
+<li><a class="reference internal" href="#the-problem">The Problem</a></li>
+<li><a class="reference internal" href="#step-1-open-up-a-command-prompt-window">Step 1: Open up a Command Prompt Window</a><ul>
+<li><a class="reference internal" href="#customize-the-window">Customize the Window</a><ul>
+<li><a class="reference internal" href="#pc-command-prompt">PC Command Prompt</a></li>
+<li><a class="reference internal" href="#mac-terminal-window">Mac Terminal Window</a></li>
+<li><a class="reference internal" href="#linux-terminal">Linux Terminal</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#where-am-i">Where am I?</a><ul>
+<li><a class="reference internal" href="#file-system-paths">File System Paths</a></li>
+<li><a class="reference internal" href="#home-directories">Home Directories</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#looking-around">Looking Around</a><ul>
+<li><a class="reference internal" href="#pc-systems">PC Systems</a></li>
+<li><a class="reference internal" href="#linux-mac-systems">Linux/Mac Systems</a></li>
+<li><a class="reference internal" href="#hidden-entries">Hidden Entries</a></li>
+<li><a class="reference internal" href="#detailed-directory-listings">Detailed Directory Listings</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-a-directory">Creating a directory</a></li>
+<li><a class="reference internal" href="#changing-directories">Changing Directories</a></li>
+<li><a class="reference internal" href="#ready-to-code">Ready to Code?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/lectures/03-Development-Techniques/04-building-a-c++-program.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

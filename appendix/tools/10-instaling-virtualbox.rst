@@ -20,17 +20,9 @@ VMware_ seems to be the most advanced engine, but it is complex. There is a
 free version of this product, which is what is installed on lab machines. I
 prefer to use the VirtualBox_ engine these days. 
 
-..  note::
-    
-    There is a free add-on package for VirtualBox_ that I will demonstrate in
-    class. This package is called Vagrant_, a tool that lets you spin up
-    ``virtual machines`` for testing with a simple text file that controls the
-    whole process.  More on that later.
-
 To install VirtualBox_ on a PC, you need to navigate to the product website and
 download the correct installer. I am going to demonstrate installing this tool
 on my Windows 10 system.
-
 
 Here is the link I used to get the Windows installer:
 

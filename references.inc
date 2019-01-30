@@ -11,12 +11,20 @@
 ..  |pylit| replace::   PyLiT
 ..  |SDL|           replace:: Simple DirectMedia Layer
 
+..  _`da Vinci`: https://en.wikipedia.org/wiki/Leonardo_da_Vinci
+..  _`Leonardo da Vinci`: https://en.wikipedia.org/wiki/Leonardo_da_Vinci
+..  _`Agner Fog`:   http://www.agner.org/optimize/
 ..  _`Donald Knuth`:	https://en.wikipedia.org/wiki/Donald_Knuth
-..  _Knuth:         https://en.wikipedia.org/wiki/Donald_Knuth
+..  _Knuth:         	https://en.wikipedia.org/wiki/Donald_Knuth
+..  _`Niklaus Wirth`: 	https://en.wikipedia.org/wiki/Niklaus_Wirth
+..  _Wirth: 		https://en.wikipedia.org/wiki/Niklaus_Wirth
+..  _`Blaise Pascal`:	https://en.wikipedia.org/wiki/Blaise_Pascal
+..  _George Boole:  https://en.wikipedia.org/wiki/George_Boole
+..  _Linus Torvalds:    https://en.wikipedia.org/wiki/Linus_Torvalds
+
 ..  _reStructuredText: //http://docutils.sourceforge.net/rst.html
 ..  _`Literate Programming`: https://en.wikipedia.org/wiki/Literate_programming
 
-..  _AgnerFog:      http://www.agner.org/optimize/
 ..  _Ansible:       https://www.ansible.com/
 ..  _Atmel:         http://www.microchip.com/
 ..  _Arduino:       https://www.arduino.cc/
@@ -27,9 +35,6 @@
 ..  _MacTex:        http://www.tug.org/mactex/
 ..   _Microchip:     http://www.microchip.com/
 ..  _catch.hpp:     https://github.com/catchorg/Catch2
-..  _Donald Knuth:  https://en.wikipedia.org/wiki/Donald_Knuth
-..  _Knuth:         https://en.wikipedia.org/wiki/Donald_Knuth
-..  _George Boole:  https://en.wikipedia.org/wiki/George_Boole
 ..  _Git:           https://git-scm.com/
 ..  _GitHub:        https://github.com/
 ..  _GitLab:        https://about.gitlab.com/
@@ -42,13 +47,13 @@
 ..  _Icarus Verilog: http://iverilog.icarus.com/
 ..  Verilog:        http://www.verilog.com/
 ..  _LaTeX:         https://www.latex-project.org/
-..  _Linus Torvalds:    https://en.wikipedia.org/wiki/Linus_Torvalds
 ..  _Literate Programming:  https://en.wikipedia.org/wiki/Literate_programming
 ..  _Linux:         https://www.linux.org/
 ..  _Make:          https://www.gnu.org/software/make/manual/
 ..  _MARSSx86:        http://marss86.org/~marss86/index.php/Home
 ..	_mingw-w64:	https://mingw-w64.org/doku.php
 ..  _Nasm:          http://nasm.us/
+..  _OpenSSH:	    https://www.openssh.com/
 ..  _Parallels:     https://www.parallels.com/
 ..  _Parallax:      https://www.parallax.com
 ..  _PL0:           https://en.wikipedia.org/wiki/PL/0

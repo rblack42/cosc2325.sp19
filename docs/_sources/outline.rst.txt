@@ -1,0 +1,702 @@
+Course Outline
+==============
+1:Building an AVR Development System
+<p>34
+<p>238
+<p>198
+2:Setting Up a Virtual Machine
+<p>329
+3:Installing VirtualBox
+<p>157
+<p>223
+<p>216
+3:Installing Vagrant
+<p>292
+<p>179
+<p>152
+3:Installing Linux
+<p>161
+<p>119
+<p>52
+<p>142
+3:Start Your VM
+<p>72
+<p>54
+<p>344
+<p>87
+<p>335
+<p>206
+3:Exiting the VM
+<p>72
+<p>49
+<p>29
+<p>74
+<p>482
+2:Provisioning the VM for AVR
+<p>554
+<p>50
+3:Installing Ansible
+<p>42
+<p>79
+<p>76
+<p>49
+<p>80
+<p>184
+<p>91
+3:Configuring for Your Project
+<p>245
+<p>120
+<p>173
+<p>153
+<p>44
+<p>203
+<p>197
+3:Checking the AVR Tools
+<p>53
+<p>52
+2:Wrapping up
+<p>669
+<p>66
+1:C++ Graphics Setup
+<p>415
+2:Mac Setup
+<p>489
+2:Windows Setup
+<p>118
+<p>86
+<p>29
+<p>164
+<p>102
+<p>358
+<p>92
+3:32-bit Users
+<p>167
+<p>34
+<p>32
+<p>19
+3:64-bit Users
+<p>156
+<p>38
+<p>32
+<p>19
+2:Graphics Project Files
+<p>57
+<p>161
+<p>12
+<p>10
+<p>8
+<p>8
+2:Testing The Graphics Setup
+3:Step 1: Create Your Project
+<p>48
+<p>121
+<p>194
+2:Step3: Test your Demo
+<p>86
+<p>39
+<p>95
+1:Documenting Your Project With reStructuredText
+<p>34
+<p>382
+2:Good Documentation
+<p>34
+<p>378
+<p>186
+<p>723
+<p>132
+2:Writing Documentation
+<p>310
+<p>229
+3:Prerequisites
+<p>279
+<p>222
+<p>22
+4:Windows Setup
+<p>231
+<p>214
+<p>31
+4:Mac
+<p>112
+4:Linux
+<p>60
+3:Documentation Setup
+<p>434
+3:Installing Sphinx
+<p>57
+<p>128
+3:Initializing the Documentation
+<p>103
+<p>184
+<p>123
+<p>25
+3:Running Sphinx
+<p>104
+<p>226
+2:Adding a Theme
+<p>233
+<p>112
+<p>84
+<p>95
+2:Publishing on GitHub
+<p>110
+<p>25
+3:Repository Setup
+<p>225
+<p>29
+<p>39
+<p>15
+<p>48
+<p>54
+<p>67
+<p>66
+<p>50
+<p>182
+2:Learning reStructuredText
+<p>114
+<p>336
+<p>34
+<p>16
+<p>15
+1:Appendix
+<p>217
+2:Programming Tools
+1:Programmer’s Editor
+<p>536
+<p>336
+<p>344
+<p>338
+<p>109
+<p>32
+2:Kill the automatic backup
+<p>373
+2:Change tabs from 8 spaces to 4 spaces
+<p>263
+<p>283
+2:Basic editing
+<p>86
+<p>370
+<p>57
+<p>26
+<p>37
+<p>49
+<p>305
+<p>122
+<p>342
+2:Other Settings
+<p>87
+3:Wrapping text
+<p>295
+<p>368
+3:Spell checking
+<p>635
+<p>252
+<p>381
+2:Setup for Windows Vista and Windows 7
+<p>382
+<p>142
+<p>96
+1:Configuring Vim in Ubuntu
+<p>195
+<p>69
+<p>83
+<p>94
+2:Personal Settings
+<p>96
+<p>27
+<p>296
+2:Create/edit .vimrc
+<p>134
+<p>64
+<p>45
+<p>148
+<p>98
+3:Other Settings
+<p>32
+<p>100
+3:Spell Checking
+<p>157
+<p>94
+<p>65
+<p>67
+<p>433
+<p>160
+<p>295
+2:More Vim Tricks
+<p>335
+<p>82
+<p>437
+<p>398
+2:Learn Your Tools
+<p>295
+<p>359
+1:Installing Git on your PC
+<p>237
+2:Windows PC
+<p>52
+<p>21
+<p>72
+2:Installing Git on your Mac
+<p>67
+<p>21
+<p>179
+<p>68
+<p>42
+2:Installing `NAME <https://git-scm.com/>`_ in Linux
+<p>18
+<p>42
+<p>242
+2:Git References
+<p>159
+<p>17
+<p>18
+1:Installing Make
+<p>279
+<p>47
+<p>69
+<p>20
+<p>181
+<p>38
+<p>79
+1:Installing a C++ Compiler
+<p>376
+2:Windows Setup
+<p>79
+<p>13
+<p>110
+<p>18
+<p>119
+2:Mac Setup
+<p>260
+<p>125
+<p>54
+<p>135
+<p>120
+<p>88
+2:Windows Command LIne
+<p>59
+2:Mac
+<p>72
+<p>175
+1:Python Setup
+<p>108
+2:Get the required Resources
+<p>410
+<p>30
+<p>114
+3:Picking where to install
+<p>171
+<p>323
+<p>99
+3:Setting up the system ``path``
+<p>132
+<p>210
+<p>167
+1:Configuring the PATH on Windows 10
+<p>34
+<p>298
+<p>180
+<p>87
+2:The System PATH
+<p>183
+<p>151
+<p>166
+<p>41
+<p>190
+<p>160
+2:Step 1: Find your Executable
+<p>553
+<p>106
+<p>47
+2:Step 2: Open Up the PATH Edit Tool
+<p>124
+<p>63
+<p>48
+<p>71
+<p>148
+<p>261
+<p>75
+<p>80
+2:Step 3: Open a New Command Prompt
+<p>375
+<p>77
+1:Make - the programmer’s best friend
+<p>284
+2:What is Make?
+<p>214
+<p>249
+2:Dependencies
+<p>121
+<p>213
+<p>22
+<p>151
+<p>143
+<p>106
+<p>93
+<p>120
+2:Makefiles
+<p>171
+<p>26
+<p>124
+<p>61
+<p>185
+<p>46
+<p>481
+<p>86
+<p>31
+2:Targets
+<p>258
+<p>204
+<p>391
+<p>70
+<p>47
+<p>319
+<p>45
+2:Implicit rules
+<p>146
+<p>248
+<p>34
+<p>34
+<p>206
+2:Make is smart!
+<p>854
+2:A more complex example
+<p>64
+<p>20
+<p>25
+<p>112
+1:Advanced Makefile
+<p>380
+<p>136
+<p>160
+<p>373
+2:Finding Source Files
+<p>284
+<p>239
+<p>135
+<p>189
+<p>469
+<p>105
+<p>382
+<p>292
+2:Learning More
+<p>162
+1:Installing VirtualBox
+<p>212
+<p>75
+<p>61
+<p>40
+<p>198
+<p>182
+<p>53
+<p>31
+<p>84
+<p>27
+<p>78
+<p>55
+<p>167
+<p>70
+<p>139
+<p>47
+<p>94
+<p>134
+1:Project Versioning
+<p>33
+<p>92
+2:Conventional Versioning
+<p>67
+3:Major Number
+<p>285
+<p>149
+3:Minor Number
+<p>219
+<p>144
+3:Patch Number
+<p>190
+<p>247
+2:Our Versioning System
+<p>194
+<p>262
+2:Step 1: Creating the Version File
+<p>194
+1:HW 1: GitHub Setup
+<p>15
+2:Prerequisites
+<p>442
+2:Part 1: Create your account
+<p>51
+<p>44
+<p>25
+<p>80
+<p>33
+<p>56
+1:Assignments
+1:Lab 1: The Dance Simulator
+<p>196
+2:General Lab Repository
+<p>242
+<p>12
+<p>98
+2:Design in Teams, Code on Your Own
+<p>569
+2:Sample Output
+<p>183
+<p>41
+<p>54
+<p>210
+2:Submitting this Lab
+<p>57
+2:Debug Output
+<p>188
+1:Quiz 1: Syllabus Review
+<p>91
+1:Glossary
+<p>3
+<p>3
+<p>157
+<p>172
+<p>190
+<p>176
+<p>87
+<p>3
+<p>311
+<p>90
+<p>3
+<p>353
+<p>70
+<p>169
+<p>3
+<p>3
+<p>3
+<p>263
+<p>42
+<p>202
+<p>381
+<p>3
+<p>279
+<p>3
+<p>510
+<p>222
+<p>3
+<p>414
+<p>221
+<p>3
+<p>278
+<p>3
+<p>137
+<p>100
+<p>151
+<p>191
+<p>306
+<p>142
+<p>106
+<p>81
+<p>3
+1:COSC2325 Lecture Notes
+<p>42
+<p>13
+<p>12
+<p>19
+<p>30
+<p>63
+2:Schedule
+2:Learning Objectives
+2:Lectures
+2:Assignments
+2:Appendix
+2:Glossary
+1:Indices and tables
+<p>5
+<p>12
+<p>11
+1:Getting Started
+<p>34
+<p>292
+<p>214
+<p>106
+<p>6
+<p>292
+2:Why Not use an IDE?
+<p>698
+<p>358
+<p>402
+2:Working on the “Command Line”
+<p>524
+<p>399
+<p>314
+<p>313
+<p>411
+<p>199
+3:The System PATH
+<p>457
+<p>108
+<p>33
+3:Command Prompt on PC
+<p>128
+<p>35
+2:Managing Tools Directly
+<p>421
+<p>185
+<p>70
+<p>86
+2:Fundamental Build Tools
+<p>85
+3:Programmer’s Editor
+<p>284
+<p>450
+<p>95
+1:Getting Started
+<p>34
+<p>406
+<p>193
+<p>358
+2:Getting to Know the Machine
+<p>161
+<p>243
+<p>142
+<p>203
+<p>117
+<p>141
+3:Instructions
+<p>309
+3:Operands
+<p>324
+<p>212
+2:Humanizing Instructions
+<p>201
+<p>99
+<p>149
+<p>250
+<p>7
+<p>71
+<p>12
+<p>55
+<p>60
+<p>192
+<p>183
+<p>239
+<p>69
+<p>397
+<p>115
+<p>571
+<p>121
+3:Assembly Language is not Mandatory
+<p>593
+2:How will we create Assembly Lnaguage?
+<p>258
+3:Hello, World!
+<p>69
+<p>59
+<p>142
+<p>53
+2:Moving to Linux
+<p>67
+<p>103
+<p>55
+<p>38
+<p>19
+<p>33
+<p>137
+<p>35
+<p>169
+<p>207
+1:The Nature of Electricity
+<p>38
+<p>105
+<p>248
+<p>54
+2:Power Source?
+<p>182
+3:Electrons
+<p>23
+<p>370
+3:Atoms
+<p>140
+<p>23
+<p>23
+<p>58
+<p>746
+<p>82
+<p>18
+<p>11
+<p>11
+<p>32
+<p>215
+3:Free Electrons
+1:Formally Defining Languages
+<p>34
+<p>420
+<p>300
+2:EBNF
+<p>399
+<p>239
+<p>275
+2:Grammars
+<p>469
+<p>404
+<p>595
+<p>441
+<p>96
+2:Productions
+<p>28
+<p>410
+<p>105
+2:Identifiers
+<p>68
+<p>38
+<p>290
+<p>30
+2:Letters
+<p>52
+<p>374
+2:Productions Revisited
+<p>66
+<p>281
+<p>88
+2:Expressions
+<p>223
+<p>45
+<p>282
+2:Terms
+<p>88
+<p>23
+<p>20
+<p>40
+2:Factor
+<p>74
+<p>316
+<p>119
+<p>134
+<p>5
+2:The EBNF Rules in EBNF
+<p>110
+<p>219
+<p>327
+2:Diagram Tool Rules
+<p>313
+<p>221
+<p>83
+1:Course Outline
+1:COSC1315 - 16-week Schedule
+<p>10
+<p>10
+<p>25
+2:Week 1
+2:Week 2
+2:Week 3
+2:Week 4
+2:Week 5
+2:Week 6
+2:Week 7
+2:Week 8
+2:Week 9
+2:Week 10
+2:Week 11
+2:Week 12
+2:Week 13
+2:Week 14
+2:Week 15
+2:Week 16
+1:Bibliography
+<p>226
+<p>135
+<p>78

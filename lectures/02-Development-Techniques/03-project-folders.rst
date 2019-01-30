@@ -1,0 +1,270 @@
+Managing a Project
+##################
+
+.. include::   /header.inc
+
+I hope you get the idea that we will be writing several C++ code files. Each
+file will contain code associated with one part of our overall program. For any
+given project, the number of files you will create depends on the complexity of
+that project. For now, we need to talk about managing all of that code.
+
+You could (but absolutely do not) just write a bunch of code files and land
+them in a simple project directory. That is just silly!
+
+Instead, you should think about what each chunk of code is for, who should
+access that chunk of code, and place it in logical places that make it easy to
+work with and manage. 
+
+There are many ideas on what makes up a good project structure. I am going to
+show you one that is fine for moderatey big C++ projects. The logic behind each
+part of this project structure will be explained as we work through the design..
+
+Project Folder
+**************
+
+Every project, without exception, should live in a folder named to help you
+figure out what project this is all about. Most developers come up with a nice
+catchy name for their project, and that name is slapped on the project folder.
+We may (and will) have subfolders under this main project folder. 
+
+The point is this: every asset associated with this project lives somewhere
+inside this project folder. That makes it easy to back up the project, or move
+it from one location in your system to another. This is also essential if we want to use a tool like Git_ in our work.
+
+You will be placing this top-level folder under the management of Git_ in this
+class, and that is something you will discover is done almost for every
+project you run into these days!
+
+.. note::
+
+   There are other tools available to manage your code, but Git_ seems to
+   dominate things today!
+
+Exactly where you keep project folders on your system is not really a concern
+here. However, I recommend collecting all projects for a given organization (or
+class) in a folder named after that organization (or class). Keep your system
+"clean"in the sense that you organize things in some logical way, which helps
+you find things easily. Do not just land everything you do on that "desktop".
+That is like working in an office where papers are just thrown everywhere.
+There is little hope anyone but the poor soul who lives in that office, will be
+able to find anything!
+
+On all of my systems, I have a folder named ``cosc2325``, for example, and
+inside of that folder you will find all projects I create for that class. Each
+project has a distinct name. (unfortunately, sometimes that names is not all
+that helpful: something like "lab1".)
+
+..  warning::
+
+    As a developer NEVER name anything with a space in the name. I know
+    Microsoft insists that we do that, but it causes more trouble than we
+    need, so do not do that!
+
+Project Sub-Folders
+*******************
+
+I am going to recommend a sub-folder layout for your C++ programming projects. This
+is by no means the only structure you could use, but it makes sense for
+projects of the sort we will be building. It looks like this:
+
+.. code-block:: text
+
+    project_name/
+        |
+        +- src/
+        |
+        +- lib/
+        |   |
+        |   +- component1/
+        |   |
+        |   + component2/
+        |
+        +- include/
+        |
+        +- docs/
+        |
+        +- tests/
+
+Every name ending with a slash is a sub-folder name. The diagram is called a
+"directory tree". 
+
+Source Code
+===========
+
+We use that term a lot in programming. The ``src`` folder is where I will keep
+all code associated with the human side of the program. For a C++ program, the
+``main`` function will live in this folder somewhere. Often that ``main``
+function will be in a file named ``main.cpp`` to make it easy to find.
+
+Other files in this folder will contain code that interacts with the user
+somehow. 
+
+Library Files
+=============
+
+All other code files will live under the ``oibe`` folder. Since in big
+projects, we might create smaller chunks of code that logically group some
+component part of the program, we will allow the use of further sub-folders to
+keep code associated with a component together. Again, this makes it easy to
+find code later on as the project grows.
+
+The names you use for these component folders should be related to the purpose
+of that component, but they are up to you to pick.
+
+Include Files
+=============
+
+In C++ programs, we use a "header" file to act as a connector between parts of our program.
+
+The compiler must know enough about every name it
+encounters as it processes your code to verify that you are using that name properly. 
+
+Suppose to write a piece of code in one file that will call a function that
+lives in another file.  When the compiler sees your call to that function, it
+must know enough about that function to make sure your call is correctly
+formed.  That means we need to know the function name, what it returns, and
+what parameters it needs. We do not need to know how it does anything, so we do
+not need to see the code that implements that function. 
+
+All of this information can be figured out if we see the first line of that
+function, which is called the "prototype" of the function. In C++ that is
+everything up to the curly brace that starts the code for the function. A prototype for a function is a copy of that first line, but we place a semicolon where we would place an open curly bracket and start writing the function code.
+
+We place the prototype for the function in a "header" file with some name. We "include" that header file in any file that will need to call the function. Including a file will cause the prototype lines to be inserted into the code file so the compiler will see it and be happy later when it sees your call.
+
+.. note::
+
+   Since that prototype is a contract between the caoer of the function and the
+   implementer of the function, we also include the headder file with that
+   prototype in the file where the actual implementaton of the fucntion will be
+   found. Here the compiler will check that the actual function code is
+   honoring the contract. If the contract changes both the user and implementer
+   of the function have changes to make in their code.
+
+The problem we face in organizing our code is where to put the include file.
+
+Some developers keep the header files in the same place as the file containing
+the actual function code. The compiler really does not care as long as you tell
+it where the header file lives. The problem with this idea is that it puts the
+implementation code at risk.
+
+Huh!
+
+In a large project, it is important to keep some parts of the code private.
+That does not mean secret, just out of sight. If two developers get together
+and come up with the need for a function that does some important task, they
+have to agree on the "interface" (that prototype line). Once that interface is
+defined both developers can continue working on their code. 
+
+The developer who is going to use the function can go off and write code that
+calls the new function, even before that function is available. Of course,
+that code cannot be run until the function implementation really is available,
+but they can compile their code just fine!
+
+.. note::
+
+   If that developer really needs to be able to run their code before the new
+   function shows up, they can write a dummy implementation that obeys the
+   prototype, but fakes the operation. This version of the function is often
+   called a "mock" of the function. 
+   
+   The fake function just needs to return the right kind of data so the using
+   code will run. These dummy functions are sometimes used in testing, but can
+   be thrown out when the function actually shows up later.
+
+
+The other developer can go off and create that function. The
+interface is the contract between them. As long as that interface does not
+change, life is good.
+
+The user of the function should not need to see the code of the function to use
+it, and the developer of the function should not need to see the code that uses
+it. The contract is all both need. If either writes code based this unneeded
+knowledge, it makes the code "brittle". Suppose the implementation of the
+function constructed a data structure, like an array, that was visible outside
+of that function. The user of the function might know that the array exists and
+write code that sneaks into that array without the function's knowledge. If the
+implementer of the function decides to ditch the array and use a linked list instead,
+the caller (who should not have done this anyway) will discover their code no
+longer works! 
+
+So sad! Don't write code like that!
+
+So header files containing this contract line needs to be available to both
+developers, and we will put those files in a separate folder to reinforce that
+they are public to all developers.
+
+.. note::
+
+   This idea of keeping some things private is a good one to use in all
+   programming. It goes deeper than just keeping the implementation details
+   hidden away. Object Oriented Programming was invented to give us more
+   control over who has access to almost every name you invent in your code.
+   That helps make sure those names are being used properly, and only by
+   "authorized" users.
+
+Documentation
+=============
+
+You absolutely must document your code. We will spend some time on this, so we
+will not get too deep into thsi idea here. Documentation is not just a bunch of
+comments in your code, it goes deeper than that!. Real documentation helps the
+reader, who might even be you some time after you wrote the code, figure out
+the "why" of that code. The code tells the reader what will happen, but not
+why! That "why" was locked up in the head of the developer, and we need to record
+that somewhere! We will put documentation in the ``docs`` folder.
+
+Tests
+=====
+
+Should you test your code? 
+
+Here is a popular saying:
+
+::
+
+   If you have not tested your code, it does not work!
+
+The only way to prove that saying is wrong, is to test your code - duh!
+
+Testing is not the same as turning on a program ans making sure it "works".
+Just because it seemed to work once is no guarantee tat a real user will be
+happy with it. You need to wring it out and make sure the code cannot be broken
+by some weird user!
+
+You cannot test a program completely, but you can test it enough to gain
+confidence in it. The more you test, the more confident you become.  (At least
+until someone finds a way to run your code that you did not test, and you find
+it is broken anyway!)
+
+Still, we do our best. 
+
+Testing is a course in itself. In our work we will test the parts of the
+program we write. This is called ``init testing`` because we are going to test
+some "unit" of code. We will leave more advanced testing of a complete program
+for another time. Most of the code we test will be located in the ``lib`` folder. 
+
+The sad part about testing is that we have to write more code. We need to write
+a test that runs our code to see if it works. (That raises a question: do we
+need to test the test code? I think I will skip that idea!)
+
+Our test code will actually be pretty simple. For our C++ projects we will use
+a neat system that is completely contained in one simple (well not so simple if
+you try to read it) header file. More on that later.
+
+All test code will be kept in a separate folder named ``tests``.
+
+Wrapping Up
+***********
+
+This basic structure is enough to get you started. We will tweak this layout a
+bit as we work through the class. For now, read up on the ``mkdir`` command and
+see how it can be used to set this project structure up:
+
+.. code-block:: bash
+
+   mkdir ProjName
+   cd ProjName
+   mkdir {src, lib, docs, test}
+
+

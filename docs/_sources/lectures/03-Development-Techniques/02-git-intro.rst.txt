@@ -1,0 +1,18 @@
+Getting Started with Git
+########################
+
+.. include::   /references.inc
+
+Git_ is a new tool that has taken software development world by storm! In this
+lecture, we will make sure you are ready to use this cool tool. Later lectures
+in this section will introduce you to more interesting features of the tool.
+For now, we just need to know the basics!
+
+The tool installation notes are actually in the Appendix. For convenience,
+there  are links to thos enotes in the first lecture in this section.
+
+..  toctree::
+    :maxdepth: 1
+    :glob:
+
+    *

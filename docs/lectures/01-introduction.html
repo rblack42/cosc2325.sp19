@@ -1,0 +1,361 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Getting Started &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Nature of Electricity" href="02-electricity.html" />
+    <link rel="prev" title="Getting Started" href="01-getting-started.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="02-electricity.html" title="The Nature of Electricity"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="01-getting-started.html" title="Getting Started"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>Read time: 32 minutes (8145 words)</p>
+<p>In this course, we will study how your machine works. You should already have
+some idea about what happens when your program runs, but most students build a
+mental model of the machine that, at most, includes a chunk of hardware doing
+the processing work, and a big pile of memory holding all the code and data we
+process.  That is about as far as your mental model needs to go to get you into
+programming.</p>
+<p>But, just like studying the inner workings of your car better prepares you to deal
+with life’s funny mechanical problems, studying the insides of the computer
+will make you a better programmer.</p>
+<p>For that reason, we will look deep inside the machine and see what <em>really</em>
+happens. There is no magic involved, just electricity moving around at a fierce
+rate making simple things happen. By the time you get out of this course, I
+hope you have a better understanding of how these crazy machines actually do
+their work, and how that work helps us poor humans!</p>
+<div class="section" id="getting-to-know-the-machine">
+<h2>Getting to Know the Machine<a class="headerlink" href="#getting-to-know-the-machine" title="Permalink to this headline">¶</a></h2>
+<p>We are going to meet the machine on a very personal level. The machine speaks a
+strange language, and we need to learn that language before we can “speak” to
+it.</p>
+<p>Well, actually, we will not spend too much time working with the machine at its
+most basic level, that level is too hard for us humans to deal with.
+Instead, we will move up one step higher, where the language is better suited
+for programmers.</p>
+<p>The machine’s real language is called (oddly enough) <a class="reference internal" href="../glossary.html#term-machine-language"><span class="xref std std-term">machine language</span></a>.  That
+language is very simple. You have probably all heard this by now:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Everything in the machine is 0&#39;s and 1&#39;s!
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Actually, that is not true. Everything in the machine is an electrical
+signal of some sort, measured as a voltage that we humans interpret as 0’s
+and 1’s! We will learn more about that later.</p>
+</div>
+<p>In fact, <a class="reference internal" href="../glossary.html#term-machine-language"><span class="xref std std-term">machine language</span></a> is all 0’s and 1’s. Hardly a friendly place
+to live. Speaking to the machine at this level is a real challenge.
+But, we are programmers, and we like to solve problems like this!</p>
+<p>Here is the first computer I got my hands on that I could work on at home. It
+was built up out of a $400 kit in 1975!</p>
+<img alt="lectures/imsai8080.png" class="align-center" src="lectures/imsai8080.png" />
+<p>I actually toggled in programs on that front panel, flipping switches up or
+down to enter 0’s or 1’s. Painful, but kind of fun in an odd way!</p>
+<div class="section" id="instructions">
+<h3>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h3>
+<p>The manufacturer of any machine constructs it so it can perform a limited set
+of basic tricks. Each trick manipulates a bunch of 0’s and 1’s that we call
+<em>data</em>. That <em>data</em> is located somewhere inside the machine, in a place we
+call the system <em>memory</em>. Each trick is simple, and we call that trick an
+<em>instruction</em>.</p>
+</div>
+<div class="section" id="operands">
+<h3>Operands<a class="headerlink" href="#operands" title="Permalink to this headline">¶</a></h3>
+<p>An <em>instruction</em> might need a few additional pieces of <em>data</em> to work with.  We
+will call these extra <em>data</em> items <em>operands</em>. Those <em>operands</em> usually tell
+the processor where the real target <em>data</em> that it needs to manipulated with
+this particular <em>instruction</em> is located. In some cases, an <em>operand</em> might
+just be a number of some sort.</p>
+<p>You have used all of these concepts in your previous programming. Nothing new
+is going on here. But one line of high-level C++ code might end up being
+implemented as a dozen or so <em>instructions</em> for a real machine.</p>
+</div>
+</div>
+<div class="section" id="humanizing-instructions">
+<h2>Humanizing Instructions<a class="headerlink" href="#humanizing-instructions" title="Permalink to this headline">¶</a></h2>
+<p>Each <em>instruction</em>, and its required <em>operands</em>, is just a unique pile of 0’s
+and 1’s that the machine understands. But we humans cannot work at this level.
+(At least we do not want to work at this level!)</p>
+<p>Just for fun, take a look at the first program I loaded into that <code class="docutils literal notranslate"><span class="pre">INSAI-8080</span></code>
+computer back in 1975:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0000000000000000: 11000011 0000000000000000
+</pre></div>
+</div>
+<p>Ridiculous! But it is a real program, and is just enough of a program to prove
+that this brand new machine was functional. Let’s change the notation.</p>
+<p>What you see above is pure binary, only 0’s and 1’ are used. The first part
+(before the colon) is the <em>address</em> in memory where this program lives. The
+rest is a single instruction for the Intel 8080 microprocessor. What it does should
+be clear, right?</p>
+<p>No way!</p>
+<p>Let’s change it to a different notation, one we will learn about later:</p>
+<p><em>Hexadecimal</em>!</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0000: c3 0000
+</pre></div>
+</div>
+<p>Sure is shorter, but still not very easy to understand.</p>
+<p>Next, we introduce <em>assembly language</em> notation for this chip:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0000: JMP 0000
+</pre></div>
+</div>
+<p>Now we are getting somewhere. I finally have some clue about what is going on.
+The <strong>JMP</strong> looks like something I might understand. But what is <strong>JMP</strong>,
+anyway?  Why did they not spell it right: <strong>JUMP</strong>?</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Because programmers are lazy and hate to type! So they dropped a letter to
+make is shorter. Get used to that, it happens all the time in programming!</p>
+</div>
+<p>One more step and we are done. <em>Assembly Language</em> lets you do away with
+hard-coded addresses, and use <em>label</em> as markers for a point in memory. This is
+the code I actually wanted to run:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>; test program for IMSAI 8080
+
+        ORG 0000
+
+start:  JMP start
+</pre></div>
+</div>
+<p>Not so bad now. We have <em>humanized</em> the machines language! The <strong>ORG</strong> line
+tells us where this particular piece of code should be placed in the
+instruction memory of the computer when we run the program. The next line is
+the actual instruction.</p>
+<p>Do you see what it will do? It should be fairly simple to figure out.</p>
+<p>The machine normally works its way through a series of instructions, all
+located in sequential locations in memory. However, this instruction tells the
+machine to move to a specific location and run the instruction found there We
+marked the place we want to go with the label <strong>Start</strong>, and we <em>jumped</em> to
+that location when we processed this one instruction. WHat happens =next?
+Exactly the same thing.</p>
+<p>Welcome to the infinite loop of assembly language. The machine is very busy, it
+just is not doing much useful work!</p>
+<p>So, what we have done, when we move to <em>assembly language</em>, is simple. We come up with a
+unique code name for each instruction. We call that code name a <em>mnemonic</em>. The
+<em>mnemonic</em> is usually very short, and most often is suggested by the
+manufacturer of the machine. If we choose to work at this level, we need to
+build a tool that can translate our new language, made up of <em>mnemonics</em> and
+<em>operands</em>, into the required pile of 0’s and 1’s we can somehow <em>load</em> into
+the memory of our machine. We call this new language <em>assembly language</em>, and
+we call the tool we need and <em>assembler</em>.</p>
+<p>Exactly how all of that happens is done is something we will cover in the
+course. For now we need to know one more thing.</p>
+<div class="section" id="assembly-language-is-not-mandatory">
+<h3>Assembly Language is not Mandatory<a class="headerlink" href="#assembly-language-is-not-mandatory" title="Permalink to this headline">¶</a></h3>
+<p>Just because the manufacturer of a machine suggests a set of <em>mnemonics</em> for
+this machine, there is no law that says we can not just invent <em>mnemonics</em> we
+like better, and use those instead. Of course, we need to build an <em>assembler</em>
+that recognizes our new language, and converts that new language into the right
+set of ‘s and 1’s. In fact, we will be building our own machine as part of this
+course, and we will be designing an <em>assembly language</em> for that machine. This
+is not especially hard, but it requires a new kind of programming, and learning
+that will definitely improve your coding skills!</p>
+</div>
+</div>
+<div class="section" id="how-will-we-create-assembly-lnaguage">
+<h2>How will we create Assembly Lnaguage?<a class="headerlink" href="#how-will-we-create-assembly-lnaguage" title="Permalink to this headline">¶</a></h2>
+<p>If we are learning a new language, tradition (or is it the programming gods?)
+says we have to start by printing “Hello World” on the console screen. We could
+do that now, but we have a big problem to face first!  Let’s do that now, and
+get it out of the way.</p>
+<div class="section" id="hello-world">
+<h3>Hello, World!<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h3>
+<p>To start, we might want to fire up our favorite <a class="reference internal" href="../glossary.html#term-ide"><span class="xref std std-term">IDE</span></a> and start typing!</p>
+<p>Wait! This language is not supported by your <a class="reference internal" href="../glossary.html#term-ide"><span class="xref std std-term">IDE</span></a>. Now what?</p>
+<p>Since I have no control over what machine/operating system you choose to use, I
+am going to <em>normalize</em> things by having everyone work in Linux.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>But Wait! I don&#39;t know Linux!
+</pre></div>
+</div>
+<p>You should, and it is not as hard as you might think.</p>
+</div>
+</div>
+<div class="section" id="moving-to-linux">
+<h2>Moving to Linux<a class="headerlink" href="#moving-to-linux" title="Permalink to this headline">¶</a></h2>
+<p>We are going to work in Linux for this course, on a <em>Virtual Machine</em></p>
+<p>We will set that up in our next meeting. For now, you need to make sure your
+system is up to this task.</p>
+<p>You need a relatively new machine that looks like this:</p>
+<blockquote>
+<div><ul class="simple">
+<li>64-bit processor (32-bit if necessary)</li>
+<li>At least 4GB of RAM</li>
+<li>At least 20GB of free disk space.</li>
+</ul>
+</div></blockquote>
+<p>To make sure your processor can do the job, you need to run this program on
+your PC. (Macs and Linux systems are exempt from this check):</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="xref download docutils literal notranslate"><span class="pre">VMware-guest64check-5.5.0-18463.exe</span></code></li>
+</ul>
+</div></blockquote>
+<p>If this program certifies that you can install a 64-bit VM on your machine, you
+still may need to make changes in your BIOS setup. We will go over that in
+class as well.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If your system fails this test, you will need to see me. Either you will
+need to work on a class lab machine, or on a server (in the “cloud”) I can
+set up for your use.</p>
+</div>
+<p>Once you have your machine set up to use a <code class="docutils literal notranslate"><span class="pre">virtual</span> <span class="pre">machine</span></code>, you are ready
+to set one up. Since a huge amount of the Internet is actually running on this
+kind of system, it is time you learned how to use one!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#getting-to-know-the-machine">Getting to Know the Machine</a><ul>
+<li><a class="reference internal" href="#instructions">Instructions</a></li>
+<li><a class="reference internal" href="#operands">Operands</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#humanizing-instructions">Humanizing Instructions</a><ul>
+<li><a class="reference internal" href="#assembly-language-is-not-mandatory">Assembly Language is not Mandatory</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#how-will-we-create-assembly-lnaguage">How will we create Assembly Lnaguage?</a><ul>
+<li><a class="reference internal" href="#hello-world">Hello, World!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moving-to-linux">Moving to Linux</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="01-getting-started.html"
+                          title="Previous page">&larr; Getting Started</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="02-electricity.html"
+                          title="Next page">&rarr; The Nature of Electricity</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/lectures/01-introduction.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="02-electricity.html" title="The Nature of Electricity"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="01-getting-started.html" title="Getting Started"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

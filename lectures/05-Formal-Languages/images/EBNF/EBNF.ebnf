@@ -1,0 +1,23 @@
+grammar ::= { production } ;
+
+production ::= identifier "::=" expression ";" ;
+
+expression ::= term { "|" term } ;
+
+term ::= factor { factor } ;
+
+factor ::= ( 
+      identifier 
+    | literal 
+    | "(" expression ")" 
+    | "[" expression "]" 
+    | "{" expression "}" )
+    ;
+
+literal ::= ( 
+      '"' character { character } '"' 
+    | "'" character { character } "'" ) 
+    ;
+
+identifier ::= letter { letter | digit } ;
+

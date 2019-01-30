@@ -1,0 +1,7 @@
+grammar ::= production+
+production ::= identifier "::=" expression ";"
+identifier ::= letter+
+expression ::= term ( "|" term )*
+term ::= factor+
+factor ::= identifier | literal | "(" expression ")" | "[" expression "]" | "{" expression "}"
+literal ::= '"' character+ '"' | "'" character+ "'"

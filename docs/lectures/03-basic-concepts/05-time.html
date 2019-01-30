@@ -1,0 +1,338 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Time to Talk About Time &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The CPU Factory" href="../04-CPU-Factory/01-cpu-factory.html" />
+    <link rel="prev" title="Secure GitHub Access" href="../02-Development-Techniques/04-secure-github-access.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../04-CPU-Factory/01-cpu-factory.html" title="The CPU Factory"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../02-Development-Techniques/04-secure-github-access.html" title="Secure GitHub Access"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Lecture Notes</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="time-to-talk-about-time">
+<h1>Time to Talk About Time<a class="headerlink" href="#time-to-talk-about-time" title="Permalink to this headline">¶</a></h1>
+<p>In our discussion up to this point, we have mentioned time a number of times!
+Why?</p>
+<p>Electricity “flows” through wires. It does not move instantaneously from one
+point to another. It does move at a pretty quick speed. The actual speed is
+something on the order of 70% of the speed of light, and light blazes along at
+a pretty good clip! (Exactly how fast is a homework problem you will get soon.(</p>
+<p>It takes some time for our “signals” to move from one part to another one in
+our system. It also takes some time for the processing to get done inside each
+part. Exactly when the signals move, and when the processing happens is
+something we need to explore.</p>
+<p>For now let’s just consider how we are going to model time in our simulated
+computer.</p>
+<div class="section" id="clocks">
+<h2>Clocks<a class="headerlink" href="#clocks" title="Permalink to this headline">¶</a></h2>
+<p>You should be aware that the computer is controlled in some way by something we
+call a “clock”. The clock “ticks” at some speed, and things happen each time
+that tick happens.</p>
+<p>It should be obvious that we will need a way to simulate this clock thing, and
+the most obvious way to do that is to set up a simple loop:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">time</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">tick</span><span class="p">();</span>
+   <span class="n">time</span> <span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>That should do it. This code, basically an “infinite loop”, will simply call
+this “tick” function over and over. We have an unsigned integer we can use to
+model the passing of time. Bigger numbers mean further down that time line we
+say time marches along.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">So far as we know, time only moves in one direction, and we are modeling
+that direction with increasing values for this <code class="docutils literal notranslate"><span class="pre">time</span></code> variable. No one has
+figured out how to march backwards in time. It is fun to think about what
+would happen if you could do that, though. Many a Science Fiction book has
+been written on that idea!</p>
+</div>
+<p>We will need to make something happen as a result of that call to <code class="docutils literal notranslate"><span class="pre">tick</span></code> to
+get our simulated computer to do something.</p>
+<p>This loop would be simple to write, but it has one serious problem.</p>
+<p>Real computers are made up of many simple component parts, each of which
+operate simultaneously when a tick rolls around. That means we should be
+activating every part at the same time. That would require parallel processing, something not taught currently in most CS classes,  to model a
+real computer. That kind of programming is possible, and fascinating, but
+beyond what we need to do in tis class.</p>
+<p>Instead, we will “simulate” parallel processing by giving each part in our
+simulated computer a chance to do something every time that tick function is
+called. Basically, it looks like this:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">for</span> <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">NUM_PARTS</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">part</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">tick</span><span class="p">();</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here, it seems that we have an array of parts, each of which supports a
+<code class="docutils literal notranslate"><span class="pre">tick</span></code> method that will make it do whatever processing it needs to do.</p>
+<p>This is almost what we need, except we have imposed an order in which things
+happen, which is not true parallel processing. This will only work if the
+actions of one part do not depend on the actions of any  other part, which we
+know cannot be true, since they are interconnected with wires!</p>
+<p>So, we might need to come up with another way to decide when parts need to be activated.</p>
+<p>Phew, what a mess.</p>
+</div>
+<div class="section" id="event-driven-programming">
+<h2>Event Driven Programming<a class="headerlink" href="#event-driven-programming" title="Permalink to this headline">¶</a></h2>
+<p>There is a way to deal with this, but it involves a kind of programming that is
+probably going to be new to you. This kind of programming goes by the name of
+“Event Driven Programming”, something that is very common in the computer
+world, especially in writing operating systems and games!</p>
+<p>The basic idea goes like this.</p>
+<p>Once again, we set up a loop that simulates the passing of time. This one is
+simple. Inside the loop we check to see if something called an “event” has
+happened. In a game, an event might be a mouse movement, or a button press. In
+our simulation, we will set up something that says one of our parts needs
+attention. If several need attention, we will handle them one by one.</p>
+<p>Let’s pick one part and see what might happen.</p>
+<p>Let’s assume that the part is just sitting there, happy with its current
+situation. The inputs have been processed and the results are sitting on the
+outputs. As long as the inputs do not change, there is no reason to do any
+work. So no events need to be generated.</p>
+<p>Then, at some moment in time, a signal changes on an input. At that moment,
+processing is needed to recalculate the outputs. The processing is going to
+take some time to complete, so we schedule an event for that end time. The
+event says that something has happened, and new values are available on output
+pins.  The output signals are copied onto a wire at the right moment in time,
+and begin their journey to some other part. For every output attachment on a given
+wire, we can calculate a time of arrival for that signal. When the signal
+arrives at a pin on some part, we schedule another event saying this part needs
+to be triggered to do its processing.</p>
+<p>This sounds messy, but it is fairly simple to set up.</p>
+<p>We need a way to record all of these events, and a way to keep things in time
+order. The data structure we will use is something called a <code class="docutils literal notranslate"><span class="pre">priority</span> <span class="pre">queue</span></code>.
+Fortunately, there is one sitting in the C++ Standard Template Library we can
+use.</p>
+<p>We will get to this kind of processing eventually, but we do not need to start
+off there. Still, in thinking about the timing of things in a digital system,
+it seems logical to record a few more pieces of data for all of the gadgets we
+are modeling.</p>
+<p>The part we are going to activate will have some signals sitting on its input
+pins. (That is why I a putting s simple variable in each pin object, to hold
+that value until it is needed.) When we activate that part, it will take some
+amount of time for the processing to occur. When that time interval is over,
+the part will write the new signal values onto the output pins. At that point,
+the signals are supposed to travel along wires to other parts. We can calculate
+how long that will take if we know the length of those wires. (Actually, we
+might just ignore time along a wire, but maybe not!) To analyze how long it
+takes for things to happen in our system, it makes sense to record the time it
+will take to do the calculations in each part. That time may be different for
+each part, and somehow, we will need to set all of that up when we build our
+circuits.</p>
+<p>Hey, this is sounding interesting, and we will be able to see some interesting
+things when we fire up our simulated system!</p>
+<p>When the signals reach other parts, we might just activate them. However, some
+digital parts do no processing until a special signal reaches them. (That is
+why I set up the tick method). The part is not activated by some signal
+changing, instead the signal reaches the part, and just sits there, until the
+“tick” signal comes along. That tick signal is actually generated by the system
+clock, which we will need to create in order for out system to do much.</p>
+<div class="section" id="combinational-parts">
+<h3>Combinational Parts<a class="headerlink" href="#combinational-parts" title="Permalink to this headline">¶</a></h3>
+<p>A part that activates as soon as a new signal reaches it is called a combinational part. There are many such parts in a real digital system. We might need to deal witht hese in our simulator, but most of what we are going to do will not need these kinds of components.</p>
+</div>
+<div class="section" id="sequential-parts">
+<h3>Sequential Parts<a class="headerlink" href="#sequential-parts" title="Permalink to this headline">¶</a></h3>
+<p>Parts that activate only when a special trigger signal reaches them (like a clock signal) are called <code class="docutils literal notranslate"><span class="pre">sq=equential</span></code> parts. We will definitely be building a lot of these.</p>
+</div>
+</div>
+<div class="section" id="event-timing">
+<h2>Event Timing<a class="headerlink" href="#event-timing" title="Permalink to this headline">¶</a></h2>
+<p>The timing of all of this is what is driving which part we activate, and in
+which order we activate a part.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We computer geeks always want faster computers. Some of us “over-clock” our
+systems to make them go faster than the manufacturer claims the chip can
+go. That may work, or it may not. The simple reason why it might not is the
+time it takes for parts to complete their work. If we fire off a tick,
+start the processing, and fire off another tick before that processing is
+done, the values on the outputs are just wrong. Worse yet, they might not
+even be valid digital values, (Hmmm, like 0,47 - which is neither a zero or
+a one). If that happens, your computer is a useful as a door stop! You have
+been warned!</p>
+</div>
+<div class="section" id="managing-events">
+<h3>Managing Events<a class="headerlink" href="#managing-events" title="Permalink to this headline">¶</a></h3>
+<p>We need to find a way to identify each part, and put that part into a
+processing line of some sort, ordered by the time when it should activate. The
+<code class="docutils literal notranslate"><span class="pre">priority</span> <span class="pre">Queue</span></code> will do just that.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">queue</span></code>, which is just an ordered linked list, will hold two pieces of
+information. Something to identify a part needing to be activated, and the time
+at which that should occur. Actually, we will place a pointer to a part needing
+processing into our queue. We will record the time when the event is to happen, and order our <code class="docutils literal notranslate"><span class="pre">queue</span></code> by that time.</p>
+<p>Now, our simulation loop just looks at the queue, and pulls off the component
+needing processing first and calls the “tick” method for that part. We will start that processing, and after the appropriate
+processing time, record the results on output pins.</p>
+<p>The puzzle now, is what happens next.</p>
+<p>When a new output is available on any pin, we should activate the wire attached
+to that pin. The signal from that output travels along the wire until it
+reaches another pin on some other component. We could calculate the time it
+will take to reach that second pin, if we know how long the wire is. In any
+case, when that new signal reaches a pin, the component owning that pin could
+be activated to start processing that signal. If the part is combinational, we
+should activate it immediately. If that part is sequential, we smple wait until
+the next clock signal comes along, then we activate it.</p>
+<p>This all sounds complex, and it certainly can get complex if we are not careful
+in how we build up our system. My job is to keep you from getting overwhelmed
+by all of this.</p>
+<p>We will start off slowly, with a simple example.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Time to Talk About Time</a><ul>
+<li><a class="reference internal" href="#clocks">Clocks</a></li>
+<li><a class="reference internal" href="#event-driven-programming">Event Driven Programming</a><ul>
+<li><a class="reference internal" href="#combinational-parts">Combinational Parts</a></li>
+<li><a class="reference internal" href="#sequential-parts">Sequential Parts</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#event-timing">Event Timing</a><ul>
+<li><a class="reference internal" href="#managing-events">Managing Events</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="../02-Development-Techniques/04-secure-github-access.html"
+                          title="Previous page">&larr; Secure GitHub Access</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="../04-CPU-Factory/01-cpu-factory.html"
+                          title="Next page">&rarr; The CPU Factory</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/lectures/03-Basic-Concepts/05-time.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../04-CPU-Factory/01-cpu-factory.html" title="The CPU Factory"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../02-Development-Techniques/04-secure-github-access.html" title="Secure GitHub Access"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Lecture Notes</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

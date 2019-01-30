@@ -1,0 +1,384 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Managing a Project &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="HW 2: Hello Project" href="../../assignments/homework/hw2-hello-project/index.html" />
+    <link rel="prev" title="GitHub Classroom Projects" href="02-github-classroom.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../assignments/homework/hw2-hello-project/index.html" title="HW 2: Hello Project"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="02-github-classroom.html" title="GitHub Classroom Projects"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../schedule-16/index.html" accesskey="U">COSC2325 - 16-week Schedule</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="managing-a-project">
+<h1>Managing a Project<a class="headerlink" href="#managing-a-project" title="Permalink to this headline">¶</a></h1>
+<p>Read time: 42 minutes (10728 words)</p>
+<p>I hope you get the idea that we will be writing several C++ code files. Each
+file will contain code associated with one part of our overall program. For any
+given project, the number of files you will create depends on the complexity of
+that project. For now, we need to talk about managing all of that code.</p>
+<p>You could (but absolutely do not) just write a bunch of code files and land
+them in a simple project directory. That is just silly!</p>
+<p>Instead, you should think about what each chunk of code is for, who should
+access that chunk of code, and place it in logical places that make it easy to
+work with and manage.</p>
+<p>There are many ideas on what makes up a good project structure. I am going to
+show you one that is fine for moderatey big C++ projects. The logic behind each
+part of this project structure will be explained as we work through the design..</p>
+<div class="section" id="project-folder">
+<h2>Project Folder<a class="headerlink" href="#project-folder" title="Permalink to this headline">¶</a></h2>
+<p>Every project, without exception, should live in a folder named to help you
+figure out what project this is all about. Most developers come up with a nice
+catchy name for their project, and that name is slapped on the project folder.
+We may (and will) have subfolders under this main project folder.</p>
+<p>The point is this: every asset associated with this project lives somewhere
+inside this project folder. That makes it easy to back up the project, or move
+it from one location in your system to another. This is also essential if we want to use a tool like <a class="reference external" href="https://git-scm.com/">Git</a> in our work.</p>
+<p>You will be placing this top-level folder under the management of <a class="reference external" href="https://git-scm.com/">Git</a> in this
+class, and that is something you will discover is done almost for every
+project you run into these days!</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">There are other tools available to manage your code, but <a class="reference external" href="https://git-scm.com/">Git</a> seems to
+dominate things today!</p>
+</div>
+<p>Exactly where you keep project folders on your system is not really a concern
+here. However, I recommend collecting all projects for a given organization (or
+class) in a folder named after that organization (or class). Keep your system
+“clean”in the sense that you organize things in some logical way, which helps
+you find things easily. Do not just land everything you do on that “desktop”.
+That is like working in an office where papers are just thrown everywhere.
+There is little hope anyone but the poor soul who lives in that office, will be
+able to find anything!</p>
+<p>On all of my systems, I have a folder named <code class="docutils literal notranslate"><span class="pre">cosc2325</span></code>, for example, and
+inside of that folder you will find all projects I create for that class. Each
+project has a distinct name. (unfortunately, sometimes that names is not all
+that helpful: something like “lab1”.)</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">As a developer NEVER name anything with a space in the name. I know
+Microsoft insists that we do that, but it causes more trouble than we
+need, so do not do that!</p>
+</div>
+</div>
+<div class="section" id="project-sub-folders">
+<h2>Project Sub-Folders<a class="headerlink" href="#project-sub-folders" title="Permalink to this headline">¶</a></h2>
+<p>I am going to recommend a sub-folder layout for your C++ programming projects. This
+is by no means the only structure you could use, but it makes sense for
+projects of the sort we will be building. It looks like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>project_name/
+    |
+    +- src/
+    |
+    +- lib/
+    |   |
+    |   +- component1/
+    |   |
+    |   + component2/
+    |
+    +- include/
+    |
+    +- docs/
+    |
+    +- tests/
+</pre></div>
+</div>
+<p>Every name ending with a slash is a sub-folder name. The diagram is called a
+“directory tree”.</p>
+<div class="section" id="source-code">
+<h3>Source Code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h3>
+<p>We use that term a lot in programming. The <code class="docutils literal notranslate"><span class="pre">src</span></code> folder is where I will keep
+all code associated with the human side of the program. For a C++ program, the
+<code class="docutils literal notranslate"><span class="pre">main</span></code> function will live in this folder somewhere. Often that <code class="docutils literal notranslate"><span class="pre">main</span></code>
+function will be in a file named <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code> to make it easy to find.</p>
+<p>Other files in this folder will contain code that interacts with the user
+somehow.</p>
+</div>
+<div class="section" id="library-files">
+<h3>Library Files<a class="headerlink" href="#library-files" title="Permalink to this headline">¶</a></h3>
+<p>All other code files will live under the <code class="docutils literal notranslate"><span class="pre">oibe</span></code> folder. Since in big
+projects, we might create smaller chunks of code that logically group some
+component part of the program, we will allow the use of further sub-folders to
+keep code associated with a component together. Again, this makes it easy to
+find code later on as the project grows.</p>
+<p>The names you use for these component folders should be related to the purpose
+of that component, but they are up to you to pick.</p>
+</div>
+<div class="section" id="include-files">
+<h3>Include Files<a class="headerlink" href="#include-files" title="Permalink to this headline">¶</a></h3>
+<p>In C++ programs, we use a “header” file to act as a connector between parts of our program.</p>
+<p>The compiler must know enough about every name it
+encounters as it processes your code to verify that you are using that name properly.</p>
+<p>Suppose to write a piece of code in one file that will call a function that
+lives in another file.  When the compiler sees your call to that function, it
+must know enough about that function to make sure your call is correctly
+formed.  That means we need to know the function name, what it returns, and
+what parameters it needs. We do not need to know how it does anything, so we do
+not need to see the code that implements that function.</p>
+<p>All of this information can be figured out if we see the first line of that
+function, which is called the “prototype” of the function. In C++ that is
+everything up to the curly brace that starts the code for the function. A prototype for a function is a copy of that first line, but we place a semicolon where we would place an open curly bracket and start writing the function code.</p>
+<p>We place the prototype for the function in a “header” file with some name. We “include” that header file in any file that will need to call the function. Including a file will cause the prototype lines to be inserted into the code file so the compiler will see it and be happy later when it sees your call.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Since that prototype is a contract between the caoer of the function and the
+implementer of the function, we also include the headder file with that
+prototype in the file where the actual implementaton of the fucntion will be
+found. Here the compiler will check that the actual function code is
+honoring the contract. If the contract changes both the user and implementer
+of the function have changes to make in their code.</p>
+</div>
+<p>The problem we face in organizing our code is where to put the include file.</p>
+<p>Some developers keep the header files in the same place as the file containing
+the actual function code. The compiler really does not care as long as you tell
+it where the header file lives. The problem with this idea is that it puts the
+implementation code at risk.</p>
+<p>Huh!</p>
+<p>In a large project, it is important to keep some parts of the code private.
+That does not mean secret, just out of sight. If two developers get together
+and come up with the need for a function that does some important task, they
+have to agree on the “interface” (that prototype line). Once that interface is
+defined both developers can continue working on their code.</p>
+<p>The developer who is going to use the function can go off and write code that
+calls the new function, even before that function is available. Of course,
+that code cannot be run until the function implementation really is available,
+but they can compile their code just fine!</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If that developer really needs to be able to run their code before the new
+function shows up, they can write a dummy implementation that obeys the
+prototype, but fakes the operation. This version of the function is often
+called a “mock” of the function.</p>
+<p class="last">The fake function just needs to return the right kind of data so the using
+code will run. These dummy functions are sometimes used in testing, but can
+be thrown out when the function actually shows up later.</p>
+</div>
+<p>The other developer can go off and create that function. The
+interface is the contract between them. As long as that interface does not
+change, life is good.</p>
+<p>The user of the function should not need to see the code of the function to use
+it, and the developer of the function should not need to see the code that uses
+it. The contract is all both need. If either writes code based this unneeded
+knowledge, it makes the code “brittle”. Suppose the implementation of the
+function constructed a data structure, like an array, that was visible outside
+of that function. The user of the function might know that the array exists and
+write code that sneaks into that array without the function’s knowledge. If the
+implementer of the function decides to ditch the array and use a linked list instead,
+the caller (who should not have done this anyway) will discover their code no
+longer works!</p>
+<p>So sad! Don’t write code like that!</p>
+<p>So header files containing this contract line needs to be available to both
+developers, and we will put those files in a separate folder to reinforce that
+they are public to all developers.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This idea of keeping some things private is a good one to use in all
+programming. It goes deeper than just keeping the implementation details
+hidden away. Object Oriented Programming was invented to give us more
+control over who has access to almost every name you invent in your code.
+That helps make sure those names are being used properly, and only by
+“authorized” users.</p>
+</div>
+</div>
+<div class="section" id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<p>You absolutely must document your code. We will spend some time on this, so we
+will not get too deep into thsi idea here. Documentation is not just a bunch of
+comments in your code, it goes deeper than that!. Real documentation helps the
+reader, who might even be you some time after you wrote the code, figure out
+the “why” of that code. The code tells the reader what will happen, but not
+why! That “why” was locked up in the head of the developer, and we need to record
+that somewhere! We will put documentation in the <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder.</p>
+</div>
+<div class="section" id="tests">
+<h3>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h3>
+<p>Should you test your code?</p>
+<p>Here is a popular saying:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>If you have not tested your code, it does not work!
+</pre></div>
+</div>
+<p>The only way to prove that saying is wrong, is to test your code - duh!</p>
+<p>Testing is not the same as turning on a program ans making sure it “works”.
+Just because it seemed to work once is no guarantee tat a real user will be
+happy with it. You need to wring it out and make sure the code cannot be broken
+by some weird user!</p>
+<p>You cannot test a program completely, but you can test it enough to gain
+confidence in it. The more you test, the more confident you become.  (At least
+until someone finds a way to run your code that you did not test, and you find
+it is broken anyway!)</p>
+<p>Still, we do our best.</p>
+<p>Testing is a course in itself. In our work we will test the parts of the
+program we write. This is called <code class="docutils literal notranslate"><span class="pre">init</span> <span class="pre">testing</span></code> because we are going to test
+some “unit” of code. We will leave more advanced testing of a complete program
+for another time. Most of the code we test will be located in the <code class="docutils literal notranslate"><span class="pre">lib</span></code> folder.</p>
+<p>The sad part about testing is that we have to write more code. We need to write
+a test that runs our code to see if it works. (That raises a question: do we
+need to test the test code? I think I will skip that idea!)</p>
+<p>Our test code will actually be pretty simple. For our C++ projects we will use
+a neat system that is completely contained in one simple (well not so simple if
+you try to read it) header file. More on that later.</p>
+<p>All test code will be kept in a separate folder named <code class="docutils literal notranslate"><span class="pre">tests</span></code>.</p>
+</div>
+</div>
+<div class="section" id="wrapping-up">
+<h2>Wrapping Up<a class="headerlink" href="#wrapping-up" title="Permalink to this headline">¶</a></h2>
+<p>This basic structure is enough to get you started. We will tweak this layout a
+bit as we work through the class. For now, read up on the <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> command and
+see how it can be used to set this project structure up:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ProjName
+<span class="nb">cd</span> ProjName
+mkdir <span class="o">{</span>src, lib, docs, test<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Managing a Project</a><ul>
+<li><a class="reference internal" href="#project-folder">Project Folder</a></li>
+<li><a class="reference internal" href="#project-sub-folders">Project Sub-Folders</a><ul>
+<li><a class="reference internal" href="#source-code">Source Code</a></li>
+<li><a class="reference internal" href="#library-files">Library Files</a></li>
+<li><a class="reference internal" href="#include-files">Include Files</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+<li><a class="reference internal" href="#tests">Tests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#wrapping-up">Wrapping Up</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="02-github-classroom.html"
+                          title="Previous page">&larr; GitHub Classroom Projects</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="../../assignments/homework/hw2-hello-project/index.html"
+                          title="Next page">&rarr; HW 2: Hello Project</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/lectures/02-Development-Techniques/03-project-folders.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../assignments/homework/hw2-hello-project/index.html" title="HW 2: Hello Project"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="02-github-classroom.html" title="GitHub Classroom Projects"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../schedule-16/index.html" >COSC2325 - 16-week Schedule</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -1,0 +1,449 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Linux Shell Basics &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="GitHub Classroom Projects" href="02-github-classroom.html" />
+    <link rel="prev" title="Let’s Dance" href="../03-Basic-Concepts/04-lets-dance.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="02-github-classroom.html" title="GitHub Classroom Projects"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../03-Basic-Concepts/04-lets-dance.html" title="Let’s Dance"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../schedule-16/index.html" accesskey="U">COSC2325 - 16-week Schedule</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="linux-shell-basics">
+<h1>Linux Shell Basics<a class="headerlink" href="#linux-shell-basics" title="Permalink to this headline">¶</a></h1>
+<p>Read time: 36 minutes (9059 words)</p>
+<p>If you have never worked on a <a class="reference internal" href="../../glossary.html#term-command-line"><span class="xref std std-term">command line</span></a>, you need a quick overview of
+the basic commands you need to be able to use to get your work done. This quick
+guide will get you started, and a better overview can be found here:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://linuxcommand.org/lc3_learning_the_shell.php">Learning the Shell</a></li>
+</ul>
+</div></blockquote>
+<div class="section" id="the-prompt">
+<h2>The Prompt<a class="headerlink" href="#the-prompt" title="Permalink to this headline">¶</a></h2>
+<p>When you first open up a Terminal program, you are presented with a basic black
+screen with white test. You see a line that looks something like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rblack@ubuntu:~$
+</pre></div>
+</div>
+<p>That last character, “$”, is the actual prompt. You will type in a command
+after that character as you work.</p>
+<p>The first part of the line identifies the user (“rblack”) and the machine name
+(“ubuntu”) to help you figure out what machine you are working on at the
+moment. Trust me, as you start working with servers on the Internet, it is easy
+to lose track of what machine you are working on!</p>
+<p>I have a problem with this setup, especially in a classroom where I project the
+screen. Seeing the text on that black background is difficult. You can change
+the screen by doing this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ setterm -term linux -back white -fore black -clear
+</pre></div>
+</div>
+<p>You can use other colors for the foreground and background colors:</p>
+<blockquote>
+<div><ul class="simple">
+<li>black</li>
+<li>blue</li>
+<li>green</li>
+<li>cyan</li>
+<li>red</li>
+<li>magenta</li>
+<li>yellow</li>
+<li>white</li>
+<li>default</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="navigation">
+<h2>Navigation<a class="headerlink" href="#navigation" title="Permalink to this headline">¶</a></h2>
+<p>The first thing you need to be able to do is move around in your file system,
+and understand what the current “working directory” you are in. Hopefully, you
+already have a mental model of how your file system (disk drive) is organized.</p>
+<div class="section" id="the-system-path">
+<h3>The System Path<a class="headerlink" href="#the-system-path" title="Permalink to this headline">¶</a></h3>
+<p>Files are stored on your hard disk(s), we all know that. We use directories (or
+folders as Microsoft want us to call them) to group files that logically belong
+together for some reason. A directory can hold other directories (called
+sub-directories), which lets us create a nested structure called a directory
+tree that keeps things organized as we want. There are literally thousands of
+files and directories on a typical system, most of which are used by the
+operating system to keep its files properly controlled.</p>
+<p>We use a special string called a “path” to define where any file or directory
+lives in this file system structure.</p>
+<p>On a Windows machine, the path starts by naming the drive letter the file or
+directory is stored on. The “C” drive is the default primary system drive, and
+other devices, like DVD drives, or even USB Flash drives, will have other
+letters. Linux does not use this scheme. Instead, a drive will be “mounted” in
+some existing directory on the system, and all of the files on that drive will
+become part of the one big file system directory tree. You do not need to worry
+about what drive a file is on, as long as you can define the correct path to
+that file.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Computer people are weird. They call this thing a directory tree, but it is
+upside down. The “root” of the tree is at the top, and branches work
+downward. You move around by dropping into sub-directories, or
+sub-sub-directories!</p>
+</div>
+<p>We define the path to a file as the set of directories we must work through to
+reach the particular directory where the file is located, followed by the name
+of the file. Each time we need to move down from the “root of the tree, we use
+a “separator” character to indicate we are starting a new directory or file
+name in this string.</p>
+<p>On Windows, the separator character is a backslash (“”), and on every other
+system it is a forward slash (“/”).</p>
+</div>
+<div class="section" id="partial-paths">
+<h3>Partial Paths<a class="headerlink" href="#partial-paths" title="Permalink to this headline">¶</a></h3>
+<p>If the path string starts with a separator character (or drive letter followed
+by a colon and a separator) we are defining a full path to the file or
+directory starting at the root of the file system (or drive on Windows). If we
+leave off that leading separator, the system assumes you are describing a path
+from your current working directory to the final place where a file or
+directory can be found. This makes the path string much shorter.</p>
+<p>There are two names for places that are special:</p>
+<blockquote>
+<div><ul class="simple">
+<li>“.” is an alias for “where I am now”</li>
+<li>“..” is an alias for “the directory immediately above me!”</li>
+</ul>
+</div></blockquote>
+<p>You can use these two shortcut names to shorten up a path string.</p>
+<p>Let’s look at a few example paths:</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>/usr/bin/git</cite> - the location of the <cite>git</cite> program on your system</li>
+<li><cite>/home/rblack</cite> - the home directory of a user named <cite>rblack</cite> (hmmm, that
+is me!)</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="the-working-directory">
+<h3>The Working Directory<a class="headerlink" href="#the-working-directory" title="Permalink to this headline">¶</a></h3>
+<p>When you work on the <a class="reference internal" href="../../glossary.html#term-command-line"><span class="xref std std-term">command line</span></a>, the system assumes that you will want to
+refer to files or directories located in some particular place in the file
+system. That place is called the “working directory”. When you first log onto
+the system, you are placed in your “home directory”, a directory set up for you
+when the account was created. On Linux, the home directories are stored on the
+system under “/home”. The user name is used as a subdirectory under “/home” and
+that will be your “home directory”.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">On Unix and Mac, there is an alias for your “home directory”. That alias is
+the “~” character.</p>
+</div>
+</div>
+<div class="section" id="changing-directories">
+<h3>Changing directories<a class="headerlink" href="#changing-directories" title="Permalink to this headline">¶</a></h3>
+<p>The “change directory” command on all systems is <cite>cd</cite>. You specify where you
+want to go by providing a string containing the path to the new location (which
+must name a directory, not a file!)</p>
+<p>Here are a few examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>cd</cite> - on Linux/Mac go to your home directory. On Windows display the
+current directory.</li>
+<li><cite>cd /usr/local</cite> - move to this directory (full path specified)</li>
+<li><cite>cd ..</cite> - move to the directory above the current directory</li>
+<li><cite>cd ../../dir1/dir2</cite> - move up two levels, then go down into dir1
+followed by dir2</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="creating-directories">
+<h2>Creating Directories<a class="headerlink" href="#creating-directories" title="Permalink to this headline">¶</a></h2>
+<p>The command for building a new directory is this:</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>mkdir &lt;path&gt;</cite> - where &lt;path&gt; names the new directory</li>
+</ul>
+</div></blockquote>
+<p>Here are some examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>mkdir temp</cite> - create a new directory named <cite>temp</cite> in the current working
+directory</li>
+<li><cite>mkdir ../temp</cite> - create <cite>temp</cite> in the directory above the current
+working directory</li>
+<li><cite>mkdir /home/rblack/COSC2425</cite> - create the named directory</li>
+</ul>
+</div></blockquote>
+<div class="section" id="permissions">
+<h3>Permissions<a class="headerlink" href="#permissions" title="Permalink to this headline">¶</a></h3>
+<p>Every file and directory is “owned” by some user on the system, and has a set
+of permission controls that define what any user can do with them. You must
+have proper permission to read a file, create a file or directory, or run a
+program file. On Linux/Mac these permissions are controlled by a set of
+“permission bits” and there are bits defined for three sets of users:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Owner - the user who created this file or directory</li>
+<li>Group - several users can be placed in a group to form a team</li>
+<li>Others - all other users not in the other two groups</li>
+</ul>
+</div></blockquote>
+<p>You can see the permissions on any file of directory on Linux/Mac by using this
+command:</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>ls -l</cite> - display full info n things in this directory</li>
+</ul>
+</div></blockquote>
+<p>Linux/Mac use several characters in this display:</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>d</cite> - this is a directory</li>
+<li><cite>r</cite> - read permission is set for this group</li>
+<li><cite>w</cite> - write permission is set for this group</li>
+<li><cite>x</cite> - execute permission is set for this group</li>
+<li><cite>-</cite> - this bit is not set</li>
+</ul>
+</div></blockquote>
+<p>There will be three sets of three “bits” for the owner, group, and other set of
+users.</p>
+<p>Here is an example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls -l /usr/bin/git
+-rwxr-xr-x 1 root wheel 14160 Sep 29 00:38 /usr/bin/git
+</pre></div>
+</div>
+<p>This is a simple file that contains the program. The owner is “root” and that
+user can do anything with it (“rwx”). The group “wheel” can read and execute,
+but not write the file, as can all other users.  We also see how big the file
+is in bytes, and when it was created.</p>
+</div>
+</div>
+<div class="section" id="deleting-things">
+<h2>Deleting Things<a class="headerlink" href="#deleting-things" title="Permalink to this headline">¶</a></h2>
+<p>The command to delete a file or directory on Linux/Mac is this:</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>rm file_name</cite> - delete the named file</li>
+<li><cite>rm -rf directory_name</cite> - delete this directory and everything under it!</li>
+</ul>
+</div></blockquote>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Be careful with that last command, you can delete a lot of files with it by
+accident! And, there is no recovery from this.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">There is one user, called the “super user” or “root” who can get around
+these permission controls.</p>
+</div>
+</div>
+<div class="section" id="viewing-files">
+<h2>Viewing Files<a class="headerlink" href="#viewing-files" title="Permalink to this headline">¶</a></h2>
+<p>If you want to see the contents of a text file, there are a few ways to do
+that:</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>cat file_name</cite> - send the text file to the console</li>
+<li><cite>more file_name</cite> - show the file a “page” at a time</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="redirection">
+<h2>Redirection<a class="headerlink" href="#redirection" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>Terminal</cite> program displays text that simple programs output. Any required
+input is provided by you typing on the keyboard. There two streams of
+characters are called <cite>standard output</cite> and <cite>standrd input</cite>. You can “redirect”
+both of these streams of text by using redirection characters on the command
+line. Here is a common example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>* `prog_name &lt; input_file &gt; save_file`
+</pre></div>
+</div>
+<p>This command runs the program <cite>prog_name</cite>. Any input needed by that program
+will come from a text file named <cite>input_file</cite>, and any output generated by the
+program ends up captured in <cite>save_file</cite>. If you leave off either, the
+input/output go to the default <cite>standard</cite> devices (screen for output keyboard
+for input).</p>
+<p>You can send the output of one program to the input of another program as
+follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>prog1 | prog2 &gt; save_file</cite></li>
+</ul>
+</div></blockquote>
+<p>This example runs <cite>prog1</cite> using <cite>standard input</cite> for any input needed. The
+output from this program is fed to <cite>prog1</cite>, and the output from that program
+ends up in <cite>save_file</cite>. This kind of control can be handy, and is the
+foundation of the <cite>Unix</cite> way of doing things. There are tons of simple programs
+that you can use to ‘filter” text as it moves from program to program.</p>
+</div>
+<div class="section" id="running-your-programs">
+<h2>Running Your Programs<a class="headerlink" href="#running-your-programs" title="Permalink to this headline">¶</a></h2>
+<p>You will be compiling programs in a directory you create. That directory will
+not be registered on the system <code class="docutils literal notranslate"><span class="pre">PATH</span></code>, so running it needs a slightly
+different command.</p>
+<p>On Mac and Linux, program file names have no extension, just a name. If the
+program is sitting in your <code class="docutils literal notranslate"><span class="pre">current</span> <span class="pre">working</span> <span class="pre">directory</span></code> and it named
+<code class="docutils literal notranslate"><span class="pre">test_prog</span></code>, we can run it as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./test_prog
+</pre></div>
+</div>
+<p>The dot-slash tells the operating system to look for the program in the current
+directory. It will not find it any other way! Windows does not have this issue,
+it looks automatically in the current directory.</p>
+<p>There is a lot more to learning how to comtrol Linux from the command-line. We
+will show you more during lab sessions, as new things are needed.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Linux Shell Basics</a><ul>
+<li><a class="reference internal" href="#the-prompt">The Prompt</a></li>
+<li><a class="reference internal" href="#navigation">Navigation</a><ul>
+<li><a class="reference internal" href="#the-system-path">The System Path</a></li>
+<li><a class="reference internal" href="#partial-paths">Partial Paths</a></li>
+<li><a class="reference internal" href="#the-working-directory">The Working Directory</a></li>
+<li><a class="reference internal" href="#changing-directories">Changing directories</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-directories">Creating Directories</a><ul>
+<li><a class="reference internal" href="#permissions">Permissions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#deleting-things">Deleting Things</a></li>
+<li><a class="reference internal" href="#viewing-files">Viewing Files</a></li>
+<li><a class="reference internal" href="#redirection">Redirection</a></li>
+<li><a class="reference internal" href="#running-your-programs">Running Your Programs</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="../03-Basic-Concepts/04-lets-dance.html"
+                          title="Previous page">&larr; Let’s Dance</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="02-github-classroom.html"
+                          title="Next page">&rarr; GitHub Classroom Projects</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/lectures/02-Development-Techniques/01-shell-basics.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="02-github-classroom.html" title="GitHub Classroom Projects"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../03-Basic-Concepts/04-lets-dance.html" title="Let’s Dance"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../schedule-16/index.html" >COSC2325 - 16-week Schedule</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

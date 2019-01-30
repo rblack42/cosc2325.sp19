@@ -1,0 +1,139 @@
+Time to Talk About Time
+#######################
+
+In our discussion up to this point, we have mentioned time a number of times!
+Why?
+
+Electricity "flows" through wires. It does not move instantaneously from one
+point to another. It does move at a pretty quick speed. The actual speed is
+something on the order of 70% of the speed of light, and light blazes alone at
+a pretty good clip! (Exactly how fast is a homework problem you will get soon.(
+
+It takes some time for our "signals" to move from one part to another one in
+our system. It also takes some time for the processing to get done inside each
+part. Exactly when the signals move, and when the processing happens is
+something we need to explore.
+
+For now let's just consider how we are going to model time in our simulated
+computer.
+
+Clocks
+******
+
+You should be aware that the computer is controlled in some way by something we
+call a "clock". The clock "ticks" at some speed, and things happen each time
+that tick happens.
+
+It should be obvious that we will need a way to simulate this clock thing, and
+the most obvious way to do that is to set up a simple loop:
+
+.. code-block::   c++
+
+   unsigned int time = 0;
+
+   while (true) {
+      tick();
+      time ++;
+   }
+
+That should do it. This code, basically an "infinite loop", will simply call
+this "tick" function over and over. We have an unsigned integer we can use to
+model the passing of time. Bigger numbers mean further down that time line we
+say time marches along. 
+
+.. note::
+
+   So far as we know, time only moves in one direction, and we are modeling
+   that direction with increasing values for this ``time`` variable. No one has
+   figured out how to march backwards in time. It is fun to think about what
+   would happen if you could do that, though. Many a Science Fiction book has
+   been written on that idea!
+   
+We will need to make something happen as a result of that call to ``tick`` to
+get our simulated computer to do something. 
+
+This loop would be simple to write, but it has one serious problem.
+
+Real computers are made up of many simple component parts, each of which operate simultaneously when a tick rolls around. That means we should be activating every part at the same time in need parallel processing to model a real computer. That kind of programming is possible, and fascinating, but beyond what we need to do. 
+
+Instead, we will "simulate" parallel processing by giving each part in our
+simulated computer a chance to do something every time that tick function is
+called. Basically, it looks like this:
+
+.. code-block:: c++
+
+   while (true) {
+      for int i=0; i< NUM_PARTS; i++) {
+         part[i].tick();
+      }
+   }
+
+Here, it seems that we have an array of parts, each of which supports a
+``tick`` method that will make it do whatever processing it needs to do.
+
+This is almost what we need, except we have imposed an order in which things
+happen, which is not true parallel processing. This will only work if the
+actions of one part do not depend on the actions of any  other part, which we
+know cannot be true, since they are interconnected with wires!
+
+So, we need to come up with another way to decide when parts need to be activated.
+
+Phew, what a mess.
+
+Event Driven Programming
+************************
+
+There is a way to deal with this, but it involves a kind of programming that is
+probably going to be new to you. This kind of programming goes by the name of
+"Event Driven Programming", something that is very common in the computer
+world, especially in writing operating systems and games!
+
+The basic idea goes like this.
+
+Once again, we set up a loop that simulates the passing of time. This one is
+simple. Inside the loop we check to see if something called an "event" has
+happened. In a game, an event might be a mouse movement, or a button press. In
+our simulation, we will set up something that says one of our parts needs
+attention. If several need attention, we will handle them one by one. 
+
+Let's pick one part and see what might happen. 
+
+Let's assume that the part is just sitting there happy with its current situation. The inputs have been processed and the results are sitting on the outputs. As long as the inputs do not change, there is no reason to do any wotk. So no events need to be generated.
+
+Then some signal changes on an input. At that moment, processing is needed to recalculate the outputs. The processing is going to take some time to complete, so we schedule an event for that end time. The event says that something has happened and new values are available on output pins. 
+The output signals are copied onto a wire at the right moment in time, and begin their journey to some ofhte part. For every output attachment for a wire, we can calculate a time of arrival for that signal. When the signal arrives at a pin on some part, we schedule another event saying this part needs to be triggered to do its processing. 
+
+We need a simple way to record all of these events, and a way to keep things in time order. The data structure we will use is something called a priority queue. 
+
+
+The part we are going to activate will have some signals sitting on its input pins. WHen we activate that part, it will take some amount of time for the processing to occur. When that time interval is over, the part will write the new signal values onto the output pins. At that point, the signals are supposed to travel along wires to other parts. We can calculate how long that will take if we know the length of those wires. (Actually, we might just ignore time along a wire, but maybe not!)
+
+When the signals reach other parts, we cna activate them. The timing of all of this is what is driving which part we activate, and in which order we activate a part.
+
+We need to find a way to identify each part, and put that part into a processing line of some sort, ordered by the time when it should activate. 
+
+The solution is a data structure you will learn about inStart at some point in time and activate a part. It takes some time for that part to complete its interna processing. When that processing is done, at time :math: ` + \delta{t}` the outputs are ready. The outputs will be placed on a wire and transferred to other parts connected to the wires coming from each output.
+
+We will schedule each attached part for action when the signal reaches that part. If we want ot deal with the time it takes for a signal to move over the wire, we adjust the time when we will fire off the attached part to account for that.
+
+THis soulds complex, but can be handled by using a simple C++ data stucture called a ``priority queue``.
+
+Queues
+******
+
+A ``queue`` is alist of items in a first-in-first-out storage container. Think of it like aline of people waiting at a checkout counter. If there are more people in line, the checkout clerk waits on the first person in line, and all others wait their turn. 
+
+A ``priority queue`` lets people with a higher priority jump into the line at places other than the end of the line (I have seen such perope, they must think they are pretty important). The priority we will use is the time stamp when a signal arrives at a part. We will decide which part to schedule for processing based on the time when it should see a new signal. That brubgs up a key point.
+
+If a new signal is not sent to a part, it really has no work to do. We really do not need to let it process anything, it already diud that!
+
+The code we need now looks like this:
+
+.. code-block:: c++
+
+   
+
+
+
+
+

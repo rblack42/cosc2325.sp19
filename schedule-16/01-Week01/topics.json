@@ -1,0 +1,32 @@
+{
+  "topics": [
+    {
+      "words": "",
+      "reading": "Syllabus, Ch 1.1-1.5",
+      "lecture": "01-Course-Introduction/01-introduction"
+    },
+    {
+      "words":       "",
+      "reading":     "",
+      "lecture": "01-Course-Introduction/02-history-lesson"
+    },
+    {
+      "words":    "",
+      "reading":  "",
+      "lecture":  "01-Course-Introduction/03-virtual-machine"
+    },
+    {
+      "words":    "",
+      "reading":  "",
+      "lecture":  "01-Course-Introduction/04-getting-started"
+    },
+    {
+      "words":    "",
+      "reading":  "",
+      "lecture":  "01-Course-Introduction/05-assignment-policies"
+    }
+  ],
+  "hw": "hw1-github",
+  "lab": ""
+}
+

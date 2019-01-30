@@ -22,7 +22,9 @@
     <script type="text/javascript" src="../../../_static/cloud.js"></script>
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Digital Components" href="../../../lectures/03-Basic-Concepts/01-digital-components.html" />
+    <link rel="prev" title="Assignment Policies" href="../../../lectures/01-Course-Introduction/05-assignment-policies.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head><body>
     <div class="relbar-top">
@@ -33,8 +35,15 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../lectures/03-Basic-Concepts/01-digital-components.html" title="Digital Components"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../../../lectures/01-Course-Introduction/05-assignment-policies.html" title="Assignment Policies"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
- 
+
+          <li class="nav-item nav-item-1"><a href="../../../schedule-16/index.html" accesskey="U">COSC2325 - 16-week Schedule</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -46,18 +55,19 @@
           <div class="body" role="main">
             
   <div class="section" id="hw-1-github-setup">
-<span id="hw1"></span><h1>HW 1: GitHub Setup<a class="headerlink" href="#hw-1-github-setup" title="Permalink to this headline">¶</a></h1>
+<h1>HW 1: GitHub Setup<a class="headerlink" href="#hw-1-github-setup" title="Permalink to this headline">¶</a></h1>
+<p>Read time: 14 minutes (3620 words)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Due Date:</th><td class="field-body">Sunday, Sept 2.</td>
+<tr class="field-odd field"><th class="field-name">Due Date:</th><td class="field-body">Saturday, Jan 26.</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">You will complete this assignment by emailing your <a class="reference external" href="https://github.com/">github</a> user name to me
+<p class="last">After you complete this assignment, email your <a class="reference external" href="https://github.com/">github</a> user name to me
 at <a class="reference external" href="mailto:rblack&#37;&#52;&#48;austincc&#46;edu">rblack<span>&#64;</span>austincc<span>&#46;</span>edu</a>. Be sure to include “HW1” in the subject line to
 receive credit. This is the only assignment you will submit by email!</p>
 </div>
@@ -101,6 +111,76 @@ address.</li>
 </div>
 <p>To complete this assignment, email your user name to me!</p>
 </div>
+<div class="section" id="part-2-create-a-homework-repository">
+<h2>Part 2: Create a Homework Repository<a class="headerlink" href="#part-2-create-a-homework-repository" title="Permalink to this headline">¶</a></h2>
+<p>In this step, you will be creating a directory (folder for you Windows folks)
+where all homework assignments will be “submitted”. Actually, submitting any
+assignment in this course will involve making sure your work shows up on
+<a class="reference external" href="https://github.com/">GitHUb</a>. Exactly how you will do that is something we will go over in class.
+For now, just follow along.</p>
+<p>Make sure your <a class="reference external" href="https://github.com/">GitHub</a> account is set up, then click on the following link:</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Make sure you click on the link for your section!</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><a class="reference external" href="https://classroom.github.com/a/BFFB0hDe">COSC2325-003</a></li>
+<li><a class="reference external" href="https://classroom.github.com/a/XGhAF7wK">COC2325-004</a></li>
+</ul>
+</div></blockquote>
+</div>
+<p><a class="reference external" href="https://github.com/">GitHub</a> calls this link an “invitation”. Basically, you are agreeing to work on
+a project, and <a class="reference external" href="https://github.com/">GitHub</a> will create a custom repository for you on their server.
+The project folder will have a name that includes your <a class="reference external" href="https://github.com/">GitHub</a> user name. The
+project will be in a folder on their server, and you can see this folder by
+navigating to a URL that looks something like this:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://ACC-COSC2325-004-SP19/homework-username">https://ACC-COSC2325-004-SP19/homework-username</a></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Use your section number on the link, and your GitHub_username.</p>
+</div>
+<p>The folder <a class="reference external" href="https://github.com/">GitHub</a> creates for you will be empty. However, it will be set up to
+be managed by <a class="reference external" href="https://git-scm.com/">Git</a>. You will need to “clone” a copy of this folder onto your
+development workstation to get set up to submit homework for this class. We
+will go over this in class, but basically, you will be doing this from a
+command line prompt:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> cosc2325
+git clone https://github.com/ACC-COSC2325-003-SP18/homework-username.git
+</pre></div>
+</div>
+<p>You will end up with a new folder on your machine named <code class="docutils literal notranslate"><span class="pre">homework-username</span></code>.
+You will be working inside that folder when you work on homework problems.</p>
+<p>For now, I want you to create a simple text file in this new homework folder.
+The file needs to be located directly inside the homework folder and must be
+named <code class="docutils literal notranslate"><span class="pre">README.rst</span></code>. Place this text in this file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>COSC2325 Homework Projects
+##########################
+:Author: First Last
+:Term: Spring 2019
+:Instructor: Roie R. Black
+:School: Austin Community College
+
+This repository holds all homework assignments for this class.
+</pre></div>
+</div>
+<p>Once this gill has been saved on youtr system, do these three steps:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add README.rst
+$ git commit -m <span class="s2">&quot;Added README file&quot;</span>
+$ git push origin master
+</pre></div>
+</div>
+<p>On that last step, you will be asked for your username and password on <a class="reference external" href="https://github.com/">GitHub</a>.
+<a class="reference external" href="https://git-scm.com/">Git</a> will transmit a copy of this new file to the <a class="reference external" href="https://github.com/">GitHub</a> server and you should
+see this file on their system using your web browser.</p>
+<p>If you see the README file using your web browser, you have successfully
+started doing development work using <a class="reference external" href="https://git-scm.com/">Git</a>. You joined a gigantic community of
+developers all doing the same thing every minute of every day. Wow!</p>
+<p>Now, make sure you send off that email to me, and you are done!</p>
+</div>
 </div>
 
 
@@ -117,10 +197,21 @@ address.</li>
 <li><a class="reference internal" href="#">HW 1: GitHub Setup</a><ul>
 <li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li><a class="reference internal" href="#part-1-create-your-account">Part 1: Create your account</a></li>
+<li><a class="reference internal" href="#part-2-create-a-homework-repository">Part 2: Create a Homework Repository</a></li>
 </ul>
 </li>
 </ul>
 
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="../../../lectures/01-Course-Introduction/05-assignment-policies.html"
+                          title="Previous page">&larr; Assignment Policies</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="../../../lectures/03-Basic-Concepts/01-digital-components.html"
+                          title="Next page">&rarr; Digital Components</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -170,8 +261,15 @@ address.</li>
         <li class="right" style="margin-right: 10px">
           <a href="../../../genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="../../../lectures/03-Basic-Concepts/01-digital-components.html" title="Digital Components"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../../../lectures/01-Course-Introduction/05-assignment-policies.html" title="Assignment Policies"
+             >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
- 
+
+          <li class="nav-item nav-item-1"><a href="../../../schedule-16/index.html" >COSC2325 - 16-week Schedule</a> &#187;</li> 
       </ul>
     </div>
     </div>

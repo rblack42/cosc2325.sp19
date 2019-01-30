@@ -1,0 +1,625 @@
+..  _first-look-at-git:
+
+GitHub Classroom Projects
+#########################
+
+.. wordcount::
+..  vim:ft=rst spell:
+..  include::   /references.inc
+
+To get started using GitHub_, we will need to learn a few new terms, and use
+new tools. Assuming you worked through installing the needed tools, we are
+ready to check your system, and get you started.
+
+Fire up a Command Prompt 
+************************
+
+We will do everything here at the command line.
+
+On the PC, start the ``CMD`` program (search for it using the search box). On
+Mac systems, open the ``Terminal`` application located under ``Applications ->
+Utilities``. On Linux, look for the ``Term`` program.
+
+All three will open up a window that looks pretty stark! You should see the
+"prompt", which is a line ending with a ``>`` character on Windows, and ending
+with a dollar sign (``$``) on Linux/Mac. Here is my default window:
+
+..  image:: images/mac-terminal.png
+    :align: center
+
+
+..  note::
+
+    On PC systems, this window defaults to white on black. You can customize
+    things so it is not so hard on your eye(s). I have problems reading white
+    text on a black screen, and that setup is difficult to read when projected
+    in class. For that reason, I swap colors to get black on white YMMV! To
+    change things, right-click on the title bar and select "Defaults" The
+    controls there let you make changes. Be careful, though. The changes do not
+    apply to the current windw. You need to close this one, then open another
+    one to see the changes.
+
+
+These notes show Windows prompts, since most of you will be working there. As we
+move along in our work, I will switch to Linux/Mac style and just show the
+prompt as a simple dollar sign character.
+
+..	warning::
+
+    If you elect to use the machines in the CS labs, things are going to be a
+    bit different. Because of some security issues, we had to install the ``Git
+    Bash`` tools to give you access to Git_. That means you will need to work
+    inside the ``Git Bash`` window, which you can open using the Windows
+    Explorer tool. The commands you use here are actually Linux/Mac commands.
+
+Finding a Home for Your Work
+****************************
+
+Before you do anything else for this class, create a single directory (OK,
+folder if you insist) where all classwork will be located. Inside that
+directory, we will place several other sub-directories as we work through the
+class. I am going to assume you will place this class directory in your "Home"
+folder. On a PC this is under ``C:\Users\username``. You will see my home
+directory in these notes. On Linux, the home directory is under
+``/Users/username`` (note the use of forward slashes here. Only Windows uses
+backward slashes!)
+
+Here is how you create the folder, after opening up a ``command-prompt``
+window:
+
+..  code-block:: bash
+
+    C:\Users\rblack> mkdir cosc1336
+
+Obviously, you should use your real class name.
+
+Now, move into that new directory for the rest of this lecture:
+
+..  code-block:: bash
+
+    C:\Users\rblack< cd cosc1336
+    C:\Users\rblack\cosc1336>
+
+Notice that the prompt now shows the path to the current directory, starting at
+the root of the ``C`` drive. The actual command "prompt" is just the angle
+bracket at the end of the line. That is Windows, waiting for you to type in a
+command!
+
+The first thing we need to do is check that all the needed tools are installed.
+
+Preflight Checks
+*****************
+
+OK, so I am a pilot! A "preflight" is something you do before you ever fire up
+the engine on an airplane. Here, we need to make sure all the tools you will
+need are properly installed for use on the command line.
+
+There are five basic tools we need to do our work:
+
+   * Programmer's Editor: Vim_  or gVim_
+
+        * see :ref:`installing-vim`
+
+   * Program Build Tool: Make_
+
+        * see :ref:`installing-make`
+
+   * Code Manager: Git_ 
+
+        * see :ref:`installing-git`
+
+   * Programming Languages:
+
+      * Python_ (We will be using version 3.7)
+
+        * see :ref:`installing-python`
+
+      * C++: (We will use g++)
+
+        * see :ref:`installing-cpp`
+          
+The messages you will see as we check things are sometimes pretty long. I have
+truncated them in these notes. If the exact versions are different, see me to
+make sure you are not using software that is out of date.
+
+Checking Your Tools
+===================
+
+Here are the checks we need to make sure these tools are available. The
+actual response has been truncated, leaving off things like a copyright notice
+and other details we do not need to worry about.
+
+Programmer's Editor
+--------------------
+
+I do not require that you use Vim (or gVim), but learning this editor will be
+very useful to you. Here is a check to see that it is installed:
+
+..  code-block:: bash
+
+    $ vim --version
+    VIM - Vi IMproved 8.0 (2016 Sep 12, compiled Nov 29 2017 18:37:46)
+    Included patches: 1-503, 505-680, 682-1283
+
+You can use Vim_ from the command line, or start the GUI version (gVim). The
+real difference is that with the GUI version, you can use your mouse to move
+the cursor and select things. I usually oprn up a file using the "context menu"
+(which you get to my right clicking on a file name) and select "Edit with Vim".
+That opens the GUI version. I leave that edit window open and then start a
+command prompt window in the same directory. You cna switch back and forth,
+editing and running using that scheme.
+
+Git
+---
+
+We cannot get very far without this one:
+
+..  code-block:: bash
+
+    C:\Users\rblack\cosc1336>git --version
+    git version 2.15.1.windows.2
+
+Make
+----
+
+As we work through the course, you will start getting irritated by the need to
+type in long commands all the time. You are not alone in that. Back in 1976,
+another developer got sick enough of that to build a tool that issued commands
+for him. That tool has been a part of the development landscape ever since. We
+will use it as well. The tool is called ``make``, since it is used primarily to
+"make" programs. (Creative name, huh?)
+
+..  code-block:: bash
+
+    C:\Users\rblack\cosc1336>make --version
+    GNU Make 3.81
+
+C/C++ Compiler
+--------------
+
+If you are learning Python, you can skip this one. You will see it soon enough!
+
+..  code-block:: bash
+
+    C:\Users\rblack\cosc1336>g++ --version
+    g++ (x86_64-posix-seh-rev1, Built by MinGW-W64 project) 7.2.0
+
+Python
+------
+
+All of my students will need Python. Those learning (or using) C/C++ will need
+Python_ for documentation. More on that later in the course!
+
+..  code-block:: bash
+
+    C:\Users\rblack\cosc1336>python --version
+    Python 3.7.0
+
+You may have a different version of Python installed. We need a version that is
+at least 3.6 for our work. 
+
+With all of these tools ready for use, we can now turn to actually setting up
+places where we will build our projects.
+
+Configuring Git
+***************
+
+When you first start using Git_ these are some setup steps you need to do. 
+
+Registering your Identity
+=========================
+
+The most important step tells Git_ who you are.  This information is recorded
+when you record changes in a project. Although this is not that important when
+you work alone, it is critical in team work. This information can help identify
+who made some change, and finding that person might be vital to figuring out
+what.why things changed.
+
+Open up a command prompt and do this:
+
+..  code-block:: bash
+
+    > git config --global user.name "John Doe"
+    >  git config --global user.email johndoe@example.com
+
+of course, you should use your own credentials here!
+
+This creates a ``.gitconfig`` file in your "home directory" with this data, and a bit more stuff Git_ uses. To see where this file is on your system, yo can type this:
+
+..  code-block:: bash
+
+    > git config --global --list
+
+If the file does not exist, you will see a message telling you when Git_
+expected to find it. If it does exist, you will see what is in that file.
+
+..  note::
+
+    You only do this step once. 
+
+Easier Access to GitHub
+=======================
+
+This step will make your life easier by eliminating the need to type in your
+username and password every thime you interact with the server.
+
+..  warning::
+
+    I am still testing this part on my Windows 10 setup. Some of the needed
+    programs have changed. Check back here soon to get the updated information.
+    Until them, sorry, you just need to type in those credentials.
+
+Git Repositories
+****************
+
+Git_, like all seasoned developers, keeps everything needed to build a program
+in a single directory (or folder, for you Windows folks). Usually, we name that
+folder something to help us know what project the folder is all about.
+
+Git_ calls a managed folder a "repository". The only difference between a
+repository and a normal folder is the presence of a hidden subdirectory Git_
+uses to store all of its working data. 
+
+We set up a folder for all class projects earlier in this note. Now, it is time
+to build a single repository folder where all of your homework will be stored.
+You do not need to create that folder yourself. Instead, we will build one on
+GitHub_, then get a copy of that same folder on our local development system.
+
+..  warning::
+
+    Make sure you select the right link below. Use the one for your exact
+    class/section! Goofing up here is not harmful, but you will need to start
+    over and do it correctly if you click the wrong link.
+
+I have already set up the classroom repository image you will use to create
+your homework repository on GitHub_. What you need to do is click on the
+"invitation" link below (for your class). That will cause GitHub_ to build a
+private version of this repository, and add your name to the end of it. This
+repository will be visible to you, but will not be stored in your public area
+on GitHub_. Instead, it will be stored in an "organization" account with your
+class name. As your instructor, I "own" all files in that organization. You (and
+I) will be able to see everything you place here.
+
+Go ahead and click the link below, and follow the directions you see on GitHub_
+
+    * `COSC1336-032 <https://classroom.github.com/a/oNHdbexh>`_
+
+    * `COSC1337-004 <https://classroom.github.com/a/Z6x1CSnW>`_
+
+    * `COSC1337-013 <https://classroom.github.com/a/1nb3Pr3Z>`_
+
+    * `COSC2325-002 <https://classroom.github.com/a/9IQTdOeh>`_
+
+At the bottom of the page that will display, there is a link titled "Accept
+this assignment". You do need to do that!
+
+At the bottom of the next page that appears, after GitHub_ gets done setting you up,
+you will see a URL for your new repository. Be sure to make a note of that. You
+will need to hunt for this later when you log back into GitHub_.
+
+When you get done with this step, your repository is on GitHub_ and has exactly
+no code files in it. We need to "clone" this repository onto your local
+workstation.
+
+Create a "Working Copy"
+=======================
+
+The "master" copy of your work is always going to live on GitHub_. You will
+never work directly on that version. Instead, we will make a "working copy" of
+the project on your development workstation. To get this copy, we will "clone"
+the master copy using Git_
+
+Make sure you are in your class folder (named after the class). Then run this
+command on the command line:
+
+..  code-block:: bash
+
+    C:\Users\rblack\cosc1336> git clone https://github.com/ACC-COSC1336-032-FA18/homework-rblack42
+
+..  warning::
+
+    The name you will use will look similar, but will have your GitHub_ user
+    name instead of mine!
+
+When this command runs, your system will connect with GitHub_. You will be
+asked to provide your GitHub_ username and the password you set up on that
+system. Git will then download your project repository. 
+
+..  note::
+
+    If your system complains while trying this, we may need to address some
+    security issues on your system. See me for help.
+
+
+You will see a message indicating that you have cloned an empty repository.
+That is fine, you have done no work yet!
+
+The directory it creates will look empty, but it has one very important folder
+hidden inside it.
+
+On a PC, do this:
+
+..  code-block:: bash
+
+    C:\Users\rblack\cosc1336> cd homework-rblack42
+    C:\Users\rblack\cosc1336\homework-rblack42> DIR /AH
+    09/03/2018  11:19 PM    <DIR>           .git
+                o File(s)                  0 bytes
+
+I first moved into my project folder using the ``cd`` (change directory)
+command. Then I used the ``DIR`` command (short or "directory" with a special
+option to show me hidden files and folders in this directory. ANy file with a
+name that begins with a "dot" is treated as "hidden" and you normally will not
+see it when you look at things in a directory.
+
+That ``.git`` directory is vital to Git_. Under that directory, Git_ will keep
+everything it needs to track your project and all of the versions you create.
+
+..  warning::
+
+    Never alter anything under this directory yourself. All Git_ commands
+    modify things there. If you ever want to "disconnect" your project from
+    Git_ management, just delete this directory, and all of your prior work
+    will be gone!
+
+Check your GitHub Connection
+=============================
+
+When you "clone" a project repository, Git_ keeps track of where it came from.
+The name it uses for the server (GitHub_) is "remote". We can make sure we
+are hooked up to GitHub_ properly by doing this:
+
+..  note::
+
+    To shorten up these notes, I am going to drop everything on the command
+    prompt but that last character.
+
+..  code-block:: bash
+
+    > git remote -v
+    origin	https://github.com/ACC-COSC1336-032-FA18/homework-rblack42 (fetch)
+    origin	https://github.com/ACC-COSC1336-032-FA18/homework-rblack42 (push)
+    
+This shows the correct connection. 
+
+Ignoring Unneeded Files
+=======================
+
+When you start working in a new repository, it is a good idea to tell Git_ what
+kinds of files to "ignore". These files are things you can rebuild later, or
+just do not want stored on GitHub_. Here is the file I use for class work (it
+handles Python and C/C++ files I generate). 
+
+Open up your editor in the directory where the ``.git`` subdirectory is located. 
+
+..  code-block:: bash
+
+    > vim .gitignore
+
+..  note::
+
+    Windows has a real issue letting you work with files named with a leading
+    dot.  Telling your editor to create the file this way gets around that. You
+    cannot easily rename a file to somehthing with a leading dot!
+
+Type this in:
+
+..  code-block:: text
+
+    # Python projects
+    *.py[cod]
+    __pycache__
+
+    # Vim files
+    *~
+    *.swp
+
+    # C/C++ projects
+    *.o
+    *.a
+
+We will add a few more lines to this file as we move through the course.
+
+Add a "README" file
+===================
+
+Most projects you see on GitHUb_ have a file named ``README`` (possibly with an extension) at the top of the project repository. This file is supposed to provide useful informtion to folks exploring your project.
+
+Let's add such a file in our project repository, and get it on the server.
+Make sure you are working inside of this repository folder, then open up your
+editor and create a file named ``README.rst`` with the contents below (changed
+to suit, of course):
+
+..  code-block:: text
+
+    COSC1336 Homework Projects
+    ##########################
+    :Student: Roie R. Black
+    :Student: Roie R. Black
+    :Class: COSC1336-032
+    :School: Austin Community College
+    :Course: Programming Fundamentals I
+
+    This repository hold homework assignments for the Fall 2018 class at ACC.  
+
+Use the ``DIR`` command to make sure the file is where it is supposed to be!
+
+..  code-block:: bash
+
+    > DIR
+    09/03/2018  11:46 PM   <DIR>        .
+    09/03/2018  11:46 PM   <DIR>        ..
+    09/03/2018  11:46 PM            286 README.rst
+
+You might see other things here. You will NOT see the ``.git`` directory.
+
+See What Git Thinks
+===================
+
+Let's ask Git_ to check our project now:
+
+..  code-block:: bash
+
+    > git status
+    On branch master
+
+    No commits yet
+
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+
+    	README.rst
+
+    nothing added to commit but untracked files present (use "git add" to track)
+
+This is showing you that there is a new file under your project directory (Duh!)
+
+We need to "add" this file to our project.
+
+Huh!< We just did that!
+
+Git does not track files unless you tell it to. Often, there will be files in
+your project folder you do not want on GitHub_. Those files are usually ones we
+can recreate using the files we do track.
+
+We want to track this one, so we will use this command:
+
+..  code-block:: bash
+
+    > git add .
+    
+Look closely, there is a dot at the end of that line! Git_ said nothing in
+response to this. Let's see what it thinks now:
+
+..  code-block:: bash
+
+    > git status
+    On branch master
+
+    No commits yet
+
+    Changes to be committed:
+      (use "git rm --cached <file>..." to unstage)
+
+    	new file:   README.rst
+
+Hmmm, the new file is now marked as a new file!
+
+"Commit" this Version
+=====================
+
+Now for the big step. We want to officially tell Git_ to track this version of
+our project. Git_ will wrap up all files it sees at this moment, put a
+timestamp on it so we can return here later if needed.
+
+Do this:
+
+..  code-block:: bash
+
+    > git commit -m "added README file"
+    [master (root-commit) b30fd73] added README
+     1 file changed, 0 insertions(+), 0 deletions(-)
+     create mode 100644 README.rst
+
+That message is important. We are "committing" this version, and adding a
+message telling us what we did. Some developers are fanatic about the messages.
+They end up in a log we can browse later to see how things changed. That log
+can help you return to an earlier version if needed. If you fail to add that
+message (and the ``-m`` flag) Git_ will launch your editor and make you say
+something. Save yourself the hassle of that and always add a message.
+
+Now check to see what Git_ thinks:
+
+..  code-block:: bash
+
+    git status
+    On branch master
+    Your branch is based on 'origin/master', but the upstream is gone.
+      (use "git branch --unset-upstream" to fixup)
+
+    nothing to commit, working tree clean
+
+This is good. Git_ has a snapshot of your project safely tucked away. All that remains is to get this on GitHub):
+
+Push To GitHub
+==============
+
+This step is easy. Well it is except for providing your credentials again!
+
+..  code-block:: bash
+
+    > git push origin master
+    Counting objects: 3, done.
+    Writing objects: 100% (3/3), 216 bytes | 216.00 KiB/s, done.
+    Total 3 (delta 0), reused 0 (delta 0)
+    To https://github.com/ACC-COSC1336-032-FA18/HOMEWORK-RBLACK42
+     * [new branch]      master -> master
+
+Now, check Git_ one last time:
+
+..  code-block:: bash
+
+    > git status
+    On branch master
+    Your branch is up to date with 'origin/master'.
+
+    nothing to commit, working tree clean
+
+This is what you want to see before you walk away from a development session.
+What it means is that you have an exact copy of all of your work safely on your
+machine, and on GitHub_.
+
+Check GitHub
+============
+
+I recommend opening up your web browser and finding your project repository
+there. What you will see may surprise you. That ``README.rst`` file is proudly
+displayed on the project page, nicely formatted. Git_ processes any file named
+"something.rst" assuming it is a file written in |RST| notation. The text we
+wrote is in this format. We will see more of this notation later.
+
+Break Time! Walk Away
+*********************
+
+When you get here, it is safe to walk away from your project. Even if someone
+steals your development machine, we could "clone" another copy to a different
+machine, install the needed tools, and continue work.
+
+It is not uncommon for developers to use several machines in ther work. I have
+PC, Mac, and Linux machines available, and can (and do) test things on all
+three platforms to make sure my projects really are ready for use in the
+"wild"!
+
+Set Up a Playground
+*******************
+
+I always recommend that you set up separate directories where you can "play".
+The work you do here is experimental, and when you figure something out that
+seems to work, you copy the new idea into a managed project. DO not play in a
+real project, you might mess things up. Git_ will help protect you, but it is
+good practice to be careful when you code for real.
+
+I also set up another directory where I can clone interesting projects I find
+on GitHub_. Doing this is for study purposes. You can almost always find code
+on GitHub_ that will help you learn new techniques, languages, etc. My laptop
+has over 50 cloned projects now. I can try them out, and study them as I like.
+
+Here are the folders I create for a class:
+
+..  code-block:: bash
+
+    > mkdir sandbox
+    > mkdir github
+
+Guess why I named the first one "sandbox". You may need to remember what it was
+like being a kid!
+
+..  warning::
+
+    NEVER clone a repository into another repository. Both of the folders above
+    will live beside any repositories i build for my class work. Accidentally
+    putting one repository inside another one is a very common mistake for
+    beginners to make. Be careful not to do this!
+
+At this point, you are ready to submit real assignments. Check the ``HW2`` link for further guidance on doing that!
+

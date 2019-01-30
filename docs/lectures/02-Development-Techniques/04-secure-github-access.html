@@ -1,0 +1,358 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Secure GitHub Access &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Time to Talk About Time" href="../03-Basic-Concepts/05-time.html" />
+    <link rel="prev" title="Lecture Notes" href="../index.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../03-Basic-Concepts/05-time.html" title="Time to Talk About Time"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../index.html" title="Lecture Notes"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Lecture Notes</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="secure-github-access">
+<h1>Secure GitHub Access<a class="headerlink" href="#secure-github-access" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Reference:</th><td class="field-body"><a class="reference external" href="https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process">https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process</a></td>
+</tr>
+</tbody>
+</table>
+<p>Read time: 25 minutes (6440 words)</p>
+<p>In today’s world, evil folks are always trying to steal your secret passwords,
+so they can hack your bank account, credit card, IRS tax return, or even your
+homework! Personally, I want to collect all of those folks and plant them on a
+remote island somewhere, and not send any supplies until the noise stops.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I have been hacked three times in the last five years, even by someone who
+got hold of my Social Security number and tried to file a tax refund, after
+I had already filed. The IRS tracked that idiot down!</p>
+</div>
+<p>The bottom line is simple. Use appropriate security measures any time you
+engage in work that causes sensitive information to move over the wires (or
+airways) of the Internet!</p>
+<div class="section" id="secure-shell">
+<h2>Secure Shell<a class="headerlink" href="#secure-shell" title="Permalink to this headline">¶</a></h2>
+<p>Normally, when you work with <a class="reference external" href="https://github.com/">Github</a> over the web, your data (web pages you
+view) is kept private by using a secure web interface. You know you are using
+this interface when you see the <code class="docutils literal notranslate"><span class="pre">https</span></code> at the front of the URL you are
+accessing (<code class="docutils literal notranslate"><span class="pre">https://github.com`</span></code>) The “s” stands for secure, right!</p>
+<p>All traffic between your web browser and <a class="reference external" href="https://github.com/">GitHub</a> is encrypted making it very
+hard for bad guys to watch it and get anything useful from you. That protects
+you when all you are doing is looking at your work after you get things up on
+<a class="reference external" href="https://github.com/">GitHub</a>. However, we need to move our development work back and forth between
+<a class="reference external" href="https://github.com/">GitHub</a> and our local development system, and a web browser does not help much
+with that.</p>
+<p>We need to secure the data we want to move in both directions. That means
+encrypting any data to be moved, moving it over the Internet, then decrypting it when
+it gets to the final destination. <a class="reference external" href="https://git-scm.com/">Git</a> and <a class="reference external" href="https://github.com/">GitHub</a> are all set to do this, but
+there is one annoying problem.</p>
+<p>Every time you interact with <a class="reference external" href="https://github.com/">GitHub</a> (when you use a <a class="reference external" href="https://git-scm.com/">Git</a> command that will
+move data between you and  <a class="reference external" href="https://github.com/">GitHub</a>, you need to log in and provide your
+password. Since we are professional developers, here, we hate to type, and that
+gets old very fast! Fortunately, there is a way to fix this.</p>
+<p>On your Linux system, we can use the <code class="docutils literal notranslate"><span class="pre">secure</span> <span class="pre">shell</span></code> tool to manage this
+authentication process. The tool is provided by the <a class="reference external" href="https://www.openssh.com/">OpenSSH</a> project.</p>
+<div class="section" id="checking-ssh">
+<h3>Checking SSH<a class="headerlink" href="#checking-ssh" title="Permalink to this headline">¶</a></h3>
+<p>First, make sure <code class="docutils literal notranslate"><span class="pre">ssh</span></code> is installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ which ssh
+/usr/bin/ssh
+</pre></div>
+</div>
+<p>If this does not work, run this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install openssh
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-ssh-authenticates">
+<h3>How SSH Authenticates<a class="headerlink" href="#how-ssh-authenticates" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">SSH</span></code> uses something called <code class="docutils literal notranslate"><span class="pre">public/private</span> <span class="pre">-Key</span> <span class="pre">Encryption</span></code> to do the hard
+work.  Basically this means that data will be encrypted using a pair of
+security “keys” that we need to generate on our system. These keys are
+important, and come in matched pairs. One of the keys is kept private. You need
+to manage this <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">key</span></code>, and never let is escape from your control. The
+second key is a <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">key</span></code> that you can freely pass around. The <code class="docutils literal notranslate"><span class="pre">public</span>
+<span class="pre">key</span></code> can only be used to encrypt data to be sent to you. Anyone intercepting
+this key cannot use it to figure out what you are sending. The <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">key</span></code>
+can decrypt messages encrypted using your <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">key</span></code>.</p>
+<p>We will generate these keys on our system, then copy the <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">key</span></code> up to
+the <a class="reference external" href="https://github.com/">GitHub</a> server. Any time you need to communicate with <a class="reference external" href="https://github.com/">GitHub</a>, you will
+start the session by sending a request to <a class="reference external" href="https://github.com/">GitHub</a> from your system. That
+request will include the URL of your repository, so <a class="reference external" href="https://github.com/">GitHub</a> knows it is
+sensitive. <a class="reference external" href="https://github.com/">GitHub</a> will use the registered <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">key</span></code> to send an encrypted
+message back to your workstation. <a class="reference external" href="https://git-scm.com/">Git</a> will use your local <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">key</span></code> to
+unpack this message and then generate a reply that goes back to <a class="reference external" href="https://github.com/">GitHUb</a>. If this
+reply is what <a class="reference external" href="https://github.com/">GitHub</a> expects, you are who you claim to be, and you are
+authenticated. No username or password is required!</p>
+<p>Great, less typing!</p>
+</div>
+<div class="section" id="generating-the-keys">
+<h3>Generating the Keys<a class="headerlink" href="#generating-the-keys" title="Permalink to this headline">¶</a></h3>
+<p>Run this command on your Linux system:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/rblack/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/rblack/.ssh/id_rsa.
+Your public key has been saved in /home/rblack/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:KfjvzhrhyX1/6msrJQS5+31GXHZtefAAMELaJwecPmY rblack@cosc2325vm
+The key&#39;s randomart image is:
++---[RSA 2048]----+
+|       o+oo...   |
+|       o=o .  o  |
+|      ..ooo    +o|
+|     .  E=.    .O|
+|    . ooS+   . +o|
+|     + =. . . o  |
+|      * ...+ .   |
+|       + .o.o +  |
+|      .+=  +*B   |
++----[SHA256]-----+
+</pre></div>
+</div>
+<p>You will need to respond to two lines here. The first is when the tool asks
+where to put the keys. The default location is ~/.ssh``, which is a hidden
+directory in your home directory.</p>
+<p>The second response is asking for a “passphrase” for the private key. This
+protects the <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">key</span></code> in case someone else uses your system. I use
+passphrase on my keys, but that means I need to enter that passphrase when my
+<code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">key</span></code> needs to be accessed.</p>
+<p>Great, we get rid of one password, only to need another one. Never fear, there
+is a solution.</p>
+<p>Once this command completes, you will have your security keys.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls -al !/.ssh
+total <span class="m">20</span>
+drwx------  <span class="m">2</span> rblack rblack <span class="m">4096</span> Jan <span class="m">28</span> <span class="m">08</span>:06 .
+drwxr-xr-x <span class="m">18</span> rblack rblack <span class="m">4096</span> Jan <span class="m">28</span> <span class="m">06</span>:36 ..
+-rw-------  <span class="m">1</span> rblack rblack <span class="m">1766</span> Jan <span class="m">28</span> <span class="m">08</span>:06 id_rsa
+-rw-r--r--  <span class="m">1</span> rblack rblack  <span class="m">399</span> Jan <span class="m">28</span> <span class="m">08</span>:06 id_rsa.pub
+-rw-r--r--  <span class="m">1</span> rblack rblack  <span class="m">444</span> Jan <span class="m">25</span> <span class="m">15</span>:24 known_hosts
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">key</span></code> is <code class="docutils literal notranslate"><span class="pre">id_rsa</span></code>, the public key is <code class="docutils literal notranslate"><span class="pre">id_rsa.pub</span></code>.</p>
+<p>These files are just text files, but you must not ever modify them in any way.
+“Look, but do not touch”, my mother used to say!</p>
+</div>
+<div class="section" id="copy-the-public-key-to-github">
+<h3>Copy the Public Key to GitHub<a class="headerlink" href="#copy-the-public-key-to-github" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vim ~/.ssh/id_rsa.pub
+</pre></div>
+</div>
+<p>Be careful here, you need to copy the entire contents to your clipboard.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To get copy and paste to work from mu VM on my Mac, I needed to enable it in
+<a class="reference external" href="https://www.virtualbox.org/">VirtualBox</a>. Click on <code class="docutils literal notranslate"><span class="pre">Devices</span> <span class="pre">-&gt;</span> <span class="pre">Shared</span> <span class="pre">Clipboard</span> <span class="pre">-&gt;</span> <span class="pre">Enable</span></code>.</p>
+</div>
+<p>Once you have the contents copied, open up your web browser and navigate to
+your <a class="reference external" href="https://github.com/">GitHub</a> account. Click on the icon at the top right, and in the drop-down
+menu, select <code class="docutils literal notranslate"><span class="pre">settings</span></code>. When that opens look for <code class="docutils literal notranslate"><span class="pre">SSH</span> <span class="pre">and</span> <span class="pre">GPG</span> <span class="pre">Keys</span></code> and
+open up that screen.</p>
+<p>There will be a button that says <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">SSH</span> <span class="pre">Key</span></code>. Click on that and paste your
+key into the text box. Give this a name (I used my machine name) and then click
+on <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">SSH</span> <span class="pre">key</span></code>.</p>
+<p>That is all you need to do on the <a class="reference external" href="https://github.com/">GitHub</a> side.</p>
+</div>
+<div class="section" id="set-up-ssh-agent">
+<h3>Set up ssh-agent<a class="headerlink" href="#set-up-ssh-agent" title="Permalink to this headline">¶</a></h3>
+<p>We added a passphrase to the <code class="docutils literal notranslate"><span class="pre">private-key</span></code> meaning that when we try to access
+that key, we need to enter that passphrase. The <code class="docutils literal notranslate"><span class="pre">ssh-agen</span></code> tool will manage
+your keys for you, if we set it up.</p>
+<p>Do this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>ssh-add ~/.ssh/id_rsa
+Agent pid 23573</p>
+<p>That starts up the <code class="docutils literal notranslate"><span class="pre">ssh-agent</span></code> program, which will run in the background.
+Now, we need to add the private key:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ssh-add ~/.ssh/id_rsa
+</pre></div>
+</div>
+<p>Enter passphrase for /home/rblack/.ssh/id_rsa:
+Identity added: /home/rblack/.ssh/id_rsa (/home/rblack/.ssh/id_rsa)</p>
+<p>Now, try to accesses the remote <a class="reference external" href="https://github.com/">GitHub</a> server:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ssh -T git@github.com
+The authenticity of host <span class="s1">&#39;github.com (192.30.253.113)&#39;</span> can<span class="s1">&#39;t be established.</span>
+<span class="s1">RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</span>
+<span class="s1">Are you sure you want to continue connecting (yes/no)? yes</span>
+<span class="s1">Warning: Permanently added &#39;</span>github.com,192.30.253.113<span class="s1">&#39; (RSA) to the list of known hosts.</span>
+<span class="s1">X11 forwarding request failed on channel 0</span>
+<span class="s1">PTY allocation request failed on channel 0</span>
+<span class="s1">Hi rblack42! You&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
+</pre></div>
+</div>
+<p>You will only see that “authenticity” message once, as long as you answer “yes”
+to the question. This will happen the first time you access any remote server
+for the first time with SSH. The program caches this server key in your
+<code class="docutils literal notranslate"><span class="pre">~/.ssh/known-hosts</span></code> file and it will make sure you are talking to the right
+sef=rver from then on. Boy, the Internet is full of strange schemes to hack
+you!</p>
+<p>Let’s try a git command now:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git pull
+</pre></div>
+</div>
+<p>This time, you should not see a request for your password!</p>
+<p>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPFqOZ9HVe9KDZCwhVeYO2TFxkaFfgkgqxiUPoG7EruQyMol7OPUvHf/QCXYZgG0pUMQx3oCKSLoo4BzgAn9dj0cBkESW+A2cUUUOImzXRiHfMl1C6SveGlrLXPYMIQTyLXlh0rvcguEfWjxE+q2pvHKWhEUCtrY7Kz2J55tVhSRsau0p7Xwk31mDOlDbPiRsDDy11HLD1IRFo+zu9Py6xkyFSR/3i8kHdXxbWDeJcgycB9mHLktw9aNN/fBIo2SFAj44eDfCvz1dfombK6+z50B0fstLL35tGuNqhSILHn0BDhv+xvAL4l8eCx0SusiJL4Rf+SjiLw3uDf7O3OlGz <a class="reference external" href="mailto:rblack&#37;&#52;&#48;cosc2325vm">rblack<span>&#64;</span>cosc2325vm</a></p>
+<blockquote>
+<div><ul class="simple">
+<li>Lab1: <a class="reference external" href="https://classroom.github.com/a/_-kmlQxQ">https://classroom.github.com/a/_-kmlQxQ</a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Secure GitHub Access</a><ul>
+<li><a class="reference internal" href="#secure-shell">Secure Shell</a><ul>
+<li><a class="reference internal" href="#checking-ssh">Checking SSH</a></li>
+<li><a class="reference internal" href="#how-ssh-authenticates">How SSH Authenticates</a></li>
+<li><a class="reference internal" href="#generating-the-keys">Generating the Keys</a></li>
+<li><a class="reference internal" href="#copy-the-public-key-to-github">Copy the Public Key to GitHub</a></li>
+<li><a class="reference internal" href="#set-up-ssh-agent">Set up ssh-agent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="../index.html"
+                          title="Previous page">&larr; Lecture Notes</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="../03-Basic-Concepts/05-time.html"
+                          title="Next page">&rarr; Time to Talk About Time</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/lectures/02-Development-Techniques/04-secure-github-access.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../03-Basic-Concepts/05-time.html" title="Time to Talk About Time"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../index.html" title="Lecture Notes"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Lecture Notes</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

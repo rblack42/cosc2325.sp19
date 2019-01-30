@@ -1,0 +1,321 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The Command Line &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-command-line">
+<span id="command-line"></span><h1>The Command Line<a class="headerlink" href="#the-command-line" title="Permalink to this headline">¶</a></h1>
+<p>You are in for a shock!</p>
+<p>We will work using a classical interface to the operating system called the
+<a class="reference internal" href="../../glossary.html#term-command-line"><span class="xref std std-term">command line</span></a>. All systems support this kind of interface, and using
+this mechanism to control your machine is sometimes needed. When you work on a
+remote server, out there in the <a class="reference internal" href="../../glossary.html#term-cloud"><span class="xref std std-term">cloud</span></a>, there is no graphical user
+interface available. You have to use the <a class="reference internal" href="../../glossary.html#term-command-line"><span class="xref std std-term">command line</span></a>!</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Students in this class show up owning a Windows PC, or maybe a Mac. Rarely,
+they have one running some flavor of Linux. I try to accommodate all three
+kinds of users, so these notes will cover all of these systems.</p>
+</div>
+<p>Here is the command line on my Mac:</p>
+<img alt="../../_images/mac-terminal.png" class="align-center" src="../../_images/mac-terminal.png" />
+<p>Pretty dull, right? No fancy icons, not much color. The key thing here, is that
+everything is text-based. The software needed to create this interface is
+extremely simple. For that reason alone, this is the interface of choice for
+doing simple text-based tasks on any computer.</p>
+<div class="section" id="finding-the-command-line">
+<h2>Finding the Command Line<a class="headerlink" href="#finding-the-command-line" title="Permalink to this headline">¶</a></h2>
+<p>Let’s launch this new interface:</p>
+<div class="section" id="windows-command-line">
+<h3>Windows Command Line<a class="headerlink" href="#windows-command-line" title="Permalink to this headline">¶</a></h3>
+<p>Windows likes to call their interface the “command prompt”. You can bring up
+this interface by doing this:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Click on the “Search” area at the bottom left of your screen</li>
+<li>Enter “cmd” (without the quotes). The <a class="reference internal" href="../../glossary.html#term-command-prompt"><span class="xref std std-term">command prompt</span></a> window
+should appear,</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You probably will want to “pin” this window’s icon on the task bar at the
+bottom of your screen. Right-click on that icon and select “Pin to
+Taskbar”. Then, to launch a <a class="reference internal" href="../../glossary.html#term-command-line"><span class="xref std std-term">command line</span></a> window, just click on
+that icon.</p>
+</div>
+</div>
+<div class="section" id="mac-command-line">
+<h3>Mac Command Line<a class="headerlink" href="#mac-command-line" title="Permalink to this headline">¶</a></h3>
+<p>On the Mac, you will open the <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> application. Using the <code class="docutils literal notranslate"><span class="pre">Finder</span></code>
+tool, navigate to <span class="menuselection">Applications -&gt; Utility -&gt; Terminal.app</span>.
+Click on that to start the application.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Follow the guide above to “pin” this icon to the Mac <code class="docutils literal notranslate"><span class="pre">Dock</span></code>.</p>
+</div>
+</div>
+<div class="section" id="linux-command-line">
+<h3>Linux Command Line<a class="headerlink" href="#linux-command-line" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I will be using some flavor of <a class="reference external" href="http://www.ubuntu.com/">Ubuntu</a> Linux in this course. If you are
+running some other Linux distribution, consult your user guides (or cheat
+and Google for help).</p>
+</div>
+<p>Assuming you are running the desktop version of <a class="reference external" href="http://www.ubuntu.com/">Ubuntu</a>, you can open a
+<a class="reference internal" href="../../glossary.html#term-shell"><span class="xref std std-term">shell</span></a> interface (that is Linux-speak for <a class="reference internal" href="../../glossary.html#term-command-prompt"><span class="xref std std-term">command prompt</span></a>) by
+doing this:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Click on the “gear” icon (the <a class="reference external" href="http://www.ubuntu.com/">Ubuntu</a> applications search tool) and type
+in “Term” in the search box. I usually select <code class="docutils literal notranslate"><span class="pre">Xterm</span></code> on my systems,
+but there is another simpler <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> application as well.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="entering-commands">
+<h2>Entering Commands<a class="headerlink" href="#entering-commands" title="Permalink to this headline">¶</a></h2>
+<p>In all three cases above, you end up staring at a blank window with some kind
+of <em>prompt</em> displayed. Typically, the <em>prompt</em> is a simple line like these :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Windows:
+
+    **C:\&gt;**
+
+Mac/Linux:
+
+    **/Users/rblack $**
+</pre></div>
+</div>
+<p>Your cursor is placed after the <em>prompt</em> characters, and the system waits fr
+you t type something on that line. What you type is a <em>command</em> to the
+operating system, usually the name of some program you want to run. If needed,
+you add additional chunks of text, called <em>aparameters</em> that provide additional
+information to the program. An example <em>command</em> might look like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ g++ -o hello.exe hello.cpp
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I am going t use the Mac/Linux <em>prompt</em> format, shortened to just the
+single <em>prompt</em> character for the example in this course. You should look
+for the right prompt for your system. The example above is what you would
+type on a Windows system.</p>
+</div>
+<p>This example <em>command</em> names a program, <strong>g++</strong>, which is a <em>compiler</em> for a
+C++ program.  Each chunk of text after that is a parameter that the program
+needs. We will explore this in more detail later. For now, that is enough to
+introduce working on the command line.</p>
+<div class="section" id="the-file-system">
+<h3>The File System<a class="headerlink" href="#the-file-system" title="Permalink to this headline">¶</a></h3>
+<p>All modern computers keep their files organized in a “tree” of directories,
+subdirectories, and files.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is called a “tree” because it looks like one if you drew it out.
+However, the “root” of this tree is usually at the top of the tree. Weird,
+but the image works.</p>
+</div>
+<p>The basic concept is found in any office setting. A piece of paper (a “file”)
+is placed in a “folder”. That folder might be placed in another folder, and
+ultimately in a filing cabinet. We give each gadget in this system a short
+name. On Windows, the filing cabinet gets a letter, like “C”. We define the
+location of some file using the series of names separated by slashes. On
+Windows, we use a back-slash, on Linux/Mac, we use a forward slash.</p>
+<p>The complete set of names defining the location of some file is called the file
+“path”:</p>
+<blockquote>
+<div><ul class="simple">
+<li>C:folder1folder2filename</li>
+</ul>
+</div></blockquote>
+<p>The top level in this system is often called the “root” folder -er- directory.</p>
+<p>Linux/Mac systems do not use a disk drive letter. Instead a disk is “mounted”
+at some location in this file system “tree”, so we never have to think about
+that. On these systems the top-most level is simple identified as “/”.</p>
+</div>
+<div class="section" id="the-current-directory">
+<h3>The “Current Directory”<a class="headerlink" href="#the-current-directory" title="Permalink to this headline">¶</a></h3>
+<p>When you work on the command line, you are always working within some
+“directory” on your file system. That directory is called the “current
+directory”</p>
+<p>Essentially, you are working with that folder open on your desk. You can see
+the files in that folder, and the folders within that folder. To get into a
+subfolder (or move up in the file system, you must “change directories”.</p>
+<blockquote>
+<div><ul class="simple">
+<li>cd subfolder - moves your current directory to this subfolder</li>
+<li>cd .. - moves you up one level in the directory “tree”</li>
+</ul>
+</div></blockquote>
+<p>On Mac and Linux, when you open up the terminal window, you are placed in your
+“home directory”:</p>
+<blockquote>
+<div><ul class="simple">
+<li>/home/username - on Linux</li>
+<li>/Users/username - on Mac</li>
+</ul>
+</div></blockquote>
+<p>On the PC, you are placed in a system directory, which is not where you will
+want to work.</p>
+<blockquote>
+<div><ul class="simple">
+<li>C:\Windows</li>
+</ul>
+</div></blockquote>
+<p>There is a “home directory” on Windows, usually at:</p>
+<blockquote>
+<div><ul class="simple">
+<li>C:\users\username</li>
+</ul>
+</div></blockquote>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Did you notice those slashes in those directory names? On Windows, you use
+the back slash, on any other system the forward slash. The slashes separate
+directory names from the files.</p>
+</div>
+<p>This complete string identifies exactly where on your system a particular file
+is located.  You are actually navigating through a system of folders
+(directories) and sub-folders in order to locate a particular file.  This can
+go on as deep as you like, but the total sequence of names and slashes, called
+the “path” is likely to get pretty long!</p>
+<p>We will learn the commands that are needed to work on you system as we proceed.
+For now, this is just an introduction. We need to set up our system before we
+can get to work!</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">The Command Line</a><ul>
+<li><a class="reference internal" href="#finding-the-command-line">Finding the Command Line</a><ul>
+<li><a class="reference internal" href="#windows-command-line">Windows Command Line</a></li>
+<li><a class="reference internal" href="#mac-command-line">Mac Command Line</a></li>
+<li><a class="reference internal" href="#linux-command-line">Linux Command Line</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#entering-commands">Entering Commands</a><ul>
+<li><a class="reference internal" href="#the-file-system">The File System</a></li>
+<li><a class="reference internal" href="#the-current-directory">The “Current Directory”</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/lectures/03-Development-Techniques/01-command-line.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

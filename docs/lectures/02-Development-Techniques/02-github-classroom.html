@@ -1,0 +1,598 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>GitHub Classroom Projects &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Managing a Project" href="03-project-folders.html" />
+    <link rel="prev" title="Linux Shell Basics" href="01-shell-basics.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="03-project-folders.html" title="Managing a Project"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="01-shell-basics.html" title="Linux Shell Basics"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../schedule-16/index.html" accesskey="U">COSC2325 - 16-week Schedule</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="github-classroom-projects">
+<span id="first-look-at-git"></span><h1>GitHub Classroom Projects<a class="headerlink" href="#github-classroom-projects" title="Permalink to this headline">¶</a></h1>
+<p>Read time: 47 minutes (11831 words)</p>
+<p>To get started using <a class="reference external" href="https://github.com/">GitHub</a>, we will need to learn a few new terms, and use
+new tools. Assuming you worked through installing the needed tools, we are
+ready to check your system, and get you started.</p>
+<div class="section" id="fire-up-a-command-prompt">
+<h2>Fire up a Command Prompt<a class="headerlink" href="#fire-up-a-command-prompt" title="Permalink to this headline">¶</a></h2>
+<p>We will do everything here at the command line. These notes assume you are working in your <a class="reference internal" href="../../glossary.html#term-virtual-machine"><span class="xref std std-term">virtual machine</span></a> with <a class="reference external" href="http://www.ubuntu.com/">Ubuntu</a> Linux installed.</p>
+<p>Begin by starting the <code class="docutils literal notranslate"><span class="pre">Term</span></code> program.</p>
+<p>The window that opens looks pretty stark! You should see the
+“prompt”, which is a line ending with a <code class="docutils literal notranslate"><span class="pre">$</span></code> character.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Since the commands we wiii go over work equally well on a Mac, I will show
+things from a Mac session.</p>
+</div>
+<p>Here is my default window:</p>
+<img alt="../../_images/mac-terminal1.png" class="align-center" src="../../_images/mac-terminal1.png" />
+</div>
+<div class="section" id="finding-a-home-for-your-work">
+<h2>Finding a Home for Your Work<a class="headerlink" href="#finding-a-home-for-your-work" title="Permalink to this headline">¶</a></h2>
+<p>Before you do anything else for this class, create a single directory (OK,
+folder if you insist) where all classwork will be located. Inside that
+directory, we will place several other sub-directories as we work through the
+class. I am going to assume you will place this class directory in your “Home”
+folder.  On Linux, the home directory is under <code class="docutils literal notranslate"><span class="pre">/home/username</span></code> (note the
+use of forward slashes here. Only Windows uses backward slashes!)</p>
+<p>Here is how you create the folder, after opening up a <code class="docutils literal notranslate"><span class="pre">command-prompt</span></code>
+window:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rblack@cosc2325vm:~$ mkdir cosc2325
+</pre></div>
+</div>
+<p>The prompt shows my username and the machine name. The fullt squiggle is an alias (short!) for my home directory.</p>
+<p>Now, move into that new directory for the rest of this lecture:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> cosc2325
+rblack@cosc2325vm:!/cosc2325$
+</pre></div>
+</div>
+<p>Notice that the prompt now shows the path to the current directory. We still see that funny squiggle, but that is fine.</p>
+<p>The first thing we need to do is check that all the needed tools are installed.</p>
+</div>
+<div class="section" id="preflight-checks">
+<h2>Preflight Checks<a class="headerlink" href="#preflight-checks" title="Permalink to this headline">¶</a></h2>
+<p>OK, so I am a pilot! A “preflight” is something you do before you ever fire up
+the engine on an airplane. Here, we need to make sure all the tools you will
+need are properly installed for use on the command line.</p>
+<p>There are five basic tools we need to do our work:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Programmer’s Editor: <a class="reference external" href="http://www.vim.org/">Vim</a>  or <a class="reference external" href="https://www.vim.org/">gVim</a></p>
+</li>
+<li><p class="first">Program Build Tool: <a class="reference external" href="https://www.gnu.org/software/make/manual/">Make</a></p>
+</li>
+<li><p class="first">Code Manager: <a class="reference external" href="https://git-scm.com/">Git</a></p>
+</li>
+<li><p class="first">Programming Languages:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://www.python.org/">Python</a> (We will be using version 3.7)</li>
+<li>C++: (We will use g++)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p>The messages you will see as we check things are sometimes pretty long. I have
+truncated them in these notes. If the exact versions are different, see me to
+make sure you are not using software that is out of date.</p>
+<div class="section" id="checking-your-tools">
+<h3>Checking Your Tools<a class="headerlink" href="#checking-your-tools" title="Permalink to this headline">¶</a></h3>
+<p>Here are the checks we need to make sure these tools are available. The
+actual response has been truncated, leaving off things like a copyright notice
+and other details we do not need to worry about.</p>
+<div class="section" id="programmer-s-editor">
+<h4>Programmer’s Editor<a class="headerlink" href="#programmer-s-editor" title="Permalink to this headline">¶</a></h4>
+<p>I do not require that you use Vim (or gVim), but learning this editor will be
+very useful to you. Here is a check to see that it is installed:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">From here on, I am going to shorten the prompt to just the dollar sign, to
+save some typing!</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vim --version
+VIM - Vi IMproved <span class="m">8</span>.0 <span class="o">(</span><span class="m">2016</span> Sep <span class="m">12</span>, compiled Nov <span class="m">29</span> <span class="m">2017</span> <span class="m">18</span>:37:46<span class="o">)</span>
+Included patches: <span class="m">1</span>-503, <span class="m">505</span>-680, <span class="m">682</span>-1283
+</pre></div>
+</div>
+<p>You can use <a class="reference external" href="http://www.vim.org/">Vim</a> from the command line, or start the GUI version (gVim). The
+real difference is that with the GUI version, you can use your mouse to move
+the cursor and select things.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I usually open up the GUI version to edit files, then leave the edit window
+open. I then start a command prompt window in the same directory. You can
+switch back and forth, editing and running using that scheme.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h4>Git<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>We cannot get very far without this one:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git --version
+git version <span class="m">2</span>.17.1
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h4>Make<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>As we work through the course, you will start getting irritated by the need to
+type in long commands all the time. You are not alone in that. Back in 1976,
+another developer got sick enough of that to build a tool that issued commands
+for him. That tool has been a part of the development landscape ever since. We
+will use it as well. The tool is called <code class="docutils literal notranslate"><span class="pre">make</span></code>, since it is used primarily to
+“make” programs. (Creative name, huh?)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make --version
+GNU Make <span class="m">4</span>.1
+</pre></div>
+</div>
+</div>
+<div class="section" id="c-c-compiler">
+<h4>C/C++ Compiler<a class="headerlink" href="#c-c-compiler" title="Permalink to this headline">¶</a></h4>
+<p>If you are learning Python, you can skip this one. You will see it soon enough!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ g++ --version
+g++ <span class="o">(</span>Ubuntu <span class="m">7</span>.3.0-27ubuntu1-18-04<span class="o">)</span> <span class="m">7</span>.3.0
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h4>Python<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>All of my students will need Python. Even though we will be writing a lot of
+coe using C/C++ will need <a class="reference external" href="https://www.python.org/">Python</a> for documentation. More on that later in the
+course!</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">On Mac/Linux you need to run <code class="docutils literal notranslate"><span class="pre">python3</span></code> to get the modern version of
+Python. Be careful about that!</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python3 --version
+Python <span class="m">3</span>.6.7
+</pre></div>
+</div>
+<p>With all of these tools ready for use, we can now turn to actually setting up
+places where we will build our projects.</p>
+</div>
+</div>
+</div>
+<div class="section" id="configuring-git">
+<h2>Configuring Git<a class="headerlink" href="#configuring-git" title="Permalink to this headline">¶</a></h2>
+<p>When you first start using <a class="reference external" href="https://git-scm.com/">Git</a> these are some setup steps you need to do.</p>
+<div class="section" id="registering-your-identity">
+<h3>Registering your Identity<a class="headerlink" href="#registering-your-identity" title="Permalink to this headline">¶</a></h3>
+<p>The most important step tells <a class="reference external" href="https://git-scm.com/">Git</a> who you are.  This information is recorded
+when you record changes in a project. Although this is not that important when
+you work alone, it is critical in team work. This information can help identify
+who made some change, and finding that person might be vital to figuring out
+what.why things changed.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git config --global user.name <span class="s2">&quot;John Doe&quot;</span>
+$  git config --global user.email johndoe@example.com
+</pre></div>
+</div>
+<p>of course, you should use your own credentials here!</p>
+<p>This creates a <code class="docutils literal notranslate"><span class="pre">.gitconfig</span></code> file in your “home directory” with this data, and a bit more stuff <a class="reference external" href="https://git-scm.com/">Git</a> uses. To see where this file is on your system, yo can type this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git config --global --list
+</pre></div>
+</div>
+<p>If the file does not exist, you will see a message telling you when <a class="reference external" href="https://git-scm.com/">Git</a>
+expected to find it. If it does exist, you will see what is in that file.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You only do this step once.</p>
+</div>
+</div>
+</div>
+<div class="section" id="git-repositories">
+<h2>Git Repositories<a class="headerlink" href="#git-repositories" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://git-scm.com/">Git</a>, like all seasoned developers, keeps everything needed to build a program
+in a single directory. Usually, we name that folder something to help us know
+what project the folder is all about.</p>
+<p><a class="reference external" href="https://git-scm.com/">Git</a> calls a managed folder a “repository”. The only difference between a
+repository and a normal folder is the presence of a hidden subdirectory <a class="reference external" href="https://git-scm.com/">Git</a>
+uses to store all of its working data.</p>
+<p>We set up a folder for all class projects earlier in this note.  In that
+directory, we will “clone” class project repositories. You should already have
+a <code class="docutils literal notranslate"><span class="pre">homework-username</span></code> repository in your account on <a class="reference external" href="https://github.com/">GitHub</a>. We will get a
+copy of that folder in your VM as follows:</p>
+<div class="section" id="create-a-working-copy">
+<h3>Create a “Working Copy”<a class="headerlink" href="#create-a-working-copy" title="Permalink to this headline">¶</a></h3>
+<p>The “master” copy of your work is always going to live on <a class="reference external" href="https://github.com/">GitHub</a>. You will
+never work directly on that version. Instead, we will make a “working copy” of
+the project on your development workstation. To get this copy, we will “clone”
+the master copy using <a class="reference external" href="https://git-scm.com/">Git</a></p>
+<p>Make sure you are in your class folder (named after the class). Then run this
+command on the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/ACC-COSC2325-003-SP19/homework-username
+</pre></div>
+</div>
+<p>Of course, you need to make sure that line is correct for your section/username.</p>
+<p>When this command runs, your system will connect with <a class="reference external" href="https://github.com/">GitHub</a>. You will be
+asked to provide your <a class="reference external" href="https://github.com/">GitHub</a> username and the password you set up on that
+system. Git will then download your project repository.</p>
+<p>You might see a message indicating that you have cloned an empty repository.
+You will not see this if you already managed to get a README.rst file in your
+repo!</p>
+<p>The directory it creates has one very important folder
+hidden inside it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> homework-rblack42
+$ ls -al
+total <span class="m">12</span>
+drwxr-xr-x <span class="m">3</span> rblack rblack <span class="m">4096</span> Jan <span class="m">27</span> <span class="m">17</span>:48 .
+drwxr-xr-x <span class="m">3</span> rblack rblack <span class="m">4096</span> Jan <span class="m">27</span> <span class="m">17</span>:48 ..
+drwxr-xr-x <span class="m">3</span> rblack rblack <span class="m">4096</span> Jan <span class="m">27</span> <span class="m">17</span>:48 .git
+</pre></div>
+</div>
+<p>I first moved into my project folder using the <code class="docutils literal notranslate"><span class="pre">cd</span></code> (change directory)
+command. Then I used the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command (short or “list” with a special
+option to show me hidden files and folders in this directory. Any file with a
+name that begins with a “dot” is treated as “hidden” and you normally will not
+see it when you look at things in a directory.</p>
+<p>That <code class="docutils literal notranslate"><span class="pre">.git</span></code> directory is vital to <a class="reference external" href="https://git-scm.com/">Git</a>. Under that directory, <a class="reference external" href="https://git-scm.com/">Git</a> will keep
+everything it needs to track your project and all of the versions you create.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Never alter anything under this directory yourself. All <a class="reference external" href="https://git-scm.com/">Git</a> commands
+modify things there. If you ever want to “disconnect” your project from
+<a class="reference external" href="https://git-scm.com/">Git</a> management, just delete this directory, and all of your prior work
+will be gone!</p>
+</div>
+</div>
+<div class="section" id="check-your-github-connection">
+<h3>Check your GitHub Connection<a class="headerlink" href="#check-your-github-connection" title="Permalink to this headline">¶</a></h3>
+<p>When you “clone” a project repository, <a class="reference external" href="https://git-scm.com/">Git</a> keeps track of where it came from.
+The name it uses for the server (<a class="reference external" href="https://github.com/">GitHub</a>) is “remote”. We can make sure we
+are hooked up to <a class="reference external" href="https://github.com/">GitHub</a> properly by doing this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git remote -v
+origin      https://github.com/ACC-COSC2325-003-SP19/homework-rblack42 <span class="o">(</span>fetch<span class="o">)</span>
+origin      https://github.com/ACC-COSC2325-003-SP19/homework-rblack42 <span class="o">(</span>push<span class="o">)</span>
+</pre></div>
+</div>
+<p>This shows the correct connection.</p>
+</div>
+<div class="section" id="ignoring-unneeded-files">
+<h3>Ignoring Unneeded Files<a class="headerlink" href="#ignoring-unneeded-files" title="Permalink to this headline">¶</a></h3>
+<p>When you start working in a new repository, it is a good idea to tell <a class="reference external" href="https://git-scm.com/">Git</a> what
+kinds of files to “ignore”. These files are things you can rebuild later, or
+just do not want stored on <a class="reference external" href="https://github.com/">GitHub</a>. Here is the file I use for class work (it
+handles Python and C/C++ files I generate).</p>
+<p>Open up your editor in the directory where the <code class="docutils literal notranslate"><span class="pre">.git</span></code> subdirectory is located.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; vim .gitignore
+</pre></div>
+</div>
+<p>Type this in:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Python projects
+*.py[cod]
+__pycache__
+
+# Vim files
+*~
+*.swp
+
+# C/C++ projects
+*.o
+*.a
+</pre></div>
+</div>
+<p>We will add a few more lines to this file as we move through the course.</p>
+</div>
+<div class="section" id="add-a-readme-file">
+<h3>Add a “README” file<a class="headerlink" href="#add-a-readme-file" title="Permalink to this headline">¶</a></h3>
+<p>Most projects you see on <a class="reference external" href="https://github.com/">GitHUb</a> have a file named <code class="docutils literal notranslate"><span class="pre">README</span></code> (possibly with an extension) at the top of the project repository. This file is supposed to provide useful informtion to folks exploring your project.</p>
+<p>Let’s add such a file in our project repository (if it is not already there),
+and get it on the server.  Make sure you are working inside of this repository
+folder, then open up your editor and create a file named <code class="docutils literal notranslate"><span class="pre">README.rst</span></code>. The
+contents of this file should look like the example provided in the homework you
+already completed (right?)</p>
+</div>
+<div class="section" id="see-what-git-thinks">
+<h3>See What Git Thinks<a class="headerlink" href="#see-what-git-thinks" title="Permalink to this headline">¶</a></h3>
+<p>Let’s ask <a class="reference external" href="https://git-scm.com/">Git</a> to check our project now:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="o">)</span>
+
+    README.rst
+
+nothing added to commit but untracked files present <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> to track<span class="o">)</span>
+</pre></div>
+</div>
+<p>This is showing you that there is a new file under your project directory (Duh!)</p>
+<p>We need to “add” this file to our project.</p>
+<p>Huh! We just did that!</p>
+<p>Git does not track files unless you tell it to. Often, there will be files in
+your project folder you do not want on <a class="reference external" href="https://github.com/">GitHub</a>. Those files are usually ones we
+can recreate using the files we do track.</p>
+<p>We want to track this one, so we will use this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+</pre></div>
+</div>
+<p>Look closely, there is a dot at the end of that line! <a class="reference external" href="https://git-scm.com/">Git</a> said nothing in
+response to this. Let’s see what it thinks now:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
+
+    new file:   README.rst
+</pre></div>
+</div>
+<p>Hmmm, the new file is now marked as a new file!</p>
+</div>
+<div class="section" id="commit-this-version">
+<h3>“Commit” this Version<a class="headerlink" href="#commit-this-version" title="Permalink to this headline">¶</a></h3>
+<p>Now for the big step. We want to officially tell <a class="reference external" href="https://git-scm.com/">Git</a> to track this version of
+our project. <a class="reference external" href="https://git-scm.com/">Git</a> will wrap up all files it sees at this moment, put a
+timestamp on it so we can return here later if needed.</p>
+<p>Do this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git commit -m <span class="s2">&quot;added README file&quot;</span>
+<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> b30fd73<span class="o">]</span> added README
+ <span class="m">1</span> file changed, <span class="m">0</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">0</span> deletions<span class="o">(</span>-<span class="o">)</span>
+ create mode <span class="m">100644</span> README.rst
+</pre></div>
+</div>
+<p>That message is important. We are “committing” this version, and adding a
+message telling us what we did. Some developers are fanatic about the messages.
+They end up in a log we can browse later to see how things changed. That log
+can help you return to an earlier version if needed. If you fail to add that
+message (and the <code class="docutils literal notranslate"><span class="pre">-m</span></code> flag) <a class="reference external" href="https://git-scm.com/">Git</a> will launch your editor and make you say
+something. Save yourself the hassle of that and always add a message.</p>
+<p>Now check to see what <a class="reference external" href="https://git-scm.com/">Git</a> thinks:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch master
+Your branch is based on <span class="s1">&#39;origin/master&#39;</span>, but the upstream is gone.
+  <span class="o">(</span>use <span class="s2">&quot;git branch --unset-upstream&quot;</span> to fixup<span class="o">)</span>
+
+nothing to commit, working tree clean
+</pre></div>
+</div>
+<p>This is good. <a class="reference external" href="https://git-scm.com/">Git</a> has a snapshot of your project safely tucked away. All that remains is to get this on GitHub):</p>
+</div>
+<div class="section" id="push-to-github">
+<h3>Push To GitHub<a class="headerlink" href="#push-to-github" title="Permalink to this headline">¶</a></h3>
+<p>This step is easy. Well it is except for providing your credentials again!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git push origin master
+Counting objects: <span class="m">3</span>, <span class="k">done</span>.
+Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>, <span class="m">216</span> bytes <span class="p">|</span> <span class="m">216</span>.00 KiB/s, <span class="k">done</span>.
+Total <span class="m">3</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>
+To https://github.com/ACC-COSC2325-003-SP19/homework-rblack42
+ * <span class="o">[</span>new branch<span class="o">]</span>      master -&gt; master
+</pre></div>
+</div>
+<p>Now, check <a class="reference external" href="https://git-scm.com/">Git</a> one last time:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; git status
+On branch master
+Your branch is up to date with <span class="s1">&#39;origin/master&#39;</span>.
+
+nothing to commit, working tree clean
+</pre></div>
+</div>
+<p>This is what you want to see before you walk away from a development session.
+What it means is that you have an exact copy of all of your work safely on your
+machine, and on <a class="reference external" href="https://github.com/">GitHub</a>.</p>
+</div>
+<div class="section" id="check-github">
+<h3>Check GitHub<a class="headerlink" href="#check-github" title="Permalink to this headline">¶</a></h3>
+<p>I recommend opening up your web browser and finding your project repository
+there. What you will see may surprise you. That <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> file is proudly
+displayed on the project page, nicely formatted. <a class="reference external" href="https://git-scm.com/">Git</a> processes any file named
+“something.rst” assuming it is a file written in reStructuredText notation. The text we
+wrote is in this format. We will see more of this notation later.</p>
+</div>
+</div>
+<div class="section" id="break-time-walk-away">
+<h2>Break Time! Walk Away<a class="headerlink" href="#break-time-walk-away" title="Permalink to this headline">¶</a></h2>
+<p>When you get here, it is safe to walk away from your project. Even if someone
+steals your development machine, we could “clone” another copy to a different
+machine, install the needed tools, and continue work.</p>
+<p>It is not uncommon for developers to use several machines in ther work. I have
+PC, Mac, and Linux machines available, and can (and do) test things on all
+three platforms to make sure my projects really are ready for use in the
+“wild”!</p>
+</div>
+<div class="section" id="set-up-a-playground">
+<h2>Set Up a Playground<a class="headerlink" href="#set-up-a-playground" title="Permalink to this headline">¶</a></h2>
+<p>I always recommend that you set up separate directories where you can “play”.
+The work you do here is experimental, and when you figure something out that
+seems to work, you copy the new idea into a managed project. DO not play in a
+real project, you might mess things up. <a class="reference external" href="https://git-scm.com/">Git</a> will help protect you, but it is
+good practice to be careful when you code for real.</p>
+<p>I also set up another directory where I can clone interesting projects I find
+on <a class="reference external" href="https://github.com/">GitHub</a>. Doing this is for study purposes. You can almost always find code
+on <a class="reference external" href="https://github.com/">GitHub</a> that will help you learn new techniques, languages, etc. My laptop
+has over 50 cloned projects now. I can try them out, and study them as I like.</p>
+<p>Here are the folders I create for a class:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir sandbox
+$ mkdir github
+</pre></div>
+</div>
+<p>Guess why I named the first one “sandbox”. You may need to remember what it was
+like being a kid!</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">NEVER clone a repository into another repository. Both of the folders above
+will live beside any repositories i build for my class work. Accidentally
+putting one repository inside another one is a very common mistake for
+beginners to make. Be careful not to do this!</p>
+</div>
+<p>At this point, you are ready to submit real assignments. Check the <code class="docutils literal notranslate"><span class="pre">HW2</span></code> link
+for further guidance on doing that!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">GitHub Classroom Projects</a><ul>
+<li><a class="reference internal" href="#fire-up-a-command-prompt">Fire up a Command Prompt</a></li>
+<li><a class="reference internal" href="#finding-a-home-for-your-work">Finding a Home for Your Work</a></li>
+<li><a class="reference internal" href="#preflight-checks">Preflight Checks</a><ul>
+<li><a class="reference internal" href="#checking-your-tools">Checking Your Tools</a><ul>
+<li><a class="reference internal" href="#programmer-s-editor">Programmer’s Editor</a></li>
+<li><a class="reference internal" href="#id2">Git</a></li>
+<li><a class="reference internal" href="#id3">Make</a></li>
+<li><a class="reference internal" href="#c-c-compiler">C/C++ Compiler</a></li>
+<li><a class="reference internal" href="#id4">Python</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuring-git">Configuring Git</a><ul>
+<li><a class="reference internal" href="#registering-your-identity">Registering your Identity</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#git-repositories">Git Repositories</a><ul>
+<li><a class="reference internal" href="#create-a-working-copy">Create a “Working Copy”</a></li>
+<li><a class="reference internal" href="#check-your-github-connection">Check your GitHub Connection</a></li>
+<li><a class="reference internal" href="#ignoring-unneeded-files">Ignoring Unneeded Files</a></li>
+<li><a class="reference internal" href="#add-a-readme-file">Add a “README” file</a></li>
+<li><a class="reference internal" href="#see-what-git-thinks">See What Git Thinks</a></li>
+<li><a class="reference internal" href="#commit-this-version">“Commit” this Version</a></li>
+<li><a class="reference internal" href="#push-to-github">Push To GitHub</a></li>
+<li><a class="reference internal" href="#check-github">Check GitHub</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#break-time-walk-away">Break Time! Walk Away</a></li>
+<li><a class="reference internal" href="#set-up-a-playground">Set Up a Playground</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="01-shell-basics.html"
+                          title="Previous page">&larr; Linux Shell Basics</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="03-project-folders.html"
+                          title="Next page">&rarr; Managing a Project</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/lectures/02-Development-Techniques/02-github-classroom.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="03-project-folders.html" title="Managing a Project"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="01-shell-basics.html" title="Linux Shell Basics"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../schedule-16/index.html" >COSC2325 - 16-week Schedule</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

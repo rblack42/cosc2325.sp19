@@ -1,0 +1,423 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Formally Defining Languages &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Assignments" href="../../assignments/index.html" />
+    <link rel="prev" title="Time to Talk About Time" href="../03-Basic-Concepts/05-time.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../assignments/index.html" title="Assignments"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../03-Basic-Concepts/05-time.html" title="Time to Talk About Time"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Lecture Notes</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="formally-defining-languages">
+<h1>Formally Defining Languages<a class="headerlink" href="#formally-defining-languages" title="Permalink to this headline">¶</a></h1>
+<p>Read time: 39 minutes (9834 words)</p>
+<p>We create special languages for use in programming a computer. These languages
+are very different from the ones we use as humans, to communicate with other
+humans. Programming languages must not allow any ambiguity. Each “sentence” in
+the programming language must be clear enough to allow conversion of that sentence into a
+form the computer can process. Furthermore, the computer’s operation, when
+processing that sentence, must match the programmer’s understanding of what that
+sentence “means”.</p>
+<p>We call the precise form of a sentence the :term:syntax” of that sentence, and
+we call the meaning of that sentence the :term: semantics` of that sentence.</p>
+<p>Designing programming languages in a formal way has been studied for quite a
+while, and you will earn all about this in a compiler course later in your
+education. Since we will be learning new languages in this course, it is worth
+taking a quick look at one of the most common ways computer languages are defined.</p>
+<div class="section" id="ebnf">
+<h2>EBNF<a class="headerlink" href="#ebnf" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Niklaus_Wirth">Niklaus Wirth</a>, who has designed a number of popular programming languages,
+including Pascal, proposed a formal notation to be used in specifying
+programming languages in a paper he authored in 1977 [<a class="reference internal" href="../../zbibliography.html#wirth-1977" id="id2">[Wir77]</a>]. The
+notation is called <code class="docutils literal notranslate"><span class="pre">Extended</span> <span class="pre">Backus-Naur</span> <span class="pre">Form</span></code> or <code class="docutils literal notranslate"><span class="pre">EBNF</span></code>. As you might
+expect from the name, it is an extension of another, sightly more complex
+notation that was being used up to that time.</p>
+<p>Basically, <code class="docutils literal notranslate"><span class="pre">EBNF</span></code> lets you define a set of <code class="docutils literal notranslate"><span class="pre">rules</span></code> that define the grammar for
+a language. <code class="docutils literal notranslate"><span class="pre">ENBF</span></code> says nothing about what to do with that grammar, but the rules
+can help you build tools that will process programs written in the language
+defined.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">EBNF</span></code> notation, itself, can be described using this notation. We will do
+that here. In the description of <code class="docutils literal notranslate"><span class="pre">EBNF</span></code> below, we will use something called a
+<code class="docutils literal notranslate"><span class="pre">railroad</span> <span class="pre">diagram</span></code> to show a rule. Later, we will ditch the diagrams and use
+something you can write in your favorite editor.</p>
+</div>
+<div class="section" id="grammars">
+<h2>Grammars<a class="headerlink" href="#grammars" title="Permalink to this headline">¶</a></h2>
+<p>We call the formal set of rules we create to define any language a <code class="docutils literal notranslate"><span class="pre">grammar</span></code>.
+The rules are just like those you learned back in elementary school. Back then,
+you learned the rules for forming <code class="docutils literal notranslate"><span class="pre">sentences</span></code> in the language you were
+learning. In programming, we call <code class="docutils literal notranslate"><span class="pre">sentences</span></code> <code class="docutils literal notranslate"><span class="pre">statements</span></code>. Same idea. If
+the sentence is malformed, it will not make any sense. If the program statement
+does not follow the rules, the compiler will not be able to figure out what you
+want it to do.</p>
+<img alt="../../_images/grammar.png" class="align-center" src="../../_images/grammar.png" />
+<p>The reason this diagram is called a <code class="docutils literal notranslate"><span class="pre">railroad</span> <span class="pre">diagram</span></code> should be obvious.
+Those lines look like train tracks, with switches allowing you to travel one
+way or another.  When we use these rules to create programs written in the
+language being defined, we will start at the left side of this top-level rule,
+with no code in the file.  We will then travel to the left along the tracks and
+do one of two things.</p>
+<p>If we encounter a block (such as the <code class="docutils literal notranslate"><span class="pre">production</span></code> block above), we will stop
+traveling along this rule, and jump to the rule with the name inside that block
+(‘’production`` here). This is much like a function call, and we will be coming back
+to this rule once we have completed travel over that <code class="docutils literal notranslate"><span class="pre">production</span></code> rule. We
+will then continue along this first <code class="docutils literal notranslate"><span class="pre">grammar</span></code> rule, following the tracks, until we
+reach the end of the rule on the right side. Since this is the first rule, the
+one we started working with, when we reach that right side, we stop. We have
+completely define the thing called a <code class="docutils literal notranslate"><span class="pre">grammar</span></code>!</p>
+<p>The second thing we do while traveling along a track is figure out what to do
+when we reach a switch. At those points you can either continue along in a
+straight line, or take the switch until you run into another block (or switch).
+In the diagram above, it looks like a <code class="docutils literal notranslate"><span class="pre">grammar</span></code> can be formed out of one or
+more <code class="docutils literal notranslate"><span class="pre">production</span></code> things. That is exactly right. You must have at least one
+production in your grammar, but you might have more than one.</p>
+<p>The decision on which path to take at a switch is usually easy, at least in
+well designed languages. Each possible path will eventually lead to another
+rule that beginning with something easy to identify. For example, in most
+programming languages, statements always begin with a <span class="xref std std-term">reserved word`</span>,
+chosen to help identify that statement. Words like <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code>, and for``
+should all be familiar to you by now. As soon as you see that word, you know
+what should come next, and what rule you want to be processing in the grammar.</p>
+<p>Obviously we need a bunch more rules, since we have not entered anything into
+our code file yet.</p>
+</div>
+<div class="section" id="productions">
+<h2>Productions<a class="headerlink" href="#productions" title="Permalink to this headline">¶</a></h2>
+<p>Here is the <code class="docutils literal notranslate"><span class="pre">production</span></code> rule:</p>
+<img alt="../../_images/production.png" class="align-center" src="../../_images/production.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">There is one special thing on thing in this rule. There is a semicolon in a
+block at the end of this rule. That means that every <code class="docutils literal notranslate"><span class="pre">production</span></code> must
+end with a semicolon. (More on that curved-corner box in a bit.)</p>
+</div>
+<p>We are making progress, except this rule immediately runs into another rule
+block, but this one is named <code class="docutils literal notranslate"><span class="pre">identifier</span></code>, We sort of have an idea what
+that might be. As programmers, we create identifiers all the time, only we call
+them <code class="docutils literal notranslate"><span class="pre">variable</span> <span class="pre">names</span></code> or <code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">names</span></code>. Since this is another rule, we
+might suspect that there is a rule telling us what makes up a legal
+<code class="docutils literal notranslate"><span class="pre">identifier</span></code> in this language. (Sound familiar?)</p>
+<p>We still have not entered a single letter into our code file. Let’s follow this
+rule and see where we go:</p>
+</div>
+<div class="section" id="identifiers">
+<h2>Identifiers<a class="headerlink" href="#identifiers" title="Permalink to this headline">¶</a></h2>
+<p>Finally, a rule we can use to enter some text into our program file:</p>
+<p>An <code class="docutils literal notranslate"><span class="pre">identifier</span></code> is defined by this rule:</p>
+<img alt="../../_images/identifier.png" class="align-center" src="../../_images/identifier.png" />
+<p>Shoot, yet another rule for something called a letter. The reason we use this
+rule is simple. Not every language you run into will let you use just anything
+you like for names. We might restrict the names to all capital letters (that seems
+silly, but that used to be the rule in some languages).</p>
+<p>Here is the end of this chase:</p>
+</div>
+<div class="section" id="letters">
+<h2>Letters<a class="headerlink" href="#letters" title="Permalink to this headline">¶</a></h2>
+<p>Now, we end up with rule that let us type something:</p>
+<img alt="../../_images/letter.png" class="align-center" src="../../_images/letter.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This rule is just silly. You mean we have to list every letter we will
+allow.  Yes, you might want to do that to have complete control over what
+the language allows. I actually cheated in this diagram. <code class="docutils literal notranslate"><span class="pre">EBNF</span></code> does not
+allow that “..” thing. I used it to keep this diagram short! The meaning
+should be clear.</p>
+</div>
+<p>The bold text in this rounded-corner box tells you this box is different from
+that <code class="docutils literal notranslate"><span class="pre">production</span></code> box we started with. The round corner box is not another
+rule. Instead, you will be typing in exactly what you see as you see in
+this block. That means we are only allowed to use lower-case letters in this
+language. We could extend that, but we will leave it as it stands for now,</p>
+</div>
+<div class="section" id="productions-revisited">
+<h2>Productions Revisited<a class="headerlink" href="#productions-revisited" title="Permalink to this headline">¶</a></h2>
+<p>We did not fully complete the description of that <code class="docutils literal notranslate"><span class="pre">production</span></code> rule.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">production</span></code> will be defined with a name (the identifier). We will use that
+name in other rules (they will show up as blocks with that name inside). The
+actual rule that defines how to write this production is given following the “::=”
+text string, you are required to write in your rule.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Remember, we are showing these rules as pretty diagrams here, the actual
+grammar is written in a simple text file we will see later.</p>
+</div>
+<p>The hard part of defining what a <code class="docutils literal notranslate"><span class="pre">production</span></code> looks like is the next block,
+an <code class="docutils literal notranslate"><span class="pre">expression</span></code>.</p>
+</div>
+<div class="section" id="expressions">
+<h2>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">¶</a></h2>
+<p>You have used <code class="docutils literal notranslate"><span class="pre">expressions</span></code> in your programming. They are complicated strings
+of text made up of variable names, numbers, math operators and parentheses. Our
+<code class="docutils literal notranslate"><span class="pre">expressions</span></code> will be a bit like that, but the notation is different.</p>
+<p>Here is our top-level rule for an <code class="docutils literal notranslate"><span class="pre">expression</span></code>:</p>
+<img alt="../../_images/expression.png" class="align-center" src="../../_images/expression.png" />
+<p>This does not look so bad. An <code class="docutils literal notranslate"><span class="pre">expression</span></code> is just one or more <code class="docutils literal notranslate"><span class="pre">term</span></code>
+things separated by a vertical bar character (“|”). This diagram is actually
+defining a set of alternatives you can select from. The rule will add those
+switches to the diagrams you might generate for your language .</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The diagrams you are viewing in this note were generated on a website that
+takes an <code class="docutils literal notranslate"><span class="pre">EBNF</span></code> notation and produces the image you see. Here is the website
+I used: <a class="reference external" href="http://www.bottlecaps.de/rr/ui">Railroad Diagram Generator</a>. The
+actual rule set I used in creating this note are included at the end of
+this lecture</p>
+</div>
+</div>
+<div class="section" id="terms">
+<h2>Terms<a class="headerlink" href="#terms" title="Permalink to this headline">¶</a></h2>
+<p>Believe it or not, we are making progress. Only a couple more rules and we will
+be done.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">term</span></code> looks like this:</p>
+<img alt="../../_images/term.png" class="align-center" src="../../_images/term.png" />
+<p>Still pretty simple.</p>
+<p>Finally we get tho the real fun diagram:</p>
+</div>
+<div class="section" id="factor">
+<h2>Factor<a class="headerlink" href="#factor" title="Permalink to this headline">¶</a></h2>
+<img alt="../../_images/factor.png" class="align-center" src="../../_images/factor.png" />
+<p>This one is a bit complicated, because it has several paths we can follow.</p>
+<p>The simple path is just an <code class="docutils literal notranslate"><span class="pre">identifier</span></code>, which is the name of some other
+rule. Then we have a <code class="docutils literal notranslate"><span class="pre">literal</span></code>, which is just something in quotes (either
+single or double will do). Those quoted strings mean that you must type in
+exactly what you see between the quotes (not the quotes themselves). In the
+diagrams those strings show up in bold.</p>
+<p>The paths that go through square brackets are the optional things. They can
+either be included in your program, or not.</p>
+<p>The path through the curly brackets are repeated things. They can appear zero
+(meaning they are missing) or as many times as you like.</p>
+<p>Phew.</p>
+</div>
+<div class="section" id="the-ebnf-rules-in-ebnf">
+<h2>The EBNF Rules in EBNF<a class="headerlink" href="#the-ebnf-rules-in-ebnf" title="Permalink to this headline">¶</a></h2>
+<p>Here are all of these rules shown in text form. See if you can see how the
+diagrams match up with these rules.</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">grammar</span> <span class="p">::</span><span class="o">=</span> <span class="p">{</span> <span class="n">production</span> <span class="p">}</span> <span class="p">;</span>
+
+<span class="n">production</span> <span class="p">::</span><span class="o">=</span> <span class="n">identifier</span> <span class="s2">&quot;::=&quot;</span> <span class="n">expression</span> <span class="s2">&quot;;&quot;</span> <span class="p">;</span>
+
+<span class="n">expression</span> <span class="p">::</span><span class="o">=</span> <span class="n">term</span> <span class="p">{</span> <span class="s2">&quot;|&quot;</span> <span class="n">term</span> <span class="p">}</span> <span class="p">;</span>
+
+<span class="n">term</span> <span class="p">::</span><span class="o">=</span> <span class="n">factor</span> <span class="p">{</span> <span class="n">factor</span> <span class="p">}</span> <span class="p">;</span>
+
+<span class="n">factor</span> <span class="p">::</span><span class="o">=</span> <span class="p">(</span> <span class="n">identifier</span> 
+    <span class="o">|</span> <span class="n">literal</span> 
+    <span class="o">|</span> <span class="s2">&quot;(&quot;</span> <span class="n">expression</span> <span class="s2">&quot;)&quot;</span> 
+    <span class="o">|</span> <span class="s2">&quot;[&quot;</span> <span class="n">expression</span> <span class="s2">&quot;]&quot;</span> 
+    <span class="o">|</span> <span class="s2">&quot;{&quot;</span> <span class="n">expression</span> <span class="s2">&quot;}&quot;</span> <span class="p">)</span>
+    <span class="p">;</span>
+
+<span class="n">literal</span> <span class="p">::</span><span class="o">=</span> <span class="p">(</span> <span class="s1">&#39;&quot;&#39;</span> <span class="n">character</span> <span class="p">{</span> <span class="n">character</span> <span class="p">}</span> <span class="s1">&#39;&quot;&#39;</span> 
+    <span class="o">|</span> <span class="s2">&quot;&#39;&quot;</span> <span class="n">character</span> <span class="p">{</span> <span class="n">character</span> <span class="p">}</span> <span class="s2">&quot;&#39;&quot;</span> <span class="p">)</span> 
+    <span class="p">;</span>
+
+</pre></div>
+</td></tr></table></div>
+<p>Notice that I used parentheses to surround some of these complex rules to make
+sure they followed the rules properly. You run into this kind of thing all the
+time when defining languages, and this one was pretty simple!</p>
+<p>This rule set is not really complete, but it is close enough for now. We left
+undefined the <code class="docutils literal notranslate"><span class="pre">letter</span></code> and <code class="docutils literal notranslate"><span class="pre">character</span></code> blocks. Basically a <code class="docutils literal notranslate"><span class="pre">letter</span></code> will
+be a lower-case alphabetic character, and a <code class="docutils literal notranslate"><span class="pre">character</span></code> will be any printable
+thing you can type on your keyboard. It would be messy to completely define
+that in a rule (but we could).</p>
+</div>
+<div class="section" id="diagram-tool-rules">
+<h2>Diagram Tool Rules<a class="headerlink" href="#diagram-tool-rules" title="Permalink to this headline">¶</a></h2>
+<p>The website I used to generate the diagrams seen in this note uses a slightly
+different scheme for writing the rules. We will not go into detail about the
+differences, but you should be able to figure these rules out by looking at the
+website itself. They have documented how to set things up to get the diagrams.</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">grammar</span> <span class="p">::</span><span class="o">=</span> <span class="n">production</span><span class="o">+</span>
+<span class="n">production</span> <span class="p">::</span><span class="o">=</span> <span class="n">identifier</span> <span class="s2">&quot;::=&quot;</span> <span class="n">expression</span>
+<span class="n">identifier</span> <span class="p">::</span><span class="o">=</span> <span class="n">letter</span><span class="o">+</span>
+<span class="n">expression</span> <span class="p">::</span><span class="o">=</span> <span class="n">term</span> <span class="p">(</span> <span class="s2">&quot;|&quot;</span> <span class="n">term</span> <span class="p">)</span><span class="o">*</span>
+<span class="n">term</span> <span class="p">::</span><span class="o">=</span> <span class="n">factor</span><span class="o">+</span>
+<span class="n">factor</span> <span class="p">::</span><span class="o">=</span> <span class="n">identifier</span> <span class="o">|</span> <span class="n">literal</span> <span class="o">|</span> <span class="s2">&quot;(&quot;</span> <span class="n">expression</span> <span class="s2">&quot;)&quot;</span> <span class="o">|</span> <span class="s2">&quot;[&quot;</span> <span class="n">expression</span> <span class="s2">&quot;]&quot;</span> <span class="o">|</span> <span class="s2">&quot;{&quot;</span> <span class="n">expression</span> <span class="s2">&quot;}&quot;</span>
+<span class="n">literal</span> <span class="p">::</span><span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span> <span class="n">character</span><span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">|</span> <span class="s2">&quot;&#39;&quot;</span> <span class="n">character</span><span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span>
+</pre></div>
+</td></tr></table></div>
+<p>I do not expect you to be able to define a language on an exam in this course,
+but you should be able to follow an <code class="docutils literal notranslate"><span class="pre">EBNF</span></code> rule and understand what it tells
+you to do when you write something in the language we are studying.</p>
+<p>With this background in language design, let’s take a look at a simple C++
+program.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Formally Defining Languages</a><ul>
+<li><a class="reference internal" href="#ebnf">EBNF</a></li>
+<li><a class="reference internal" href="#grammars">Grammars</a></li>
+<li><a class="reference internal" href="#productions">Productions</a></li>
+<li><a class="reference internal" href="#identifiers">Identifiers</a></li>
+<li><a class="reference internal" href="#letters">Letters</a></li>
+<li><a class="reference internal" href="#productions-revisited">Productions Revisited</a></li>
+<li><a class="reference internal" href="#expressions">Expressions</a></li>
+<li><a class="reference internal" href="#terms">Terms</a></li>
+<li><a class="reference internal" href="#factor">Factor</a></li>
+<li><a class="reference internal" href="#the-ebnf-rules-in-ebnf">The EBNF Rules in EBNF</a></li>
+<li><a class="reference internal" href="#diagram-tool-rules">Diagram Tool Rules</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="../03-Basic-Concepts/05-time.html"
+                          title="Previous page">&larr; Time to Talk About Time</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="../../assignments/index.html"
+                          title="Next page">&rarr; Assignments</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/lectures/04-Formal-Languages/01-defining-languages.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../assignments/index.html" title="Assignments"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../03-Basic-Concepts/05-time.html" title="Time to Talk About Time"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Lecture Notes</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

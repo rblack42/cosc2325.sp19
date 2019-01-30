@@ -24,7 +24,7 @@ Lectures
     :maxdepth: 1
     :glob:
 
-    lectures/*
+    lectures/index.rst
 
 Assignments
 ***********
@@ -34,6 +34,11 @@ Assignments
     :glob:
 
     assignments/*
+
+Summary of Learning Objectives
+******************************
+
+..  objectivelist::
 
 Appendix
 ********

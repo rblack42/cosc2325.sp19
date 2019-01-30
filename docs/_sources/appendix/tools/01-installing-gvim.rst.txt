@@ -8,9 +8,9 @@ Programmer's Editor
 There are literally dozens of outstanding editors for professional programmers
 available either commercially, or free on the Internet.  Choosing one is a
 challenge, and can lead to religious wars if you try to claim that you choice
-is the *best*. I choose to use an editor that is available on almost every Unix
-like system (including Linux) and has been around for many years. That editor
-is a version of **vi**. For Windows platforms, the specific editor I use is
+is the *best*. I choose to use an editor that is available for almost every
+system where you are likely to want to run an editor. That editor
+is a version of **vim**, which has been around for many years. For Windows platforms, the specific editor I use is
 called gVim_, and it is installed on the lab machines. 
 
 gVim_ is a free editor available from http://www.vim.org.  This particular

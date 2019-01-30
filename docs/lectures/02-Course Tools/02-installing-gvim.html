@@ -1,0 +1,308 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Programmer’s Editor &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="programmer-s-editor">
+<span id="installing-vim"></span><h1>Programmer’s Editor<a class="headerlink" href="#programmer-s-editor" title="Permalink to this headline">¶</a></h1>
+<p>There are literally dozens of outstanding editors for professional programmers
+available either commercially, or free on the Internet.  Choosing one is a
+challenge, and can lead to religious wars if you try to claim that you choice
+is the <em>best</em>. I choose to use an editor that is available on almost every Unix
+like system (including Linux) and has been around for many years. That editor
+is a version of <strong>vi</strong>. For Windows platforms, the specific editor I use is
+called <a class="reference external" href="https://www.vim.org/">gVim</a>, and it is installed on the lab machines.</p>
+<p><a class="reference external" href="https://www.vim.org/">gVim</a> is a free editor available from <a class="reference external" href="http://www.vim.org">http://www.vim.org</a>.  This particular
+version is a full Windows application that integrates fairly well into the
+Windows environment - even to the point where there is an <em>Edit with gVim</em>
+entry on the right-click context menu that you can pop up when browsing for
+files using the Windows Explorer tool.</p>
+<p>The installation of <a class="reference external" href="https://www.vim.org/">gVim</a> is pretty easy - download the installer and run it on
+your system. The current file you want is <code class="docutils literal notranslate"><span class="pre">gvim73_46.exe</span></code>. I usually install the program under <cite>c:\tools\vim</cite> on my
+systems. Once this is done, the editor is ready to go, except that I recommend
+a few tune-up steps to make the editor work a bit better for our projects.</p>
+<p><cite>gVim</cite> uses a configuration file to set a few parameters that control how it
+works. You do not need to modify this file, but adding a few parameters can
+make it work a bit nicer. The file is named <cite>_vimrc</cite> and it is found in the
+root of the folder where you installed <cite>gVim</cite> (<cite>c:\tools\Vim</cite> on my system).
+Here are the changes I make to my setup:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>behave mswin
+<span class="nb">set</span> nobackup
+<span class="nb">set</span> <span class="nv">tabstop</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">set</span> <span class="nv">shiftwidth</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">set</span> expandtab
+filetype on
+</pre></div>
+</div>
+<p>The first of these lines should already be in your default configuration file,
+add the rest of them as shown.</p>
+<p>Here is what these additions do:</p>
+<div class="section" id="kill-the-automatic-backup">
+<h2>Kill the automatic backup<a class="headerlink" href="#kill-the-automatic-backup" title="Permalink to this headline">¶</a></h2>
+<p>By default, <cite>gVim</cite> creates a backup copy of the file you edit.
+That file has the same name as the file you are working with, with a
+squiggle added to the file name. This backup file can be used to recover
+from a bad editing session, if you need such a thing. Simply kill the
+current copy and rename the backup and off you go. I choose not to do this.
+This line controls this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> nobackup
+</pre></div>
+</div>
+</div>
+<div class="section" id="change-tabs-from-8-spaces-to-4-spaces">
+<h2>Change tabs from 8 spaces to 4 spaces<a class="headerlink" href="#change-tabs-from-8-spaces-to-4-spaces" title="Permalink to this headline">¶</a></h2>
+<p>Most programmers use indenting as part of their programming style. By default,
+most editors set the tab stops every 8 spaces, which I find to be too many! I
+use the tab key to indent my code, but I prefer 4 characters per tab stop. Add
+these lines to set this up:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="nv">tabstop</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">set</span> <span class="nv">shiftwidth</span><span class="o">=</span><span class="m">4</span>
+</pre></div>
+</div>
+<p>In addition, since I program in Python a lot, I prefer to have my tabs
+automatically expanded into spaces when I type. This helps keep my code
+listings on the web look right as well, since most browsers also use 8
+spaces for the tab spacing. Here is the addition to make this happen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> expandtab
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Some programmers object to expanding tabs, but the benefits of doing so far
+outweigh these objections. Many companies set up coding standards that you
+have to live with, and expanding tabs is very common. That way programs
+written by one programmer using their editor will look right when loaded by
+another programmer in a different editor. Since I have to look at all of
+your code, and I will grade on style - let’s expand tabs and be done with
+it!</p>
+</div>
+</div>
+<div class="section" id="basic-editing">
+<h2>Basic editing<a class="headerlink" href="#basic-editing" title="Permalink to this headline">¶</a></h2>
+<p>There are many tutorials available for vi, here is <a class="reference external" href="http://supportweb.cs.bham.ac.uk/docs/tutorials/docsystem/build/tutorials/gvim/gvim.html">a gVim tutorial</a>
+to get you started.</p>
+<p>The most important concept to know about <a class="reference external" href="https://www.vim.org/">gVim</a> is that it is a modal editor.
+That means you are in one of two modes at all times. The first mode is
+<code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">mode</span></code>, which you can detect by looking at the blinking cursor - it
+will be a black box the size of a single character. In this mode, anything you
+type will be a command to the editor. The most important commands are:</p>
+<ul class="simple">
+<li><cite>i</cite> (insert)
+enter text insert mode at the current location</li>
+<li><cite>:q</cite> (quit)
+exit the program</li>
+<li><cite>:w</cite> (write)
+write out the current text</li>
+<li><cite>&lt;Esc&gt;</cite>
+Exit insert mode and return to command mode</li>
+</ul>
+<p>The second mode is <code class="docutils literal notranslate"><span class="pre">text</span> <span class="pre">entry</span> <span class="pre">mode</span></code> which is detected by looking at the
+blinking cursor again - it should be a skinny vertical line. In this mode
+anything you type will be entered into the text of the file you are editing.
+All the normal keys should work fine - cursor keys, tab, backspace and delete,
+etc.</p>
+<p>You get out of text mode by typing the <cite>Esc</cite> (escape) key on your keyboard.
+Make sure the cursor changes as described above.</p>
+<p>Since <cite>gVim</cite> is a normal graphical program, you have access to the menu system
+you should be familiar with from other work in Windows. Check the tutorial for
+more info. You will not be tested on anything about the editor so you are free
+to choose another one if you prefer. If you are seen using <cite>Notepad</cite>, you may
+lose your programmer’s license!</p>
+</div>
+<div class="section" id="other-settings">
+<h2>Other Settings<a class="headerlink" href="#other-settings" title="Permalink to this headline">¶</a></h2>
+<p>There are a few more settings I use in my teaching activities that you may find
+useful:</p>
+<div class="section" id="wrapping-text">
+<h3>Wrapping text<a class="headerlink" href="#wrapping-text" title="Permalink to this headline">¶</a></h3>
+<p>Normal text entry will not <cite>wrap</cite> lines when they get too long. I like to keep
+all my code short so it prints nicely and can be displayed on web pages with
+little formatting problems. So, I want all my text lines to be less than about
+75 characters ling. I can do this with this setting in <cite>_vimrc</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">textwidth</span><span class="o">=</span><span class="mi">75</span>
+<span class="nb">map</span> <span class="n">q</span> <span class="n">gq</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The normal edit window is 80 characters wide, so this works pretty well (for
+me). That second line looks pretty odd, but helps. If you edit a properly
+formatted paragraph and push lines out past your preferred limit, placing the
+cursor (in command mode) at the top of the paragraph and pressing the <cite>q</cite> key
+will reformat the paragraph so the line length limit is obeyed.</p>
+</div>
+<div class="section" id="spell-checking">
+<h3>Spell checking<a class="headerlink" href="#spell-checking" title="Permalink to this headline">¶</a></h3>
+<p>We can make <a class="reference external" href="https://www.vim.org/">gVim</a> can work differently depending on the type of file you are
+editing. For each file name you edit, <a class="reference external" href="https://www.vim.org/">gVim</a> looks at the <cite>file extension</cite> and
+loads a special <cite>plugin</cite> file whose name is something like <cite>viext.vim</cite>. These
+files are located in the <cite>vim73ftplugin</cite> directory (assuming you are using
+gVim 7.3). As delivered, <a class="reference external" href="https://www.vim.org/">gVim</a> knows about a bunch of different languages. Now,
+we probably do not want to spell check a file with program code since lots of
+stuff in that file will be misspelled (according to your English teacher).
+However, if the file you are editing contains mostly normal text, turning spell
+checking on can be handy.</p>
+<p>For example, the file containing these notes is being written in
+<cite>reStructured Text</cite>, and such documents normally are saved in files
+with a <cite>file extension</cite> of <cite>.rst</cite>. Add this line in
+<cite>rst.vim</cite> to turn on spell checking when you edit a
+<cite>reStructured Text</cite> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setlocal spell <span class="nv">spelllang</span><span class="o">=</span>en_us
+</pre></div>
+</div>
+<p>Once this is done, spell checking will be active whenever you edit one of
+these files, and <a class="reference external" href="https://www.vim.org/">gVim</a> will place a red squiggly line under any word that
+it thinks is misspelled. Click on the offending word, then
+<cite>right-click</cite> to see a menu that will help you correct the error. You
+can add words to the dictionary <a class="reference external" href="https://www.vim.org/">gVim</a> uses if you like, just make sure your
+additions are spelled correctly!</p>
+</div>
+</div>
+<div class="section" id="setup-for-windows-vista-and-windows-7">
+<h2>Setup for Windows Vista and Windows 7<a class="headerlink" href="#setup-for-windows-vista-and-windows-7" title="Permalink to this headline">¶</a></h2>
+<p>Under Windows XP, the gVim installation added a nice <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">with</span> <span class="pre">vim</span></code> entry in the <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Explorer</span></code> context menu that allowed you to right-click on a file and quickly edit that file. Under Vista and Windows 7, this entry occasionally shows up, but most often does not. After Googling the problem, I found a registry patch that restore this feature. Save the following file as <code class="docutils literal notranslate"><span class="pre">gvim.reg</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\Edit with Vim]
+
+[HKEY_CLASSES_ROOT\*\shell\Edit with Vim\command]
+@=&quot;C:\\tools\\Vim\\vim72\\gvim.exe \&quot;%1\&quot;&quot;
+</pre></div>
+</div>
+<p>Run this script by right-clicking on it and choosing “Open with –&gt; Registry editor``. You will get a warning message, but it should work fine.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If for any reason it does not, you can use the registry editor to remove
+these entries. My system has worked fine with these additions.</p>
+</div>
+<p>Once these entries are in your system, the context menu entry should appear in <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Explorer</span></code>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Programmer’s Editor</a><ul>
+<li><a class="reference internal" href="#kill-the-automatic-backup">Kill the automatic backup</a></li>
+<li><a class="reference internal" href="#change-tabs-from-8-spaces-to-4-spaces">Change tabs from 8 spaces to 4 spaces</a></li>
+<li><a class="reference internal" href="#basic-editing">Basic editing</a></li>
+<li><a class="reference internal" href="#other-settings">Other Settings</a><ul>
+<li><a class="reference internal" href="#wrapping-text">Wrapping text</a></li>
+<li><a class="reference internal" href="#spell-checking">Spell checking</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#setup-for-windows-vista-and-windows-7">Setup for Windows Vista and Windows 7</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/lectures/02-Course Tools/02-installing-gvim.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

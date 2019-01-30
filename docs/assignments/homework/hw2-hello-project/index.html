@@ -1,0 +1,258 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>HW 2: Hello Project &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Lab 1: The Dance Simulator" href="../../labs/lab1-dancing/index.html" />
+    <link rel="prev" title="Managing a Project" href="../../../lectures/02-Development-Techniques/03-project-folders.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../labs/lab1-dancing/index.html" title="Lab 1: The Dance Simulator"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../../../lectures/02-Development-Techniques/03-project-folders.html" title="Managing a Project"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../../schedule-16/index.html" accesskey="U">COSC2325 - 16-week Schedule</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="hw-2-hello-project">
+<h1>HW 2: Hello Project<a class="headerlink" href="#hw-2-hello-project" title="Permalink to this headline">¶</a></h1>
+<p>Read time: 7 minutes (1996 words)</p>
+<p>This assignment is designed to make sure you can use <a class="reference external" href="https://git-scm.com/">Git</a> and <a class="reference external" href="https://github.com/">GitHub</a> to manage
+your development work.</p>
+<div class="section" id="submitting-homework">
+<h2>Submitting Homework<a class="headerlink" href="#submitting-homework" title="Permalink to this headline">¶</a></h2>
+<p>To submit a homework assignment, open up a command prompt window and get into
+your homework repository directory.</p>
+<p>Create a new folder for each homework, named to indicate what assignment it is.
+At this point, you need to do this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir HW2
+</pre></div>
+</div>
+<p>In each of these homework folders, place a <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> file that looks something like
+this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>HW2: Hello Project
+##################
+:Author: Roie R. Black
+:Course: COSC2325-003
+:Instructor: Roie R&gt; Black
+:Started on: Jan 27, 2019
+:Submitted on:  Jan 27, 2019
+
+Place any text you like here.
+</pre></div>
+</div>
+<p>The note at the bottom should just describe this “project”. For more complex
+projects, tell a bit of a story here. The idea is to get used to telling the
+reader of your project code something about the project. (Actually, we are
+placing each homework “project” in this single repository, with each assignment
+in a separate subfolder. We could have a separate repository for each
+assignment, but that is overkill for our homework projects.</p>
+<p>Now, use the “getting started” guide to get this work up onto <a class="reference external" href="https://github.com/">GitHub</a>.
+Basically that process looks like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -m <span class="s2">&quot;what did I do&quot;</span>
+$ git push origin master
+</pre></div>
+</div>
+<p>Of course, you might check things along the way by asking <a class="reference external" href="https://git-scm.com/">Git</a> what it thinks.
+These three steps are a kind of “mantra” developers just automatically do every
+so often!</p>
+<p>How often?</p>
+<p>You decide. At a minimum, before they walk away from any work session. More
+than that? Maybe. I like to do a “push” when I think the project has reached
+some milestone. For students, when you get stuck and want to ask for help, push
+what you have now. I can update my copy of your project and see what is going
+on!</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you only push the project when you get it done, there is no way I can
+see how you went about doing your work. I like to check on your progress,
+and try to get you working smarter. Flailing away is not a good habit to get
+into! (We call that “blasting code”! It rarely generates anything to be
+proud of!)</p>
+</div>
+</div>
+<div class="section" id="what-about-hw2">
+<h2>What About HW2?<a class="headerlink" href="#what-about-hw2" title="Permalink to this headline">¶</a></h2>
+<p>We really need a real program here. Select one of these program code examples
+and see if you can make it work:</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="c1">#include &lt;string&gt;</span>
+
+<span class="n">void</span> <span class="n">message</span><span class="p">(</span><span class="n">string</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;My name is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">myname</span> <span class="o">=</span> <span class="s2">&quot;Roie R. Black&quot;</span><span class="p">;</span>
+    <span class="n">message</span><span class="p">(</span><span class="n">myname</span><span class="p">);</span>
+<span class="p">}</span>
+
+</pre></div>
+</td></tr></table></div>
+<p>You can run this program as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ g++ -c hello.cpp -o hello.o
+$ g++ hello.o -o hello
+$ ./hello
+My name is Roie R. Black
+</pre></div>
+</div>
+<div class="section" id="push-to-github">
+<h3>Push To GitHub<a class="headerlink" href="#push-to-github" title="Permalink to this headline">¶</a></h3>
+<p>Now, get this file on <a class="reference external" href="https://github.com/">GitHub</a> using your “mantra”!</p>
+<p>Guess what! That is all you need to do.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../../index.html" title="index">
+          <img class="logo" src="../../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">HW 2: Hello Project</a><ul>
+<li><a class="reference internal" href="#submitting-homework">Submitting Homework</a></li>
+<li><a class="reference internal" href="#what-about-hw2">What About HW2?</a><ul>
+<li><a class="reference internal" href="#push-to-github">Push To GitHub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="../../../lectures/02-Development-Techniques/03-project-folders.html"
+                          title="Previous page">&larr; Managing a Project</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="../../labs/lab1-dancing/index.html"
+                          title="Next page">&rarr; Lab 1: The Dance Simulator</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/assignments/homework/hw2-hello-project/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../labs/lab1-dancing/index.html" title="Lab 1: The Dance Simulator"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../../../lectures/02-Development-Techniques/03-project-folders.html" title="Managing a Project"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../../schedule-16/index.html" >COSC2325 - 16-week Schedule</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

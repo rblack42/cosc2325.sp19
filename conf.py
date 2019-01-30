@@ -4,7 +4,7 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('.'))
 import cloud_sptheme as csp
 
 project = 'COSC2325'
@@ -20,6 +20,7 @@ extensions = [
     'sphinx_ext.pylit_oz',
     'sphinxcontrib.spelling',
     'sphinxcontrib.bibtex',
+    'sphinx_ext.objectives',
     'sphinx_ext.circuits',
     'sphinx_ext.programoutput',
 ]
@@ -37,6 +38,7 @@ exclude_patterns = [
         'code/WireParser/_venv']
 
 pygments_style = 'sphinx'
+objective_include_objectives = True
 
 # -- Options for HTML output -----------------------------------------
 

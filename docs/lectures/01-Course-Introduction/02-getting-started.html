@@ -1,0 +1,329 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Getting Started &#8212; COSC2325 fall2018 documentation</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="A short history lesson" href="03-history-lesson.html" />
+    <link rel="prev" title="Course Introduction" href="01-introduction.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="03-history-lesson.html" title="A short history lesson"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="01-introduction.html" title="Course Introduction"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Lecture Notes</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>Read time: 31 minutes (7874 words)</p>
+<p>Are you ready to code? We will be building a fair amount of code in this class,
+and of course, I want you to write good code. That does not just mean that your code works! It
+it also means that your code is “clean”, meaning it follows common style
+conventions, is well written and documented.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The code you write reflects how much you care about the craft of
+programming.  Every student in this class is on a path to become a
+professional who can craft solutions to complex problems, then get the
+computer to do the messy work for you.</p>
+</div>
+<p>We will be using C++ in this course. Some of you may have already studied C++,
+but others have never seen this language. No matter! We will start off with a
+simple problem, designed to show you how to do your work.</p>
+<p>I can hear some of you muttering that you know how to write code, you just fire
+up some IDE and type away.</p>
+<p>Wrong!</p>
+<p>We will be creating code using an “old-school” approach that does not rely on
+fancy development systems. We will pay a lot of attention to how you set up a
+project, create the code and documentation, process and test your code, and
+then publish your code on a public server for others to see.</p>
+<div class="section" id="why-not-use-an-ide">
+<h2>Why Not use an IDE?<a class="headerlink" href="#why-not-use-an-ide" title="Permalink to this headline">¶</a></h2>
+<p>IDE (Integrated Development Environment) systems are certainly productivity
+boosters. Using one can speed up your coding, and help you manage your code.
+The real problem with using an IDE in school is simple to explain. When you
+finally join a development team and start working on a “real (big) project,
+that team will tell you what development tools you need to use. Your current
+favorite tools will not be usable now. Some companies invest a lot of money for
+tools that seriously help manage a big prject. Some of those tools are amazing,
+and take a long time to master. You do need to be familiar with an IDE, and we
+will look at a popular one late rin the course. For now, no IDEs are allowed!</p>
+<p>There is another problem with living in an IDE while learning. The IDE hides a
+lot of details about building your project from you. I once attended a school
+that almost lost its accreditation because no student interviewed (and several
+faculty members as well) could explain how a program is actually processed into
+something that can run on a real computer!</p>
+<p>We will make sure you understand what is going on by making sure you can
+function as a developer with only the real development tools available. It may
+surprise you to learn that most IDE systems are just fancy wrappers around
+standard tools. The wrapper gives you a point-and-clink development world to
+live in. Behind the scenes, those standard development tools are running under
+control of the IDE.</p>
+</div>
+<div class="section" id="working-on-the-command-line">
+<h2>Working on the “Command Line”<a class="headerlink" href="#working-on-the-command-line" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-objective admonition" id="index-0">
+<p class="first admonition-title">Objective</p>
+<ol class="last arabic simple">
+<li>Learn to work on the command line.</li>
+</ol>
+</div>
+<p>All operating systems support a user interface where the mouse is not to be
+used. There is no “Graphical User Interface” (GUI) here. Instead, you tell the OS
+what to do by typing in commands using your keyboard only. This kind of
+interface has been around almost as long as computers themselves, but is largly
+ignored by most computer users today. Still, as a developer, it is an important
+part of the programming landscape, especially when you start interacting with
+computers in that “cloud” thing we all hear about today.</p>
+<p>Servers that you might need to control somewhere on the Internet rarely have a
+GUI interface. That kind of thing is way too expensive to support over a long
+network connection. Instead, we transmit short strings of characters to the
+remote machine, and it replies with another short set of characters. Hey! That
+is exactly hor the Web works! Only here, we are telling an operating system
+what to do.</p>
+<p>The interaface we will use is called different things on different machines. On
+a PC, it goes by the name “Command Prompt”. On a Mac/Linux machine it is called
+a “Shell”. In either case, there will be a line on your screen with some kind
+of prompt, and that prompt it telling you to type in a command of some sort.</p>
+<p>Commands are a series of space-separated chunks of text beginning with the name
+of a program you want the operating system to run. All the chunks after that
+program name are considered “options” that will be interpreted by the named
+program. Those options control exactly what the named program does when it
+runs.</p>
+<p>When you press the “Enter” key at the end of the line, the operating system
+searches for the named program in a set of directories (folders for you PC
+folks). If it finds the program, it launches it and hands it those options on
+the command line. If the OS cannot find the program (because you mistyped its
+name, or that program is not installed so it can be found) you get an error
+message, and another prompt.</p>
+<p>If the program is found and launched, what you see on the screen will be output
+from that program, possibly with error messages from the OS. When the program
+finishes running, you get another prompt.</p>
+<div class="section" id="the-system-path">
+<h3>The System PATH<a class="headerlink" href="#the-system-path" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-objective admonition" id="index-1">
+<p class="first admonition-title">Objective</p>
+<p class="last">1.1 Understand the system PATH</p>
+</div>
+<p>Exactly where the OS searches for programs you name is controlled by something
+called an “environment variable”. There are namy such variables in a table
+maintained by the OS&gt; The variable used to locate programs is called the <code class="docutils literal notranslate"><span class="pre">PATH</span></code>
+variable. This is just a long string listing all of the directories where
+programs are installed. There is a separator character between each directory
+name: A colon character on the PC, and a semicolon on Linux/Mac machines.</p>
+<p>You can modify this <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable if needed, something we will do as we install
+our development tools later.</p>
+<p>Let’s try out this new interface!</p>
+</div>
+<div class="section" id="command-prompt-on-pc">
+<h3>Command Prompt on PC<a class="headerlink" href="#command-prompt-on-pc" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Since most students are showing up with laptops running WIndows 10, we will
+use that system for this example. For older versions of WIndows, the way
+you launch the “command Prompt” tool is slightly different. See me for
+help.</p>
+</div>
+<p>Open up the <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">Prompt</span></code> window on a PC by typing “cmd” (no quotes) in
+the search box at the lower left corner of your screen.</p>
+<p>You should see something like this:</p>
+<a class="reference internal image-reference" href="lectures/01-Course-Introduction/images/command-prompt.png"><img alt="lectures/01-Course-Introduction/images/command-prompt.png" class="align-center" src="lectures/01-Course-Introduction/images/command-prompt.png" style="width: 600px;" /></a>
+</div>
+</div>
+<div class="section" id="managing-tools-directly">
+<h2>Managing Tools Directly<a class="headerlink" href="#managing-tools-directly" title="Permalink to this headline">¶</a></h2>
+<p>Rather than live in that point-and-click world, we will work on the system’s
+<code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">line</span></code>. Some of you have never seen this side of your computer, but
+it is important that you know how to work in this strange environment. Working
+on remote systems is a big part of the development world these days. Often the
+interface to those systems does not provide a fancy graphical interface, just
+that plain text-only <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">line</span></code>.</p>
+<p>Being able to log in on a remote system, write some code  and run commands
+there is something you just need to know how to do. So you will be learning
+that way of working in this class.</p>
+<p>Don’t worry, things will be simple enough, after you learn the basics!</p>
+<p>Let’s get started by crafting the industry-standard first C++ program: “Hello, World!”</p>
+</div>
+<div class="section" id="fundamental-build-tools">
+<h2>Fundamental Build Tools<a class="headerlink" href="#fundamental-build-tools" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-objective admonition" id="index-2">
+<p class="first admonition-title">Objective</p>
+<p class="last">1.2 Know the primary tools used to build and run programs</p>
+</div>
+<p>Before we can get very far, we need to make sure we have a few basic tools available.</p>
+<div class="section" id="programmer-s-editor">
+<h3>Programmer’s Editor<a class="headerlink" href="#programmer-s-editor" title="Permalink to this headline">¶</a></h3>
+<p>The first tool we need to master is a simple editing tool. We could (but won’t)
+fire up something simple like <code class="docutils literal notranslate"><span class="pre">Notepad</span></code> on a PC and type our code. The problem
+with that idea is that <code class="docutils literal notranslate"><span class="pre">Notepad</span></code> knows nothing about programming, and we want a
+tool professionals will be comfortable with. Now,</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This is a topic sure to start “flame wars”. And, yes, I know about
+<code class="docutils literal notranslate"><span class="pre">Notepad++</span></code>. I choose to use one I consider much better! YMMV!</p>
+</div>
+<p>Most programmers have one editor they will use and defend forever. There are
+many to choose from, but I have always favored a tool that can be run on just
+about any platform you will ever touch in your career. For me that editor is
+some version of <code class="docutils literal notranslate"><span class="pre">Vim</span></code>. I have used this editing tool on $35 Raspberry Pi
+computers and on $8 million Cray super-computers! It ranks near the top of any
+list of favorite developer’s editors. We will use <code class="docutils literal notranslate"><span class="pre">Vim</span></code> in this class.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Even if you end up choosing another editor, you owe it to yourself to know
+the basics of using <code class="docutils literal notranslate"><span class="pre">Vim</span></code>, since it is commonly installed on many systems
+(just not on Windows, but that is easily fixed!)</p>
+</div>
+<p>We can check that <code class="docutils literal notranslate"><span class="pre">Vim</span></code> is installed by opening up a <code class="docutils literal notranslate"><span class="pre">command-prompt</span></code> window
+on your PC as follows:</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../index.html" title="index">
+          <img class="logo" src="../../_static/ACClogo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#why-not-use-an-ide">Why Not use an IDE?</a></li>
+<li><a class="reference internal" href="#working-on-the-command-line">Working on the “Command Line”</a><ul>
+<li><a class="reference internal" href="#the-system-path">The System PATH</a></li>
+<li><a class="reference internal" href="#command-prompt-on-pc">Command Prompt on PC</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#managing-tools-directly">Managing Tools Directly</a></li>
+<li><a class="reference internal" href="#fundamental-build-tools">Fundamental Build Tools</a><ul>
+<li><a class="reference internal" href="#programmer-s-editor">Programmer’s Editor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="01-introduction.html"
+                          title="Previous page">&larr; Course Introduction</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="03-history-lesson.html"
+                          title="Next page">&rarr; A short history lesson</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/lectures/01-Course-Introduction/02-getting-started.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="03-history-lesson.html" title="A short history lesson"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="01-introduction.html" title="Course Introduction"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">COSC2325 fall2018 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Lecture Notes</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Roie R. Black.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

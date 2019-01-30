@@ -118,8 +118,8 @@ a folder where you will do your development.</p>
 project folder. You will need to modify this file a bit for this project.</p>
 </div>
 <p>Here is the <code class="docutils literal notranslate"><span class="pre">Vagrantfile</span></code> I am using for this project:</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">Vagrantfile</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Vagrantfile</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -256,8 +256,8 @@ $ sudo apt-get install ansible
 <p>That first line adds data needed for the apt tool to find the <a class="reference external" href="https://www.ansible.com/">Ansible</a> software.</p>
 <p>I actually do not do that manually. (Remember, I am lazy, and proud of it!).</p>
 <p>Instead, I have this script in my project folder:</p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">bootstrap.sh</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">bootstrap.sh</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -325,16 +325,16 @@ as well!</p>
 <p>The files needed in this setup are shown below. To learn how to setup such a
 system on your own, look at the documentation online. There are many tutorials
 to get you going.</p>
-<div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text">ansible/inventory</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">ansible/inventory</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">local</span><span class="o">-</span><span class="n">vm</span><span class="p">]</span>
 <span class="n">localhost</span>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text">ansible/Makefile</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">ansible/Makefile</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -345,8 +345,8 @@ to get you going.</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-text">ansible/site.yml</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">ansible/site.yml</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -367,8 +367,8 @@ to get you going.</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id9">
-<div class="code-block-caption"><span class="caption-text">ansible/roles/apt/tasks/main.yml</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">ansible/roles/apt/tasks/main.yml</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -381,8 +381,8 @@ to get you going.</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id10">
-<div class="code-block-caption"><span class="caption-text">ansible/roles/avr/tasks/main.yml</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">ansible/roles/avr/tasks/main.yml</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -405,8 +405,8 @@ to get you going.</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id11">
-<div class="code-block-caption"><span class="caption-text">ansible/roles/avr/tasks/main.yml</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">ansible/roles/avr/tasks/main.yml</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
